@@ -3,7 +3,7 @@
         <div class="box">
             <div class="field has-addons">
                 <div class="control has-icons-left is-expanded">
-                    <input type="text" class="input is-medium" placeholder="Search for Movies or TV Shows!">
+                    <input type="text" class="input is-medium" placeholder="Search for a TV Show!">
                     <span class="icon is-left"><i class="fas fa-search"></i></span>
                 </div>
                 <div class="control">
@@ -20,5 +20,3 @@ export default {
 }
 </script>
 
-<style scoped>
-</style>
