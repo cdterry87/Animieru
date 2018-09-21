@@ -3,7 +3,7 @@
         <div class="box">
             <div class="field has-addons">
                 <div class="control has-icons-left is-expanded">
-                    <input type="text" class="input is-medium" placeholder="Search for a TV Show!" v-model="name">
+                    <input type="text" class="input is-medium" placeholder="Search for a TV Show!" @keyup.enter="search()" v-model="name">
                     <span class="icon is-left"><i class="fas fa-search"></i></span>
                 </div>
                 <div class="control">
@@ -15,12 +15,12 @@
 </template>
 
 <script>
+
 /* eslint-disable */
 import axios from 'axios';
 
 export default {
   name: 'MediaSearch',
-  props: ['token'],
   data() {
       return {
           name: '',
@@ -29,12 +29,9 @@ export default {
   },
   methods: {
     search() {
-        axios.get('https://cors-anywhere.herokuapp.com/https://api.thetvdb.com/search/series', {
-            headers: {
-                Authorization: `Bearer ${this.token}`
-            },
+        axios.get('https://api.jikan.moe/search/anime', {
             params: {
-                'name': this.name
+                'q': this.name
             }
         })
         .then(response => {
@@ -50,5 +47,6 @@ export default {
         
   }
 }
+
 </script>
 
