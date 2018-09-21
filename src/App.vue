@@ -7,7 +7,7 @@
                     <h2 class="title is-5 has-text-centered">Search for your favorite TV Shows using TVDB!</h2>
                     <div class="columns">
                         <div class="column is-6 is-offset-3">
-                            <MediaSearch />
+                            <MediaSearch :token="token"/>
                         </div>
                     </div>
                 </div>
@@ -24,6 +24,8 @@
 </template>
 
 <script>
+/* eslint-disable */
+
 import axios from 'axios';
 import MediaSearch from './components/MediaSearch.vue'
 import MediaList from './components/MediaList.vue'
@@ -38,35 +40,20 @@ export default {
   },
   data() {
       return {
+          token: '',
           errors: []
       }
   },
   created() {
-      console.log('apikey: '+process.env.VUE_APP_APIKEY);
-      console.log('userkey: '+process.env.VUE_APP_USERKEY);
-      console.log('username: '+process.env.VUE_APP_USERNAME);
-
-    console.log('About to retrieve API token...');
-
-    axios({
-        method: 'post',
-        url: 'https://api.thetvdb.com/login',
-        headers: {
-            "Access-Control-Allow-Origin": "*",
-        },
-        data: {
-            apikey: process.env.VUE_APP_APIKEY,
-            userkey: process.env.VUE_APP_USERKEY,
-            username: process.env.VUE_APP_USERNAME,
-        },
-    })
+    axios.get('http://vidquery.chaseterry.com/auth')
     .then(response => {
-        console.log('API Token: ' + response.token);
-        response.header('Access-Control-Allow-Origin', '*');
+        let token = response.data.token;
+        console.log('API Token: ' + token);
+
+        this.token = token;
     })
-    .catch(e => {
-        console.log('API Token retrieval failed!');
-        this.errors.push(e)
+    .catch(error => {
+        console.log('API Token retrieval failed! ' + error);
     })
   }
 }
