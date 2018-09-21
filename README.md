@@ -1,4 +1,4 @@
-# vidquery
+# Animieru
 
 ## Project setup
 ```
