@@ -3,7 +3,7 @@
         <div class="column is-8 is-offset-2">
             <h2 class="title is-5 has-text-centered">Search Results <span v-if="searchResults.length !== 0"> for "{{ searchCriteria }}"</span></h2>
 
-            <SearchResultsItem :searchResults="searchResults" />
+            <SearchResultsItem :searchResults="searchResults" :searchType="searchType" />
         </div>
     </div>
 </template>
@@ -18,7 +18,7 @@ name: 'SearchResults',
         SearchResultsItem
     },
     computed: {
-        ...mapGetters(['searchCriteria', 'searchResults'])
+        ...mapGetters(['searchType', 'searchCriteria', 'searchResults'])
     }
 }
 </script>

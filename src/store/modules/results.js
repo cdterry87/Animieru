@@ -8,6 +8,7 @@ const state = {
 
 const mutations = {
     UPDATE_SEARCH_RESULTS(state, payload) {
+        state.searchType = payload.type;
         state.searchCriteria = payload.criteria;
         state.searchResults = payload.results;
     }
@@ -26,6 +27,7 @@ const actions = {
             })
             .then(response => {
                 context.commit("UPDATE_SEARCH_RESULTS", {
+                    type: payload.selectField,
                     criteria: payload.searchField,
                     results: response.data.result
                 });
@@ -37,6 +39,7 @@ const actions = {
 };
 
 const getters = {
+    searchType: state => state.searchType,
     searchCriteria: state => state.searchCriteria,
     searchResults: state => state.searchResults
 };

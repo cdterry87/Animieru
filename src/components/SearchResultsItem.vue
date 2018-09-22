@@ -8,15 +8,13 @@
             </figure>
             <div class="media-content">
                 <div class="content">
-                    <p>
-                        <strong>{{ result.title }}</strong> 
-                        <strong v-if="result.name">{{ result.name }}</strong>
-                        <small v-if="result.anime"> / {{ result.anime[0].title }}</small>
-                        <br>
-                        <p>
-                            {{ result.description }}
-                        </p>
-                    </p>
+                    <div>
+                        <strong v-if="result.title.length !== 0">{{ result.title }}</strong> 
+                        <strong v-if="result.name.length !== 0">{{ result.name }}</strong>
+                        <small v-if="result.anime.length !== 0"> / {{ result.anime[0].title }}</small>
+                        <br />
+                        <div v-if="result.description.length !== 0">{{ result.description }}</div>
+                    </div>
                 </div>
             </div>
             <div class="media-right">
@@ -29,6 +27,6 @@
 <script>
 export default {
     name: 'SearchResultsItem',
-    props: ['searchResults']
+    props: ['searchType', 'searchResults']
 }
 </script>
