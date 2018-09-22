@@ -30,7 +30,7 @@ export default {
     components: {
         Search,
         SearchResults,
-    }
+    },
 }
 </script>
 

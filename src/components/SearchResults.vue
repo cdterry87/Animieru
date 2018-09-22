@@ -3,6 +3,8 @@
         <div class="column is-8 is-offset-2">
             <h2 class="title is-5 has-text-centered">Search Results</h2>
 
+            {{ searchResults }}
+
             <SearchResultsItem />
         </div>
     </div>
@@ -14,9 +16,6 @@ import { mapGetters } from 'vuex';
 
 export default {
 name: 'SearchResults',
-    created() {
-        // this.$store.dispatch('getSearchResults');
-    },
     components: {
         SearchResultsItem
     },

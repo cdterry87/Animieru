@@ -25,6 +25,6 @@
 
 <script>
 export default {
-    name: 'SearchResultsItem'
+    name: 'SearchResultsItem',
 }
 </script>

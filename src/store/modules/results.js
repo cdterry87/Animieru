@@ -23,9 +23,7 @@ const actions = {
                 }
             })
             .then(response => {
-                // this.result = response;
                 context.commit("UPDATE_SEARCH_RESULTS", response);
-                console.log(response.data);
             })
             .catch(error => {
                 console.log(error);

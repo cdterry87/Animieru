@@ -31,9 +31,6 @@ export default {
             result: {}
         }
     },
-    computed: {
-
-    },
     methods: {
         search() {
             let payload = {
