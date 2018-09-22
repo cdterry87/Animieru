@@ -12,7 +12,8 @@
     "axios": "^0.18.0",
     "bulma": "^0.7.1",
     "css-loader": "^1.0.0",
-    "vue": "^2.5.17"
+    "vue": "^2.5.17",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.1",

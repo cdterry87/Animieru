@@ -25,6 +25,6 @@
 
 <script>
 export default {
-    name: 'MediaListItem'
+    name: 'SearchResultsItem'
 }
 </script>
