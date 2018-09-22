@@ -1,5 +1,5 @@
 <template>
-    <div id="media-search">
+    <div id="search">
         <div class="box">
             <div class="field has-addons">
                 <div class="control has-icons-left is-expanded">

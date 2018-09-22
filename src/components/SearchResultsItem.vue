@@ -1,30 +1,34 @@
 <template>
-    <article class="media">
-        <figure class="media-left">
-            <p class="image is-128x128">
-                <img src="https://bulma.io/images/placeholders/128x128.png">
-            </p>
-        </figure>
-        <div class="media-content">
-            <div class="content">
-                <p>
-                    <strong>John Smith</strong> 
-                    <small>@johnsmith</small>
-                    <br>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Proin ornare magna eros, eu pellentesque tortor vestibulum ut. 
-                    Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+    <div id="search-results-item">
+        <article class="media" v-for="result in searchResults" :key="result.mal_id">
+            <figure class="media-left">
+                <p class="image is-128x128">
+                    <img :src="result.image_url" class="image is-128x128">
                 </p>
+            </figure>
+            <div class="media-content">
+                <div class="content">
+                    <p>
+                        <strong>{{ result.title }}</strong> 
+                        <strong v-if="result.name">{{ result.name }}</strong>
+                        <small v-if="result.anime"> / {{ result.anime[0].title }}</small>
+                        <br>
+                        <p>
+                            {{ result.description }}
+                        </p>
+                    </p>
+                </div>
             </div>
-        </div>
-        <div class="media-right">
-            <a class="level-item"><span class="icon is-small"><i class="fas fa-heart"></i></span></a>
-        </div>
-    </article>
+            <div class="media-right">
+                <a class="level-item"><span class="icon is-small"><i class="fas fa-heart"></i></span></a>
+            </div>
+        </article>
+    </div>
 </template>
 
 <script>
 export default {
     name: 'SearchResultsItem',
+    props: ['searchResults']
 }
 </script>

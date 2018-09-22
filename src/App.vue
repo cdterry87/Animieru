@@ -21,12 +21,11 @@
 </template>
 
 <script>
-import axios from 'axios';
 import Search from './components/Search.vue'
 import SearchResults from './components/SearchResults.vue'
 
 export default {
-    name: 'app',
+    name: 'App',
     components: {
         Search,
         SearchResults,

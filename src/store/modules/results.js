@@ -2,12 +2,14 @@
 import axios from "axios";
 
 const state = {
-    searchResults: {}
+    searchCriteria: "",
+    searchResults: ""
 };
 
 const mutations = {
     UPDATE_SEARCH_RESULTS(state, payload) {
-        state.searchResults = payload;
+        state.searchCriteria = payload.criteria;
+        state.searchResults = payload.results;
     }
 };
 
@@ -23,7 +25,10 @@ const actions = {
                 }
             })
             .then(response => {
-                context.commit("UPDATE_SEARCH_RESULTS", response);
+                context.commit("UPDATE_SEARCH_RESULTS", {
+                    criteria: payload.searchField,
+                    results: response.data.result
+                });
             })
             .catch(error => {
                 console.log(error);
@@ -32,6 +37,7 @@ const actions = {
 };
 
 const getters = {
+    searchCriteria: state => state.searchCriteria,
     searchResults: state => state.searchResults
 };
 
