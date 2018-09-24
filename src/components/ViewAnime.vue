@@ -2,8 +2,8 @@
     <div id="view-anime" class="container">
         <div class="columns">
             <div class="column is-8 is-offset-2">
-                <div class="return-icon button is-primary" @click="$router.go(-1)">
-                    <i class="fa fa-arrow-left is-primary"></i> Go Back to Search
+                <div class="return-icon button is-info" @click="$router.go(-1)">
+                    <i class="fa fa-arrow-left"></i> Go Back to Search
                 </div>
                 <div class="box">
                     <div class="columns">
@@ -22,13 +22,13 @@
                                 Rating: <span class="tag is-danger">{{ details.rating }}</span>
                             </div>
                             <div class="line">
-                                Produced By: <span class="tag is-info" v-for="producer in details.producer" :key="producer.mal_id">{{ producer.title }}</span>
+                                Produced By: <span class="tag is-link" v-for="producer in details.producer" :key="producer.mal_id">{{ producer.title }}</span>
                             </div>
                             <div class="line">
-                                Licensed By: <span class="tag is-info" v-for="licensor in details.licensor" :key="licensor.mal_id">{{ licensor.title }}</span>
+                                Licensed By: <span class="tag is-link" v-for="licensor in details.licensor" :key="licensor.mal_id">{{ licensor.title }}</span>
                             </div>
                             <div class="line">
-                                Studio: <span class="tag is-info" v-for="studio in details.studio" :key="studio.mal_id">{{ studio.title }}</span>
+                                Studio: <span class="tag is-link" v-for="studio in details.studio" :key="studio.mal_id">{{ studio.title }}</span>
                             </div>
                             <div class="line">
                                 Genre(s): <span class="tag is-warning" v-for="genre in details.genre" :key="genre.mal_id">{{ genre.title }}</span>
@@ -90,17 +90,17 @@
                         <span class="title is-5">Staff / Voice Actors</span>    
                     </div> 
                     <div class="columns is-multiline">
-                        <div class="column is-one-third" v-for="actor in actors" :key="actor.mal_id">
+                        <div class="column is-one-quarter" v-for="actor in actors" :key="actor.mal_id">
                             <div class="card">
                                 <div class="card-image">
                                     <figure class="image is-4by5">
-                                    <img :src="actor.image_url" class="image">
+                                        <img :src="actor.image_url" class="image">
                                     </figure>
                                 </div>
                                 <div class="card-content">
                                     <div class="media">
                                         <div class="media-content">
-                                            <p class="title is-4">{{ actor.name }}</p>
+                                            <p class="subtitle is-5">{{ actor.name }}</p>
                                         </div>
                                     </div>
                                     <div class="content">
@@ -152,12 +152,23 @@ export default {
 </script>
 
 <style scoped>
+.card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 span.tag {
     margin-right: 5px;
 }
 
 div.line {
     margin-bottom: 8px;
+}
+
+.content {
+    font-size: 12px;
+    word-wrap: break-word;
 }
 
 .return-icon {
