@@ -3,17 +3,22 @@
         <article class="media" v-for="result in searchResults" :key="result.mal_id">
             <figure class="media-left">
                 <p class="image is-128x128">
-                    <img :src="result.image_url" class="image is-128x128">
+                    <router-link :to="'/anime/' + result.mal_id">
+                        <img :src="result.image_url" class="image is-128x128">
+                    </router-link>
                 </p>
             </figure>
             <div class="media-content">
                 <div class="content">
                     <div>
-                        <strong v-if="result.title.length !== 0">{{ result.title }}</strong> 
-                        <strong v-if="result.name.length !== 0">{{ result.name }}</strong>
-                        <small v-if="result.anime.length !== 0"> / {{ result.anime[0].title }}</small>
+                        <router-link :to="'/anime/' + result.mal_id">
+                            <strong>{{ result.title }}</strong> 
+                        </router-link>
+                        <strong>{{ result.name }}</strong>
+                        <!-- <small> / {{ result.anime[0].title }}</small> -->
                         <br />
-                        <div v-if="result.description.length !== 0">{{ result.description }}</div>
+                        <div>{{ result.description }}</div>
+                        {{ result }}
                     </div>
                 </div>
             </div>
