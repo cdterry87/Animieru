@@ -1,57 +1,48 @@
 <template>
     <div id="view-anime" class="container">
+        <div class="return-icon button is-info" @click="$router.go(-1)">
+            <i class="fa fa-arrow-left"></i> Go Back
+        </div>
         <div class="columns">
-            <div class="column is-8 is-offset-2">
-                <div class="return-icon button is-info" @click="$router.go(-1)">
-                    <i class="fa fa-arrow-left"></i> Go Back
+            <div class="column is-6">
+                <div class="box">
+                    <div class="line">
+                        <span class="title">{{ details.title }}</span>    
+                    </div> 
+                    <div class="line">
+                        <span class="subtitle"> ({{ details.title_english }})</span>    
+                        <span class="subtitle"> ({{ details.title_japanese }})</span>    
+                    </div>
+                    <div class="line">
+                        Aired: {{ details.aired_string }} ({{ details.status }})
+                    </div>
+                    <div class="line">
+                        Rating: <span class="tag is-danger">{{ details.rating }}</span>
+                    </div>
+                    <div class="line">
+                        Produced By: <span class="tag is-link" v-for="producer in details.producer" :key="producer.mal_id">{{ producer.title }}</span>
+                    </div>
+                    <div class="line">
+                        Licensed By: <span class="tag is-link" v-for="licensor in details.licensor" :key="licensor.mal_id">{{ licensor.title }}</span>
+                    </div>
+                    <div class="line">
+                        Studio: <span class="tag is-link" v-for="studio in details.studio" :key="studio.mal_id">{{ studio.title }}</span>
+                    </div>
+                    <div class="line">
+                        Genre(s): <span class="tag is-warning" v-for="genre in details.genre" :key="genre.mal_id">{{ genre.title }}</span>
+                    </div>
+                    <div class="line">
+                        Episodes: {{ details.episodes }}
+                    </div>
                 </div>
                 <div class="box">
-                    <div class="columns">
-                        <div class="column is-9">
-                            <div class="line">
-                                <span class="title">{{ details.title }}</span>    
-                            </div> 
-                            <div class="line">
-                                <span class="subtitle"> ({{ details.title_english }})</span>    
-                                <span class="subtitle"> ({{ details.title_japanese }})</span>    
-                            </div>
-                            <div class="line">
-                                Aired: {{ details.aired_string }} ({{ details.status }})
-                            </div>
-                            <div class="line">
-                                Rating: <span class="tag is-danger">{{ details.rating }}</span>
-                            </div>
-                            <div class="line">
-                                Produced By: <span class="tag is-link" v-for="producer in details.producer" :key="producer.mal_id">{{ producer.title }}</span>
-                            </div>
-                            <div class="line">
-                                Licensed By: <span class="tag is-link" v-for="licensor in details.licensor" :key="licensor.mal_id">{{ licensor.title }}</span>
-                            </div>
-                            <div class="line">
-                                Studio: <span class="tag is-link" v-for="studio in details.studio" :key="studio.mal_id">{{ studio.title }}</span>
-                            </div>
-                            <div class="line">
-                                Genre(s): <span class="tag is-warning" v-for="genre in details.genre" :key="genre.mal_id">{{ genre.title }}</span>
-                            </div>
-                            <div class="line">
-                                Episodes: {{ details.episodes }}
-                            </div>
-                            
-                        </div>
-                        <div class="column is-3">
-                            <img :src="details.image_url" class="image">
-                        </div>
+                    <div class="line">
+                        <span class="title is-5">Synopsis</span>
                     </div>
-                    <div class="columns">
-                        <div class="column is-12">
-                            <p>Synopsis:</p>
-                            <p>
-                                {{ details.synopsis }}
-                            </p>
-                        </div>
-                    </div>
+                    <p>
+                        {{ details.synopsis }}
+                    </p>
                 </div>
-
                 <div class="box">
                     <div class="line">
                         <span class="title is-5">Related</span>
@@ -65,7 +56,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="box">
                     <div class="line">
                         <span class="title is-5">Episodes</span>    
@@ -85,27 +75,28 @@
                         </thead>
                     </table>
                 </div>
-
+            </div>
+            <div class="column is-6">
                 <div class="box">
                     <div class="line">
-                        <span class="title is-5">Staff / Voice Actors</span>    
+                        <span class="title is-5">Characters / Voice Actors</span>    
                     </div> 
                     <div class="columns is-multiline">
-                        <div class="column is-one-quarter" v-for="actor in actors" :key="actor.mal_id">
+                        <div class="column is-one-quarter" v-for="character in characters" :key="character.mal_id">
                             <div class="card">
                                 <div class="card-image">
                                     <figure class="image is-4by5">
-                                        <img :src="actor.image_url" class="image">
+                                        <img :src="character.image_url" class="image">
                                     </figure>
                                 </div>
                                 <div class="card-content">
                                     <div class="media">
                                         <div class="media-content">
-                                            <p class="subtitle is-5">{{ actor.name }}</p>
+                                            <p>{{ character.name }}</p>
+                                            <p class="is-italic">
+                                                Role: {{ character.role }}
+                                            </p>
                                         </div>
-                                    </div>
-                                    <div class="content">
-                                        {{ actor.role }}
                                     </div>
                                 </div>
                             </div>
@@ -126,7 +117,7 @@ export default {
   data() {
       return {
           details: '',
-          actors: '',
+          characters: '',
       }
   },
   created() {
@@ -142,7 +133,7 @@ export default {
     //Getting the anime details + voice actors.
     axios.get('https://api.jikan.moe/anime/' + this.id + '/characters_staff')
     .then(response => {
-        this.actors = response.data.staff
+        this.characters = response.data.character
     })
     .catch(error => {
         console.log(error)
@@ -167,9 +158,13 @@ div.line {
     margin-bottom: 8px;
 }
 
-.content {
+.media-content {
     font-size: 12px;
     word-wrap: break-word;
+}
+
+.card-content {
+    padding: 1rem;
 }
 
 .return-icon {
