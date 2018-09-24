@@ -18,7 +18,6 @@
                         <!-- <small> / {{ result.anime[0].title }}</small> -->
                         <br />
                         <div>{{ result.description }}</div>
-                        {{ result }}
                     </div>
                 </div>
             </div>
@@ -35,3 +34,10 @@ export default {
     props: ['searchType', 'searchResults']
 }
 </script>
+
+<style scoped>
+.image {
+    border-radius: 5px;
+    box-shadow: 1px 2px 3px #999;
+}
+</style>
