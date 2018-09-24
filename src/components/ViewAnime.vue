@@ -59,8 +59,9 @@
                     <div v-for="related in details.related" :key="related.mal_id">
                         <div v-for="rel in related" :key="rel.mal_id">
                             <router-link :to="'/' + rel.type + '/' + rel.mal_id">
-                                <strong>{{ rel.title }}</strong> 
+                                <strong>{{ rel.title }}</strong>
                             </router-link>
+                            ({{ rel.type }})
                         </div>
                     </div>
                 </div>
