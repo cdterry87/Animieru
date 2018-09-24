@@ -3,7 +3,7 @@
         <div class="box">
             <div class="field has-addons">
                 <div class="control has-icons-left is-expanded">
-                    <input type="text" class="input is-medium" placeholder="Search for Anime, Characters, or Voice Actors!" @keyup.enter="search()" v-model="searchField">
+                    <input type="text" class="input is-medium" placeholder="Search for Anime, Manga, Characters, or Voice Actors!" @keyup.enter="search()" v-model="searchField">
                     <span class="icon is-left"><i class="fas fa-search"></i></span>
                 </div>
                 <div class="control">
