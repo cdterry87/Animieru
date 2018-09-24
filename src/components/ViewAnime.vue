@@ -1,6 +1,9 @@
 <template>
     <div id="view-anime" class="container">
-        This is the anime page.
+        <span class="return-icon" @click="$router.go(-1)">
+            <i class="fa fa-arrow-left is-primary"></i>
+        </span>
+        This is the anime page. {{ id }}
     </div>
 </template>
 
@@ -9,10 +12,13 @@ export default {
   name: 'ViewAnime',
   props: ['id'],
   created() {
-      
+      console.log('Created anime page.');
   }
 }
 </script>
 
 <style scoped>
+.return-icon {
+    cursor: pointer;
+}
 </style>
