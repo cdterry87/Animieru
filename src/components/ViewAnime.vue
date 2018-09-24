@@ -3,7 +3,7 @@
         <div class="columns">
             <div class="column is-8 is-offset-2">
                 <div class="return-icon button is-info" @click="$router.go(-1)">
-                    <i class="fa fa-arrow-left"></i> Go Back to Search
+                    <i class="fa fa-arrow-left"></i> Go Back
                 </div>
                 <div class="box">
                     <div class="columns">

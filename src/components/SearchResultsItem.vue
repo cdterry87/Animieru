@@ -36,8 +36,4 @@ export default {
 </script>
 
 <style scoped>
-.image {
-    border-radius: 5px;
-    box-shadow: 1px 2px 3px #999;
-}
 </style>
