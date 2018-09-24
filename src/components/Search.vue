@@ -12,6 +12,7 @@
             </div>
             <div class="control">
                 <label class="radio"><input type="radio" id="radio-anime" value="anime" v-model="selectField"> Anime</label>
+                <label class="radio"><input type="radio" id="radio-anime" value="manga" v-model="selectField"> Manga</label>
                 <label class="radio"><input type="radio" id="radio-character" value="character" v-model="selectField"> Character</label>
                 <label class="radio"><input type="radio" id="radio-person" value="people" v-model="selectField"> Voice Actor</label>
             </div>
