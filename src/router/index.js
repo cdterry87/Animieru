@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Main from "../components/Main.vue";
 import ViewAnime from "../components/ViewAnime.vue";
-import ViewEpisode from "../components/ViewEpisode.vue";
+import ViewCharacter from "../components/ViewCharacter.vue";
 import ViewVoiceActor from "../components/ViewVoiceActor.vue";
 import NotFound from "../components/NotFound.vue";
 
@@ -21,8 +21,8 @@ const router = new VueRouter({
             props: true
         },
         {
-            path: "/episode/:id",
-            component: ViewEpisode,
+            path: "/character/:id",
+            component: ViewCharacter,
             props: true
         },
         {

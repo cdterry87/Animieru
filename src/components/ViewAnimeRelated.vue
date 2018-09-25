@@ -1,5 +1,5 @@
 <template>
-    <div class="box" id="related">
+    <div class="box">
         <div class="line">
             <span class="title is-5">Related</span>
         </div>
@@ -11,7 +11,7 @@
                 ({{ rel.type }})
             </div>
         </div>
-</div>
+    </div>
 </template>
 
 <script>

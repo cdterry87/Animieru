@@ -6,25 +6,21 @@
         <div class="columns">
             <div class="column is-5">
                 <ViewAnimeDetails :animeDetails="animeDetails" />
+
+                <div class="box">
+                    <div class="line">
+                        <span class="title is-5">Synopsis</span>
+                    </div>
+                    <p>
+                        {{ animeDetails.synopsis }}
+                    </p>
+                </div>
+
                 <ViewAnimeRelated :animeDetails="animeDetails" />
                 <ViewAnimeEpisodes :animeDetails="animeDetails" />
             </div>
             <div class="column is-7">
                 <ViewAnimeCharacters :animeCharacters="animeCharacters" />
-            </div>
-
-            <div class="modal">
-                <div class="modal-background"></div>
-                    <div class="modal-card">
-                        <header class="modal-card-head">
-                            <p class="modal-card-title">Modal title</p>
-                            <button class="delete" aria-label="close"></button>
-                        </header>
-                        <section class="modal-card-body">
-                            <!-- Content ... -->
-                        </section>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -61,6 +57,10 @@ export default {
 </script>
 
 <style>
+div.line {
+    margin-bottom: 8px;
+}
+
 .return-icon {
     cursor: pointer;
     margin: 10px 0;
