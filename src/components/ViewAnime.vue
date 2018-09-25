@@ -17,7 +17,7 @@
                 </div>
 
                 <ViewAnimeRelated :animeDetails="animeDetails" />
-                <ViewAnimeEpisodes :animeDetails="animeDetails" />
+                <ViewAnimeEpisodes :animeEpisodes="animeEpisodes" />
             </div>
             <div class="column is-7">
                 <ViewAnimeCharacters :animeCharacters="animeCharacters" />
@@ -43,15 +43,26 @@ export default {
         ViewAnimeCharacters,
     },
     created() {
-        let payload = {
-            'id': this.id,
-        }
-
-        this.$store.dispatch('getAnimeDetails', payload);
-        this.$store.dispatch('getAnimeCharacters', payload);
+        this.getInfo();
     },
     computed: {
-        ...mapGetters(['animeDetails', 'animeCharacters'])
+        ...mapGetters(['animeDetails', 'animeEpisodes', 'animeCharacters'])
+    },
+    watch: {
+        '$route' (to, from) {
+            this.getInfo();
+        }
+    },
+    methods: {
+        getInfo() {
+            let payload = {
+                'id': this.id,
+            }
+
+            this.$store.dispatch('getAnimeDetails', payload);
+            this.$store.dispatch('getAnimeEpisodes', payload);
+            this.$store.dispatch('getAnimeCharacters', payload);
+        }
     }
 }
 </script>

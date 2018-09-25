@@ -3,12 +3,16 @@ import axios from "axios";
 
 const state = {
     animeDetails: "",
+    animeEpisodes: "",
     animeCharacters: ""
 };
 
 const mutations = {
     UPDATE_ANIME(state, payload) {
         state.animeDetails = payload.details;
+    },
+    UPDATE_EPISODES(state, payload) {
+        state.animeEpisodes = payload.episodes;
     },
     UPDATE_CHARACTERS(state, payload) {
         state.animeCharacters = payload.characters;
@@ -17,8 +21,11 @@ const mutations = {
 
 const actions = {
     getAnimeDetails(context, payload) {
+        state.animeDetails = "";
+
+        let api_url = "https://api.jikan.moe/anime/" + payload.id;
         axios
-            .get("https://api.jikan.moe/anime/" + payload.id + "/episodes")
+            .get(api_url)
             .then(response => {
                 context.commit("UPDATE_ANIME", {
                     details: response.data
@@ -28,7 +35,22 @@ const actions = {
                 console.log(error);
             });
     },
+    getAnimeEpisodes(context, payload) {
+        state.animeEpisodes = "";
+        let api_url = "https://api.jikan.moe/anime/" + payload.id + "/episodes";
+        axios
+            .get(api_url)
+            .then(response => {
+                context.commit("UPDATE_EPISODES", {
+                    episodes: response.data.episode
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    },
     getAnimeCharacters(context, payload) {
+        state.animeCharacters = "";
         axios
             .get(
                 "https://api.jikan.moe/anime/" +
@@ -48,6 +70,7 @@ const actions = {
 
 const getters = {
     animeDetails: state => state.animeDetails,
+    animeEpisodes: state => state.animeEpisodes,
     animeCharacters: state => state.animeCharacters
 };
 
