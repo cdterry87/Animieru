@@ -22,6 +22,7 @@ const mutations = {
 const actions = {
     getAnimeDetails(context, payload) {
         state.animeDetails = "";
+        state.animeCharacters = "";
 
         let api_url =
             "https://api.jikan.moe/anime/" + payload.id + "/characters_staff";

@@ -48,11 +48,11 @@ const getters = {
     mangaCharacters: state => state.mangaCharacters
 };
 
-const animeModule = {
+const mangaModule = {
     state,
     mutations,
     actions,
     getters
 };
 
-export default animeModule;
+export default mangaModule;

@@ -24,6 +24,10 @@ body {
     background: #f2f6fa !important;
 }
 
+table thead {
+    font-weight: bold;
+}
+
 #app {
     font-family: "Avenir", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

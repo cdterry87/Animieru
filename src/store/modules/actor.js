@@ -2,19 +2,22 @@
 import axios from "axios";
 
 const state = {
-    characterDetails: ""
+    actorDetails: ""
 };
 
 const mutations = {
     UPDATE_DETAILS(state, payload) {
-        state.characterDetails = payload.details;
+        state.actorDetails = payload.details;
     }
 };
 
 const actions = {
-    getCharacterDetails(context, payload) {
+    getActorDetails(context, payload) {
+        state.actorDetails = "";
+
+        let api_url = "https://api.jikan.moe/person/" + payload.id;
         axios
-            .get("https://api.jikan.moe/character/" + payload.id + "/pictures")
+            .get(api_url)
             .then(response => {
                 context.commit("UPDATE_DETAILS", {
                     details: response.data
@@ -27,14 +30,14 @@ const actions = {
 };
 
 const getters = {
-    characterDetails: state => state.characterDetails
+    actorDetails: state => state.actorDetails
 };
 
-const characterModule = {
+const actorModule = {
     state,
     mutations,
     actions,
     getters
 };
 
-export default characterModule;
+export default actorModule;

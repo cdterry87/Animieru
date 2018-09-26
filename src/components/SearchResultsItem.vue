@@ -14,7 +14,9 @@
                         <router-link :to="'/' + searchType + '/' + result.mal_id">
                             <strong>{{ result.title }}</strong> 
                         </router-link>
-                        <strong>{{ result.name }}</strong>
+                        <router-link :to="'/actor/' + result.mal_id">
+                            <strong>{{ result.name }}</strong>
+                        </router-link>
                         <!-- <small> / {{ result.anime[0].title }}</small> -->
                         <br />
                         <div>{{ result.description }}</div>

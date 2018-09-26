@@ -4,6 +4,7 @@ import results from "./modules/results";
 import anime from "./modules/anime";
 import character from "./modules/character";
 import manga from "./modules/manga";
+import actor from "./modules/actor";
 
 Vue.use(Vuex);
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
         results,
         anime,
         character,
-        manga
+        manga,
+        actor
     }
 });
