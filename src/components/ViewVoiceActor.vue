@@ -27,7 +27,7 @@
             <div class="column is-9">
                 <div class="box">
                     <div class="line">
-                        <span class="title is-5">Voice Acting Roles</span>    
+                        <span class="title is-5">Voice Acting Roles <span class="is-italic">({{ actorDetails.voice_acting_role.length }} Roles Found)</span></span> 
                     </div> 
                     <div class="columns is-multiline">
                         <div class="column is-one-fifth" v-for="role in actorDetails.voice_acting_role" :key="role.mal_id">
