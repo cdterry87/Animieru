@@ -1,8 +1,6 @@
 <template>
     <div id="view-character" class="container">
-        <div class="return-icon button is-info" @click="$router.go(-1)">
-            <i class="fa fa-arrow-left"></i> Go Back
-        </div>
+        <ActionBar />
         <div class="columns is-multiline">
             <div class="column is-12">
                 <div class="box">
@@ -88,10 +86,14 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import ActionBar from './ActionBar.vue';
 
 export default {
     name: 'ViewAnimeCharacter',
     props: ['id'],
+    components: {
+        ActionBar
+    },
     data: function() {
         return {
             modalActive: false,

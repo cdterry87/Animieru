@@ -1,8 +1,6 @@
 <template>
     <div id="view-manga" class="container">
-        <div class="return-icon button is-info" @click="$router.go(-1)">
-            <i class="fa fa-arrow-left"></i> Go Back
-        </div>
+        <ActionBar />
         <div class="columns">
             <div class="column is-5">
                 <ViewMangaDetails :mangaDetails="mangaDetails" />
@@ -36,6 +34,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import ActionBar from './ActionBar.vue';
 import ViewMangaDetails from './ViewMangaDetails.vue';
 import ViewMangaCharacters from './ViewMangaCharacters.vue';
 
@@ -43,6 +42,7 @@ export default {
     name: 'ViewManga',
     props: ['id'],
     components: {
+        ActionBar,
         ViewMangaDetails,
         ViewMangaCharacters,
     },

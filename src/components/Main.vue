@@ -4,7 +4,7 @@
             <div class="hero-body">
                 <div class="container">
                     <h1 class="title has-text-centered">Animieru</h1>
-                    <h2 class="title is-5 has-text-centered">Search for your favorite Anime, Characters, or Voice Actors!</h2>
+                    <h2 class="title is-5 has-text-centered">Search for your favorite Anime, Manga, Characters, or Voice Actors!</h2>
                     <div class="columns">
                         <div class="column is-6 is-offset-3">
                             <Search />

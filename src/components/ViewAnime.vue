@@ -1,8 +1,6 @@
 <template>
     <div id="view-anime" class="container">
-        <div class="return-icon button is-info" @click="$router.go(-1)">
-            <i class="fa fa-arrow-left"></i> Go Back
-        </div>
+        <ActionBar />
         <div class="columns">
             <div class="column is-5">
                 <ViewAnimeDetails :animeDetails="animeDetails" />
@@ -28,6 +26,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import ActionBar from './ActionBar.vue';
 import ViewAnimeDetails from './ViewAnimeDetails.vue';
 import ViewAnimeRelated from './ViewAnimeRelated.vue';
 import ViewAnimeEpisodes from './ViewAnimeEpisodes.vue';
@@ -37,6 +36,7 @@ export default {
     name: 'ViewAnime',
     props: ['id'],
     components: {
+        ActionBar,
         ViewAnimeDetails,
         ViewAnimeRelated,
         ViewAnimeEpisodes,

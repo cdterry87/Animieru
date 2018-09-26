@@ -1,8 +1,6 @@
 <template>
     <div id="view-actor" class="container">
-        <div class="return-icon button is-info" @click="$router.go(-1)">
-            <i class="fa fa-arrow-left"></i> Go Back
-        </div>
+        <ActionBar />
         <div class="columns">
             <div class="column is-3">
                 <div class="box" id="actor-details">
@@ -64,10 +62,14 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import ActionBar from './ActionBar.vue';
 
 export default {
     name: 'ViewVoiceActor',
     props: ['id'],
+    components: {
+        ActionBar
+    },
     created() {
         let payload = {
             'id': this.id,
