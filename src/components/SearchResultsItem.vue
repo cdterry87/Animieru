@@ -14,9 +14,11 @@
                                 <div class="media">
                                     <div class="media-content">
                                         <p>{{ result.name }}</p>
-                                        <p class="is-italic" v-if="typeof(result.anime) != 'undefined'">
-                                            {{ result.anime[0].title }}
-                                        </p>
+                                        <div v-if="typeof(result.anime) != 'undefined'">
+                                            <div v-for="(anime, index) in result.anime.slice(0,1)" :key="index">
+                                                {{ anime.title }}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

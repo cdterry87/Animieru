@@ -13,8 +13,11 @@
             <div class="control">
                 <label class="radio"><input type="radio" id="radio-anime" value="anime" v-model="selectField"> Anime</label>
                 <label class="radio"><input type="radio" id="radio-anime" value="manga" v-model="selectField"> Manga</label>
+                <label class="radio"><input type="radio" id="radio-person" value="people" v-model="selectField"> Actor</label>
                 <label class="radio"><input type="radio" id="radio-character" value="character" v-model="selectField"> Character</label>
-                <label class="radio"><input type="radio" id="radio-person" value="people" v-model="selectField"> Voice Actor</label>
+
+                <div class="button is-outlined is-danger is-pulled-right" @click="clear()">Clear Search Results</div>
+                <div class="clear"></div>
             </div>
         </div>    
     </div>    
@@ -41,9 +44,12 @@ export default {
 
             this.$store.dispatch('getSearchResults', payload);
             this.searchField = '';
+        },
+        clear() {
+            this.$store.dispatch('clearSearchResults');
+            this.searchField = '';
         }
     }
 }
 
 </script>
-

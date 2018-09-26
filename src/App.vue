@@ -42,4 +42,8 @@ table thead {
     padding: 0.5rem;
     font-size: 12px;
 }
+
+.clear {
+    clear: both;
+}
 </style>

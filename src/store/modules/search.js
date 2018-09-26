@@ -4,7 +4,9 @@ import axios from "axios";
 const state = {
     searchType: "",
     searchCriteria: "",
-    searchResults: ""
+    searchResults: "",
+    searchPerforming: false,
+    searchPerformed: false
 };
 
 const mutations = {
@@ -12,11 +14,27 @@ const mutations = {
         state.searchType = payload.type;
         state.searchCriteria = payload.criteria;
         state.searchResults = payload.results;
+        state.searchPerforming = false;
+        state.searchPerformed = true;
+    },
+    UPDATE_SEARCH_PERFORMING(state, payload) {
+        state.searchPerforming = payload.performing;
+    },
+    CLEAR_SEARCH_RESULTS(state) {
+        state.searchType = "";
+        state.searchCriteria = "";
+        state.searchResults = "";
+        state.searchPerforming = false;
+        state.searchPerformed = false;
     }
 };
 
 const actions = {
     getSearchResults(context, payload) {
+        context.commit("UPDATE_SEARCH_PERFORMING", {
+            performing: true
+        });
+
         let api_url = "https://api.jikan.moe/search/".concat(
             payload.selectField
         );
@@ -36,13 +54,18 @@ const actions = {
             .catch(error => {
                 console.log(error);
             });
+    },
+    clearSearchResults(context) {
+        context.commit("CLEAR_SEARCH_RESULTS");
     }
 };
 
 const getters = {
     searchType: state => state.searchType,
     searchCriteria: state => state.searchCriteria,
-    searchResults: state => state.searchResults
+    searchResults: state => state.searchResults,
+    searchPerforming: state => state.searchPerforming,
+    searchPerformed: state => state.searchPerformed
 };
 
 const searchResultsModule = {

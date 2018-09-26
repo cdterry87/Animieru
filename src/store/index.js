@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import results from "./modules/results";
+import search from "./modules/search";
 import anime from "./modules/anime";
 import character from "./modules/character";
 import manga from "./modules/manga";
@@ -10,7 +10,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     modules: {
-        results,
+        search,
         anime,
         character,
         manga,
