@@ -8,8 +8,13 @@
                 </div>
             </div>
             <div v-else>
-                <h2 class="title is-4 has-text-centered">Search Results <span v-if="searchResults.length !== 0"> for "{{ searchCriteria }}"</span></h2>
-
+                <h2 class="title is-4 has-text-centered">
+                    Search Results 
+                    <span v-if="searchResults.length !== 0"> for "<span class="is-italic">{{ searchCriteria }}</span>"</span>
+                    <div>
+                        <small>({{ searchResults.length }} Results)</small>
+                    </div>
+                </h2>
                 <SearchResultsItem :searchResults="searchResults" :searchType="searchType" />
             </div>
         </div>
@@ -21,7 +26,12 @@ import SearchResultsItem from './SearchResultsItem.vue';
 import { mapGetters } from 'vuex';
 
 export default {
-name: 'SearchResults',
+    name: 'SearchResults',
+    data: function() {
+        return {
+            resultCount: searchResults.length
+        }
+    },
     components: {
         SearchResultsItem
     },
@@ -35,5 +45,9 @@ name: 'SearchResults',
 .fas {
     font-size: 75px !important;
     margin: 25px 0;
+}
+
+small {
+    font-size: 12px;
 }
 </style>

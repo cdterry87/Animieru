@@ -27,7 +27,7 @@
         </div>
 
         <div v-else>
-            <article class="media" v-for="result in searchResults" :key="result.mal_id">
+            <article class="media" v-for="(result, index) in searchResults" :key="index">
                 <figure class="media-left">
                     <p class="image is-128x128">
                         <router-link :to="'/' + searchType + '/' + result.mal_id">
@@ -39,7 +39,7 @@
                     <div class="content">
                         <div>
                             <router-link :to="'/' + searchType + '/' + result.mal_id">
-                                <strong>{{ result.title }}</strong> 
+                                <strong>{{ index+1 }}. {{ result.title }}</strong> 
                             </router-link>
                             <br />
                             <div>{{ result.description }}</div>
