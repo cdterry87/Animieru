@@ -37,4 +37,9 @@ table thead {
 .hero-body {
     margin-bottom: 15px !important;
 }
+
+.card-content {
+    padding: 0.5rem;
+    font-size: 12px;
+}
 </style>

@@ -92,11 +92,6 @@ export default {
     margin-bottom: 10px !important;
 }
 
-.card-content {
-    padding: 0.5rem;
-    font-size: 12px;
-}
-
 #actor-details {
     font-size: 12px;
 }

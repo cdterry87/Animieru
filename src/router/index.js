@@ -37,6 +37,10 @@ const router = new VueRouter({
             props: true
         },
         {
+            path: "/people/:id",
+            redirect: "/actor/:id"
+        },
+        {
             path: "*",
             component: NotFound
         }
