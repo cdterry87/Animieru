@@ -1,26 +1,34 @@
 <template>
-    <div id="view-anime" class="container">
+    <div id="view-manga" class="container">
         <div class="return-icon button is-info" @click="$router.go(-1)">
             <i class="fa fa-arrow-left"></i> Go Back
         </div>
         <div class="columns">
             <div class="column is-5">
-                <ViewAnimeDetails :animeDetails="animeDetails" />
+                <ViewMangaDetails :mangaDetails="mangaDetails" />
 
                 <div class="box">
                     <div class="line">
                         <span class="title is-5">Synopsis</span>
                     </div>
                     <p>
-                        {{ animeDetails.synopsis }}
+                        {{ mangaDetails.synopsis }}
                     </p>
                 </div>
 
-                <ViewAnimeRelated :animeDetails="animeDetails" />
-                <ViewAnimeEpisodes :animeEpisodes="animeEpisodes" />
+                <div class="box">
+                    <div class="line">
+                        <span class="title is-5">Background</span>
+                    </div>
+                    <p>
+                        {{ mangaDetails.background }}
+                    </p>
+                </div>
+
+                <ViewMangaNews :mangaNews="mangaNews" />
             </div>
             <div class="column is-7">
-                <ViewAnimeCharacters :animeCharacters="animeCharacters" />
+                <ViewMangaCharacters :mangaCharacters="mangaCharacters" />
             </div>
         </div>
     </div>
@@ -28,25 +36,21 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import ViewAnimeDetails from './ViewAnimeDetails.vue';
-import ViewAnimeRelated from './ViewAnimeRelated.vue';
-import ViewAnimeEpisodes from './ViewAnimeEpisodes.vue';
-import ViewAnimeCharacters from './ViewAnimeCharacters.vue';
+import ViewMangaDetails from './ViewMangaDetails.vue';
+import ViewMangaCharacters from './ViewMangaCharacters.vue';
 
 export default {
-    name: 'ViewAnime',
+    name: 'ViewManga',
     props: ['id'],
     components: {
-        ViewAnimeDetails,
-        ViewAnimeRelated,
-        ViewAnimeEpisodes,
-        ViewAnimeCharacters,
+        ViewMangaDetails,
+        ViewMangaCharacters,
     },
     created() {
         this.getInfo();
     },
     computed: {
-        ...mapGetters(['animeDetails', 'animeEpisodes', 'animeCharacters'])
+        ...mapGetters(['mangaDetails', 'mangaCharacters'])
     },
     watch: {
         '$route' (to, from) {
@@ -59,8 +63,7 @@ export default {
                 'id': this.id,
             }
 
-            this.$store.dispatch('getAnimeDetails', payload);
-            this.$store.dispatch('getAnimeEpisodes', payload);
+            this.$store.dispatch('getMangaDetails', payload);
         }
     }
 }

@@ -8,7 +8,7 @@ const state = {
 };
 
 const mutations = {
-    UPDATE_ANIME(state, payload) {
+    UPDATE_DETAILS(state, payload) {
         state.animeDetails = payload.details;
     },
     UPDATE_EPISODES(state, payload) {
@@ -23,12 +23,16 @@ const actions = {
     getAnimeDetails(context, payload) {
         state.animeDetails = "";
 
-        let api_url = "https://api.jikan.moe/anime/" + payload.id;
+        let api_url =
+            "https://api.jikan.moe/anime/" + payload.id + "/characters_staff";
         axios
             .get(api_url)
             .then(response => {
-                context.commit("UPDATE_ANIME", {
+                context.commit("UPDATE_DETAILS", {
                     details: response.data
+                });
+                context.commit("UPDATE_CHARACTERS", {
+                    characters: response.data.character
                 });
             })
             .catch(error => {
@@ -43,23 +47,6 @@ const actions = {
             .then(response => {
                 context.commit("UPDATE_EPISODES", {
                     episodes: response.data.episode
-                });
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    },
-    getAnimeCharacters(context, payload) {
-        state.animeCharacters = "";
-        axios
-            .get(
-                "https://api.jikan.moe/anime/" +
-                    payload.id +
-                    "/characters_staff"
-            )
-            .then(response => {
-                context.commit("UPDATE_CHARACTERS", {
-                    characters: response.data.character
                 });
             })
             .catch(error => {

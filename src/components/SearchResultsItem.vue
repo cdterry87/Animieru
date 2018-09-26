@@ -3,7 +3,7 @@
         <article class="media" v-for="result in searchResults" :key="result.mal_id">
             <figure class="media-left">
                 <p class="image is-128x128">
-                    <router-link :to="'/anime/' + result.mal_id">
+                    <router-link :to="'/' + searchType + '/' + result.mal_id">
                         <img :src="result.image_url" class="image is-128x128">
                     </router-link>
                 </p>
@@ -11,7 +11,7 @@
             <div class="media-content">
                 <div class="content">
                     <div>
-                        <router-link :to="'/anime/' + result.mal_id">
+                        <router-link :to="'/' + searchType + '/' + result.mal_id">
                             <strong>{{ result.title }}</strong> 
                         </router-link>
                         <strong>{{ result.name }}</strong>
