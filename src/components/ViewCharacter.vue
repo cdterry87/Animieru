@@ -70,11 +70,18 @@
                     </div>
                     <div class="columns is-multiline">
                         <div class="column is-one-third" v-for="image in characterDetails.image" :key="image">
-                            <img :src="image" class="image" />
+                            <img :src="image" class="image" @click="popupImageOpen(image)" />
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="modal" :class="{ 'is-active': modalActive }" @click="popupImageClose()" id="image-modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <img :src="modalImage" class="image">
+            </div>
+            <button class="modal-close is-large" aria-label="close" @click="popupImageClose()"></button>
         </div>
     </div>
 </template>
@@ -85,6 +92,12 @@ import { mapGetters } from 'vuex';
 export default {
     name: 'ViewAnimeCharacter',
     props: ['id'],
+    data: function() {
+        return {
+            modalActive: false,
+            modalImage: ''
+        }
+    },
     created() {
         let payload = {
             'id': this.id,
@@ -94,6 +107,16 @@ export default {
     },
     computed: {
         ...mapGetters(['characterDetails'])
+    },
+    methods: {
+        popupImageOpen(image_url) {
+            this.modalActive = true;
+            this.modalImage = image_url;
+        },
+        popupImageClose() {
+            this.modalActive = false;
+            this.modalImage = '';
+        }
     }
 }
 </script>
@@ -101,5 +124,9 @@ export default {
 <style scoped>
 #related {
     font-size: 14px;
+}
+
+.image {
+    cursor: pointer;
 }
 </style>

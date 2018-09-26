@@ -13,6 +13,8 @@ const mutations = {
 
 const actions = {
     getCharacterDetails(context, payload) {
+        state.characterDetails = "";
+        
         axios
             .get("https://api.jikan.moe/character/" + payload.id + "/pictures")
             .then(response => {
