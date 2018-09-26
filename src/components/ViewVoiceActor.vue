@@ -1,26 +1,29 @@
 <template>
-    <div id="view-character" class="container">
+    <div id="view-actor" class="container">
         <div class="return-icon button is-info" @click="$router.go(-1)">
             <i class="fa fa-arrow-left"></i> Go Back
         </div>
         <div class="columns">
             <div class="column is-3">
                 <div class="box" id="actor-details">
-                    <div class="title">
+                    <div class="title is-5">
                         {{ actorDetails.name }} {{ actorDetails.name_kanji }}
                     </div>
                     <div>
-                        <img :src="actorDetails.image_url" class="image" />
+                        <img :src="actorDetails.image_url" class="image" id="actor-image"/>
                     </div>
-                    <div>
-                        Birthday: {{ actorDetails.birthday }}
-                    </div>
-                    <div>
-                        Website: {{ actorDetails.website_url }}
-                    </div>
-                    <div>
-                        More: {{ actorDetails.more }}
-                    </div>
+                    <table class="table is-fullwidth">
+                        <tr v-if="actorDetails.birthday != null">
+                            <td>Birthday:</td>
+                            <td>{{ actorDetails.birthday.replace('T00:00:00+00:00', '') }}</td>
+                        </tr>
+                        <tr v-if="actorDetails.website_url != null">
+                            <td colspan="2"><a :href="actorDetails.website_url" target="_blank">{{ actorDetails.website_url }}</a></td>
+                        </tr>
+                        <tr v-if="actorDetails.more != null">
+                            <td colspan="2" v-html="actorDetails.more"></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
             <div class="column is-9">
@@ -28,20 +31,31 @@
                     <div class="line">
                         <span class="title is-5">Voice Acting Roles</span>    
                     </div> 
-                    <table class="table is-striped is-fullwidth">
-                        <thead>
-                            <tr>
-                                <td>Anime</td>
-                                <td>Character(s)</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="role in actorDetails.voice_acting_role" :key="role.mal_id">
-                                <td><router-link :to="'/anime/' + role.anime.mal_id">{{ role.anime.name }}</router-link></td>
-                                <td><router-link :to="'/character/' + role.character.mal_id">{{ role.character.name }}</router-link></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="columns is-multiline">
+                        <div class="column is-one-fifth" v-for="role in actorDetails.voice_acting_role" :key="role.mal_id">
+                            <router-link :to="'/character/' + role.character.mal_id">
+                                <div class="card">
+                                    <div class="card-image">
+                                        <figure class="image is-4by5">
+                                            <img :src="role.character.image_url" class="image">
+                                        </figure>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="media">
+                                            <div class="media-content">
+                                                <p>{{ role.character.name }}</p>
+                                                <p>
+                                                    <router-link :to="'/anime/' + role.anime.mal_id">
+                                                        {{ role.anime.name }}
+                                                    </router-link>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </router-link>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -68,6 +82,21 @@ export default {
 </script>
 
 <style scoped>
+#actor-details .title {
+    margin-bottom: 5px !important;
+}
+
+#actor-image {
+    width: 100%;
+    box-shadow: 1px 3px 6px #999;
+    margin-bottom: 10px !important;
+}
+
+.card-content {
+    padding: 0.5rem;
+    font-size: 12px;
+}
+
 #actor-details {
     font-size: 12px;
 }
