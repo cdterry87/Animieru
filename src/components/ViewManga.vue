@@ -53,7 +53,7 @@ export default {
         ...mapGetters(['mangaDetails', 'mangaCharacters'])
     },
     watch: {
-        '$route' (to, from) {
+        '$route' () {
             this.getInfo();
         }
     },

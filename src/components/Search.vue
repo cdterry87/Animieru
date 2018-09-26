@@ -24,10 +24,8 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
-    name: 'MediaSearch',
+    name: 'Search',
     data() {
         return {
             searchField: '',

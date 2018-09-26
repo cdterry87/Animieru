@@ -49,7 +49,7 @@ export default {
         ...mapGetters(['animeDetails', 'animeEpisodes', 'animeCharacters'])
     },
     watch: {
-        '$route' (to, from) {
+        '$route' () {
             this.getInfo();
         }
     },
