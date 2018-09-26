@@ -1,6 +1,10 @@
 <template>
     <div id="app">
         <router-view></router-view>
+
+        <footer class="has-text-centered">
+            Made with <span class="fa fa-heart"></span> by Chase Terry &copy; 2018
+        </footer>
     </div>
 </template>
 
@@ -45,5 +49,10 @@ table thead {
 
 .clear {
     clear: both;
+}
+
+footer {
+    margin-top: 50px;
+    margin-bottom: 25px;
 }
 </style>
