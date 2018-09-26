@@ -23,6 +23,32 @@
                         </tr>
                     </table>
                 </div>
+
+                <div class="box">
+                    <div class="line">
+                        <span class="title is-5">Staff Positions</span>
+                        <div><span class="is-italic">({{ actorDetails.anime_staff_position.length }} Positions Found)</span></div>
+                    </div> 
+                    <table class="table is-fullwidth">
+                        <thead>
+                            <tr>
+                                <td>Position</td>
+                                <td>Anime</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(position, index) in actorDetails.anime_staff_position" :key="index">
+                                <td>{{ position.position }}</td>
+                                <td>
+                                    <router-link :to="'/anime/' + position.anime.mal_id">
+                                        {{ position.anime.name }}
+                                    </router-link>
+                                </td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>
             </div>
             <div class="column is-9">
                 <div class="box">
