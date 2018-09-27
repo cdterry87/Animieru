@@ -28,6 +28,15 @@
                 <td>Chapters:</td>
                 <td>{{ mangaDetails.chapters }}</td>
             </tr>
+            <tr>
+                <td>Score:</td>
+                <td>
+                    <strong>{{ mangaDetails.score }} / 10</strong>
+                    <br>
+                    <progress class="progress is-success" :value="mangaDetails.score" max="10"></progress>
+                </td>
+            </tr>
+            
         </table>
     </div>
 </template>

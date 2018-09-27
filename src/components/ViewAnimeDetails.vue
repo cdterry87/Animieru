@@ -36,6 +36,14 @@
                 <td>Episodes:</td>
                 <td>{{ animeDetails.episodes }}</td>
             </tr>
+            <tr>
+                <td>Score:</td>
+                <td>
+                    <strong>{{ animeDetails.score }} / 10</strong>
+                    <br>
+                    <progress class="progress is-success" :value="animeDetails.score" max="10"></progress>
+                </td>
+            </tr>
         </table>
     </div>
 </template>

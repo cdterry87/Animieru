@@ -1,13 +1,13 @@
 <template>
     <div id="action-bar">
         <button class="return-icon button is-info" @click="$router.go(-1)">
-            <i class="fa fa-arrow-left"></i> Go Back
+            <i class="fa fa-arrow-left"></i> Back
         </button>
         <button class="return-icon button is-warning" @click="$router.push('/')">
             <i class="fa fa-search"></i> Search
         </button>
         <button class="return-icon button is-danger" @click="$router.go(+1)">
-            <i class="fa fa-arrow-right"></i> Go Forward
+            Forward<i class="fa fa-arrow-right"></i>
         </button>
     </div>
 </template>
