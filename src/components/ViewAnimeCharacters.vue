@@ -3,8 +3,8 @@
         <div class="line">
             <span class="title is-5">Characters <span class="is-italic">({{ animeCharacters.length }} Characters Found)</span></span>    
         </div> 
-        <div class="columns is-multiline">
-            <div class="column is-one-fifth" v-for="character in animeCharacters" :key="character.mal_id">
+        <div class="columns is-multiline is-mobile">
+            <div class="column is-one-third-mobile is-one-fifth-desktop" v-for="character in animeCharacters" :key="character.mal_id">
                 <router-link :to="'/character/' + character.mal_id">
                     <div class="card">
                         <div class="card-image">

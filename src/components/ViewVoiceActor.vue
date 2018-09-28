@@ -55,8 +55,8 @@
                     <div class="line">
                         <span class="title is-5">Voice Acting Roles <span class="is-italic">({{ actorDetails.voice_acting_role.length }} Roles Found)</span></span> 
                     </div> 
-                    <div class="columns is-multiline">
-                        <div class="column is-one-fifth" v-for="role in actorDetails.voice_acting_role" :key="role.mal_id">
+                    <div class="columns is-multiline is-mobile">
+                        <div class="column is-one-third-mobile is-one-fifth-desktop" v-for="role in actorDetails.voice_acting_role" :key="role.mal_id">
                             <router-link :to="'/character/' + role.character.mal_id">
                                 <div class="card">
                                     <div class="card-image">
