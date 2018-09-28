@@ -3,13 +3,13 @@
         <ActionBar />
         <div class="columns">
             <div class="column is-5">
-                <ViewAnimeDetails :animeDetails="animeDetails" :isLoading="isLoading" />
-                <ViewAnimeSynopsis :animeDetails="animeDetails" :isLoading="isLoading" />
-                <ViewAnimeRelated :animeDetails="animeDetails" :isLoading="isLoading" />
-                <ViewAnimeEpisodes :animeEpisodes="animeEpisodes" :isLoading="isLoading" />
+                <ViewAnimeDetails :animeDetails="animeDetails" :isLoading="isLoadingAnime" />
+                <ViewAnimeSynopsis :animeDetails="animeDetails" :isLoading="isLoadingAnime" />
+                <ViewAnimeRelated :animeDetails="animeDetails" :isLoading="isLoadingAnime" />
+                <ViewAnimeEpisodes :animeEpisodes="animeEpisodes" :isLoading="isLoadingAnime" />
             </div>
             <div class="column is-7">
-                <ViewAnimeCharacters :animeCharacters="animeCharacters" :isLoading="isLoading" />
+                <ViewAnimeCharacters :animeCharacters="animeCharacters" :isLoading="isLoadingAnime" />
             </div>
         </div>
     </div>
@@ -39,7 +39,7 @@ export default {
         this.getInfo();
     },
     computed: {
-        ...mapGetters(['animeDetails', 'animeEpisodes', 'animeCharacters', 'isLoading'])
+        ...mapGetters(['animeDetails', 'animeEpisodes', 'animeCharacters', 'isLoadingAnime'])
     },
     watch: {
         '$route' () {

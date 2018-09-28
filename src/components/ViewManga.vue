@@ -3,30 +3,12 @@
         <ActionBar />
         <div class="columns">
             <div class="column is-5">
-                <ViewMangaDetails :mangaDetails="mangaDetails" />
-
-                <div class="box">
-                    <div class="line">
-                        <span class="title is-5">Synopsis</span>
-                    </div>
-                    <p>
-                        {{ mangaDetails.synopsis }}
-                    </p>
-                </div>
-
-                <div class="box">
-                    <div class="line">
-                        <span class="title is-5">Background</span>
-                    </div>
-                    <p>
-                        {{ mangaDetails.background }}
-                    </p>
-                </div>
-
-                <ViewMangaNews :mangaNews="mangaNews" />
+                <ViewMangaDetails :mangaDetails="mangaDetails" :isLoading="isLoadingManga"/>
+                <ViewMangaSynopsis :mangaDetails="mangaDetails" :isLoading="isLoadingManga" />
+                <ViewMangaBackground :mangaDetails="mangaDetails" :isLoading="isLoadingManga" />
             </div>
             <div class="column is-7">
-                <ViewMangaCharacters :mangaCharacters="mangaCharacters" />
+                <ViewMangaCharacters :mangaCharacters="mangaCharacters" :isLoading="isLoadingManga" />
             </div>
         </div>
     </div>
@@ -36,6 +18,8 @@
 import { mapGetters } from 'vuex';
 import ActionBar from './ActionBar.vue';
 import ViewMangaDetails from './ViewMangaDetails.vue';
+import ViewMangaSynopsis from './ViewMangaSynopsis.vue';
+import ViewMangaBackground from './ViewMangaBackground.vue';
 import ViewMangaCharacters from './ViewMangaCharacters.vue';
 
 export default {
@@ -44,13 +28,15 @@ export default {
     components: {
         ActionBar,
         ViewMangaDetails,
+        ViewMangaSynopsis,
+        ViewMangaBackground,
         ViewMangaCharacters,
     },
     created() {
         this.getInfo();
     },
     computed: {
-        ...mapGetters(['mangaDetails', 'mangaCharacters'])
+        ...mapGetters(['mangaDetails', 'mangaCharacters', 'isLoadingManga'])
     },
     watch: {
         '$route' () {

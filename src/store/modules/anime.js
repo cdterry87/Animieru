@@ -5,7 +5,7 @@ const state = {
     animeDetails: "",
     animeEpisodes: "",
     animeCharacters: "",
-    isLoading: true
+    isLoadingAnime: true
 };
 
 const mutations = {
@@ -19,10 +19,10 @@ const mutations = {
         state.animeCharacters = payload.characters;
     },
     START_LOADING(state) {
-        state.isLoading = true;
+        state.isLoadingAnime = true;
     },
     FINISHED_LOADING(state) {
-        state.isLoading = false;
+        state.isLoadingAnime = false;
     }
 };
 
@@ -70,7 +70,7 @@ const getters = {
     animeDetails: state => state.animeDetails,
     animeEpisodes: state => state.animeEpisodes,
     animeCharacters: state => state.animeCharacters,
-    isLoading: state => state.isLoading
+    isLoadingAnime: state => state.isLoadingAnime
 };
 
 const animeModule = {

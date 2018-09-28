@@ -4,7 +4,8 @@ import axios from "axios";
 const state = {
     mangaDetails: "",
     mangaCharacters: "",
-    mangaNews: ""
+    mangaNews: "",
+    isLoadingManga: true
 };
 
 const mutations = {
@@ -16,11 +17,19 @@ const mutations = {
     },
     UPDATE_CHARACTERS(state, payload) {
         state.mangaCharacters = payload.characters;
+    },
+    START_LOADING(state) {
+        state.isLoadingManga = true;
+    },
+    FINISHED_LOADING(state) {
+        state.isLoadingManga = false;
     }
 };
 
 const actions = {
     getMangaDetails(context, payload) {
+        context.commit("START_LOADING");
+
         state.mangaDetails = "";
         state.mangaCharacters = "";
 
@@ -35,6 +44,7 @@ const actions = {
                 context.commit("UPDATE_CHARACTERS", {
                     characters: response.data.character
                 });
+                context.commit("FINISHED_LOADING");
             })
             .catch(error => {
                 console.log(error);
@@ -45,7 +55,8 @@ const actions = {
 const getters = {
     mangaDetails: state => state.mangaDetails,
     mangaNews: state => state.mangaNews,
-    mangaCharacters: state => state.mangaCharacters
+    mangaCharacters: state => state.mangaCharacters,
+    isLoadingManga: state => state.isLoadingManga
 };
 
 const mangaModule = {
