@@ -3,22 +3,13 @@
         <ActionBar />
         <div class="columns">
             <div class="column is-5">
-                <ViewAnimeDetails :animeDetails="animeDetails" />
-
-                <div class="box">
-                    <div class="line">
-                        <span class="title is-5">Synopsis</span>
-                    </div>
-                    <p>
-                        {{ animeDetails.synopsis }}
-                    </p>
-                </div>
-
-                <ViewAnimeRelated :animeDetails="animeDetails" />
-                <ViewAnimeEpisodes :animeEpisodes="animeEpisodes" />
+                <ViewAnimeDetails :animeDetails="animeDetails" :isLoading="isLoading" />
+                <ViewAnimeSynopsis :animeDetails="animeDetails" :isLoading="isLoading" />
+                <ViewAnimeRelated :animeDetails="animeDetails" :isLoading="isLoading" />
+                <ViewAnimeEpisodes :animeEpisodes="animeEpisodes" :isLoading="isLoading" />
             </div>
             <div class="column is-7">
-                <ViewAnimeCharacters :animeCharacters="animeCharacters" />
+                <ViewAnimeCharacters :animeCharacters="animeCharacters" :isLoading="isLoading" />
             </div>
         </div>
     </div>
@@ -28,6 +19,7 @@
 import { mapGetters } from 'vuex';
 import ActionBar from './ActionBar.vue';
 import ViewAnimeDetails from './ViewAnimeDetails.vue';
+import ViewAnimeSynopsis from './ViewAnimeSynopsis.vue';
 import ViewAnimeRelated from './ViewAnimeRelated.vue';
 import ViewAnimeEpisodes from './ViewAnimeEpisodes.vue';
 import ViewAnimeCharacters from './ViewAnimeCharacters.vue';
@@ -38,6 +30,7 @@ export default {
     components: {
         ActionBar,
         ViewAnimeDetails,
+        ViewAnimeSynopsis,
         ViewAnimeRelated,
         ViewAnimeEpisodes,
         ViewAnimeCharacters,
@@ -46,7 +39,7 @@ export default {
         this.getInfo();
     },
     computed: {
-        ...mapGetters(['animeDetails', 'animeEpisodes', 'animeCharacters'])
+        ...mapGetters(['animeDetails', 'animeEpisodes', 'animeCharacters', 'isLoading'])
     },
     watch: {
         '$route' () {
@@ -59,8 +52,8 @@ export default {
                 'id': this.id,
             }
 
-            this.$store.dispatch('getAnimeDetails', payload);
             this.$store.dispatch('getAnimeEpisodes', payload);
+            this.$store.dispatch('getAnimeDetails', payload);
         }
     }
 }
