@@ -4,71 +4,87 @@
         <div class="columns is-multiline">
             <div class="column is-12">
                 <div class="box">
-                    <div class="title">
-                        {{ characterDetails.name }} {{ characterDetails.name_kanji }}
+                    <Loading :class="{'is-hidden': !isLoadingCharacter}" />
+
+                    <div :class="{'is-hidden': isLoadingCharacter}">
+                        <div class="title">
+                            {{ characterDetails.name }} {{ characterDetails.name_kanji }}
+                        </div>
+                        <div class="subtitle">
+                            {{ characterDetails.nicknames }}
+                        </div>
+                        <p>
+                            {{ characterDetails.about }}
+                        </p>
                     </div>
-                    <div class="subtitle">
-                        {{ characterDetails.nicknames }}
-                    </div>
-                    <p>
-                        {{ characterDetails.about }}
-                    </p>
                 </div>
             </div>
             <div class="column is-4">
                 <div class="box" id="related">
-                    <div class="line">
-                        <span class="title is-5">Animeography</span>
-                    </div>
-                    <div v-for="animeography in characterDetails.animeography" :key="animeography.mal_id">
-                        <router-link :to="'/anime/' + animeography.mal_id">
-                            <strong>{{ animeography.name }}</strong>
-                        </router-link>
-                    </div>
+                    <Loading :class="{'is-hidden': !isLoadingCharacter}" />
 
-                    <hr>
+                    <div :class="{'is-hidden': isLoadingCharacter}">
+                        <div class="line">
+                            <span class="title is-5">Animeography</span>
+                        </div>
+                        <div v-for="animeography in characterDetails.animeography" :key="animeography.mal_id">
+                            <router-link :to="'/anime/' + animeography.mal_id">
+                                <strong>{{ animeography.name }}</strong>
+                            </router-link>
+                        </div>
 
-                    <div class="line">
-                        <span class="title is-5">Mangaography</span>
-                    </div>
-                    <div v-for="mangaography in characterDetails.mangaography" :key="mangaography.mal_id">
-                        <router-link :to="'/manga/' + mangaography.mal_id">
-                            <strong>{{ mangaography.name }}</strong>
-                        </router-link>
+                        <hr>
+
+                        <div class="line">
+                            <span class="title is-5">Mangaography</span>
+                        </div>
+                        <div v-for="mangaography in characterDetails.mangaography" :key="mangaography.mal_id">
+                            <router-link :to="'/manga/' + mangaography.mal_id">
+                                <strong>{{ mangaography.name }}</strong>
+                            </router-link>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="column is-4">
                 <div class="box">
-                    <div class="line">
-                        <span class="title is-5">Voice Actors</span>    
-                    </div> 
-                    <table class="table is-striped is-fullwidth">
-                        <thead>
-                            <tr>
-                                <td>Image</td>
-                                <td>Name</td>
-                                <td>Language</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="actor in characterDetails.voice_actor" :key="actor.mal_id">
-                                <td><img :src="actor.image_url" class="image"></td>
-                                <td><router-link :to="'/actor/' + actor.mal_id">{{ actor.name }}</router-link></td>
-                                <td>{{ actor.language }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <Loading :class="{'is-hidden': !isLoadingCharacter}" />
+
+                    <div :class="{'is-hidden': isLoadingCharacter}">
+                        <div class="line">
+                            <span class="title is-5">Voice Actors</span>    
+                        </div> 
+                        <table class="table is-striped is-fullwidth">
+                            <thead>
+                                <tr>
+                                    <td>Image</td>
+                                    <td>Name</td>
+                                    <td>Language</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="actor in characterDetails.voice_actor" :key="actor.mal_id">
+                                    <td><img :src="actor.image_url" class="image"></td>
+                                    <td><router-link :to="'/actor/' + actor.mal_id">{{ actor.name }}</router-link></td>
+                                    <td>{{ actor.language }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="column is-4">
                 <div class="box">
-                    <div class="line">
-                        <span class="title is-5">Images</span>
-                    </div>
-                    <div class="columns is-multiline is-mobile">
-                        <div class="column is-one-third-mobile is-one-third-desktop" v-for="image in characterDetails.image" :key="image">
-                            <img :src="image" class="image" @click="popupImageOpen(image)" />
+                    <Loading :class="{'is-hidden': !isLoadingCharacter}" />
+
+                    <div :class="{'is-hidden': isLoadingCharacter}">
+                        <div class="line">
+                            <span class="title is-5">Images</span>
+                        </div>
+                        <div class="columns is-multiline is-mobile">
+                            <div class="column is-one-third-mobile is-one-third-desktop" v-for="image in characterDetails.image" :key="image">
+                                <img :src="image" class="image" @click="popupImageOpen(image)" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -87,12 +103,14 @@
 <script>
 import { mapGetters } from 'vuex';
 import ActionBar from './ActionBar.vue';
+import Loading from './Loading.vue';
 
 export default {
     name: 'ViewAnimeCharacter',
     props: ['id'],
     components: {
-        ActionBar
+        ActionBar,
+        Loading
     },
     data: function() {
         return {
@@ -108,7 +126,7 @@ export default {
         this.$store.dispatch('getCharacterDetails', payload);
     },
     computed: {
-        ...mapGetters(['characterDetails'])
+        ...mapGetters(['characterDetails', 'isLoadingCharacter'])
     },
     methods: {
         popupImageOpen(image_url) {
