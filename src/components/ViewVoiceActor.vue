@@ -4,97 +4,56 @@
         <div class="columns">
             <div class="column is-3">
                 <div class="box" id="actor-details">
-                    <div class="title is-5">
-                        {{ actorDetails.name }} {{ actorDetails.name_kanji }}
-                    </div>
-                    <div>
-                        <img :src="actorDetails.image_url" class="image" id="actor-image"/>
-                    </div>
-                    <table class="table is-fullwidth">
-                        <tr v-if="actorDetails.birthday != null">
-                            <td>Birthday:</td>
-                            <td>{{ actorDetails.birthday.replace('T00:00:00+00:00', '') }}</td>
-                        </tr>
-                        <tr v-if="actorDetails.website_url != null">
-                            <td colspan="2"><a :href="actorDetails.website_url" target="_blank">{{ actorDetails.website_url }}</a></td>
-                        </tr>
-                        <tr v-if="actorDetails.more != null">
-                            <td colspan="2" v-html="actorDetails.more"></td>
-                        </tr>
-                    </table>
-                </div>
+                    <Loading :class="{'is-hidden': !isLoadingActor}" />
 
-                <div class="box">
-                    <div class="line">
-                        <span class="title is-5">Staff Positions</span>
-                        <div><span class="is-italic">({{ actorDetails.anime_staff_position.length }} Positions Found)</span></div>
-                    </div> 
-                    <table class="table is-fullwidth">
-                        <thead>
-                            <tr>
-                                <td>Position</td>
-                                <td>Anime</td>
+                    <div :class="{'is-hidden': isLoadingActor}">
+                        <div class="title is-5">
+                            {{ actorDetails.name }}
+                        </div>
+                        <div>
+                            <img :src="actorDetails.image_url" class="image" id="actor-image"/>
+                        </div>
+                        <table class="table is-fullwidth">
+                            <tr v-if="actorDetails.birthday != null">
+                                <td>Birthday:</td>
+                                <td>{{ actorDetails.birthday.replace('T00:00:00+00:00', '') }}</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(position, index) in actorDetails.anime_staff_position" :key="index">
-                                <td>{{ position.position }}</td>
-                                <td>
-                                    <router-link :to="'/anime/' + position.anime.mal_id">
-                                        {{ position.anime.name }}
-                                    </router-link>
+                            <tr v-if="actorDetails.website_url != null">
+                                <td colspan="2"><a :href="actorDetails.website_url" target="_blank">{{ actorDetails.website_url }}</a></td>
+                            </tr>
+                            <tr v-if="actorDetails.more != null">
+                                <td colspan="2" v-html="actorDetails.more.replace('\\n', '<br>')">
                                 </td>
                             </tr>
-                        </tbody>
-                        
-                    </table>
-                </div>
-            </div>
-            <div class="column is-9">
-                <div class="box">
-                    <div class="line">
-                        <span class="title is-5">Voice Acting Roles <span class="is-italic">({{ actorDetails.voice_acting_role.length }} Roles Found)</span></span> 
-                    </div> 
-                    <div class="columns is-multiline is-mobile">
-                        <div class="column is-one-third-mobile is-one-fifth-desktop" v-for="role in actorDetails.voice_acting_role" :key="role.mal_id">
-                            <router-link :to="'/character/' + role.character.mal_id">
-                                <div class="card">
-                                    <div class="card-image">
-                                        <figure class="image is-4by5">
-                                            <img :src="role.character.image_url" class="image">
-                                        </figure>
-                                    </div>
-                                    <div class="card-content">
-                                        <div class="media">
-                                            <div class="media-content">
-                                                <p>{{ role.character.name }}</p>
-                                                <p>
-                                                    <router-link :to="'/anime/' + role.anime.mal_id">
-                                                        {{ role.anime.name }}
-                                                    </router-link>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </router-link>
-                        </div>
+                        </table>
                     </div>
                 </div>
+
+                <ViewVoiceActorPositions :positions="actorDetails.anime_staff_position" :isLoading="isLoadingActor" />
+            </div>
+            <div class="column is-9">
+                <ViewVoiceActorRoles :roles="actorDetails.voice_acting_role" :isLoading="isLoadingActor" />
             </div>
         </div>
     </div>
 </template>
 
 <script>
+/* eslint-disable */
 import { mapGetters } from 'vuex';
 import ActionBar from './ActionBar.vue';
+import Loading from './Loading.vue';
+import ViewVoiceActorPositions from './ViewVoiceActorPositions.vue';
+import ViewVoiceActorRoles from './ViewVoiceActorRoles.vue';
 
 export default {
     name: 'ViewVoiceActor',
     props: ['id'],
     components: {
-        ActionBar
+        ActionBar,
+        Loading,
+        ViewVoiceActorPositions,
+        ViewVoiceActorRoles
     },
     created() {
         let payload = {
@@ -104,8 +63,8 @@ export default {
         this.$store.dispatch('getActorDetails', payload);
     },
     computed: {
-        ...mapGetters(['actorDetails'])
-    }
+        ...mapGetters(['actorDetails', 'isLoadingActor'])
+    },
 }
 </script>
 
