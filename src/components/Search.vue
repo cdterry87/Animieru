@@ -10,12 +10,11 @@
                     <button class="button is-info is-medium" @click="search()">Search</button>
                 </div>
             </div>
-            <div class="control">
+            <div class="control has-text-centered">
                 <label class="radio"><input type="radio" id="radio-anime" value="anime" v-model="selectField"> Anime</label>
-                <label class="radio"><input type="radio" id="radio-anime" value="manga" v-model="selectField"> Manga</label>
-                <label class="radio"><input type="radio" id="radio-person" value="people" v-model="selectField"> Actor</label>
+                <label class="radio"><input type="radio" id="radio-manga" value="manga" v-model="selectField"> Manga</label>
                 <label class="radio"><input type="radio" id="radio-character" value="character" v-model="selectField"> Character</label>
-
+                <label class="radio"><input type="radio" id="radio-person" value="people" v-model="selectField"> Voice Actor</label>
                 <div class="button is-outlined is-danger is-pulled-right" @click="clear()">Clear Search Results</div>
                 <div class="clear"></div>
             </div>
@@ -51,3 +50,6 @@ export default {
 }
 
 </script>
+
+<style scoped>
+</style>

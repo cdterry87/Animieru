@@ -17,8 +17,8 @@ const mutations = {
         state.searchPerforming = false;
         state.searchPerformed = true;
     },
-    UPDATE_SEARCH_PERFORMING(state, payload) {
-        state.searchPerforming = payload.performing;
+    START_SEARCHING(state) {
+        state.searchPerforming = true;
     },
     CLEAR_SEARCH_RESULTS(state) {
         state.searchType = "";
@@ -31,9 +31,7 @@ const mutations = {
 
 const actions = {
     getSearchResults(context, payload) {
-        context.commit("UPDATE_SEARCH_PERFORMING", {
-            performing: true
-        });
+        context.commit("START_SEARCHING");
 
         let api_url = "https://api.jikan.moe/search/".concat(
             payload.selectField
