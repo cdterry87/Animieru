@@ -7,7 +7,7 @@
                 <span class="title is-5">Voice Acting Roles <span class="is-italic">({{ roles.length }} Roles Found)</span></span> 
             </div> 
             <div class="columns is-multiline is-mobile">
-                <div class="column is-one-third-mobile is-one-fifth-desktop" v-for="role in roles" :key="role.mal_id">
+                <div class="column is-one-third-mobile is-one-quarter-tablet is-one-fifth-desktop" v-for="role in roles" :key="role.mal_id">
                     <router-link :to="'/character/' + role.character.mal_id">
                         <div class="card">
                             <div class="card-image">

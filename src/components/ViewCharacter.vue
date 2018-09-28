@@ -82,7 +82,7 @@
                             <span class="title is-5">Images</span>
                         </div>
                         <div class="columns is-multiline is-mobile">
-                            <div class="column is-one-third-mobile is-one-third-desktop" v-for="image in characterDetails.image" :key="image">
+                            <div class="column is-one-third-mobile is-one-third-tablet is-one-third-desktop" v-for="image in characterDetails.image" :key="image">
                                 <img :src="image" class="image" @click="popupImageOpen(image)" />
                             </div>
                         </div>

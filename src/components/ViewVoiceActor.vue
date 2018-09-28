@@ -2,7 +2,7 @@
     <div id="view-actor" class="container">
         <ActionBar />
         <div class="columns">
-            <div class="column is-3">
+            <div class="column is-one-quarter">
                 <div class="box" id="actor-details">
                     <Loading :class="{'is-hidden': !isLoadingActor}" />
 
@@ -31,7 +31,7 @@
 
                 <ViewVoiceActorPositions :positions="actorDetails.anime_staff_position" :isLoading="isLoadingActor" />
             </div>
-            <div class="column is-9">
+            <div class="column is-three-quarters">
                 <ViewVoiceActorRoles :roles="actorDetails.voice_acting_role" :isLoading="isLoadingActor" />
             </div>
         </div>

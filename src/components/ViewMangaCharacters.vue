@@ -7,7 +7,7 @@
                 <span class="title is-5">Characters</span>    
             </div> 
             <div class="columns is-multiline is-mobile">
-                <div class="column is-one-third-mobile is-one-fifth-desktop" v-for="character in mangaCharacters" :key="character.mal_id">
+                <div class="column is-one-third-mobile is-one-quarter-tablet is-one-fifth-desktop" v-for="character in mangaCharacters" :key="character.mal_id">
                     <router-link :to="'/character/' + character.mal_id">
                         <div class="card">
                             <div class="card-image">

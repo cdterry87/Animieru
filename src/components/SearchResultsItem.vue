@@ -1,8 +1,8 @@
 <template>
     <div id="search-results-item">
         <div v-if="searchType == 'character' || searchType == 'people'">
-            <div class="columns is-multiline">
-                <div class="column is-one-quarter" v-for="result in searchResults" :key="result.mal_id">
+            <div class="columns is-multiline is-mobile">
+                <div class="column is-one-third-mobile is-one-quarter-tablet is-one-quarter-desktop" v-for="result in searchResults" :key="result.mal_id">
                     <router-link :to="'/' + searchType + '/' + result.mal_id">
                         <div class="card">
                             <div class="card-image">
