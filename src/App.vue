@@ -55,4 +55,8 @@ footer {
     margin-top: 50px;
     margin-bottom: 25px;
 }
+
+span.tag {
+    margin: 2px 5px 2px 0;
+}
 </style>

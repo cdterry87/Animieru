@@ -48,8 +48,3 @@ export default {
 }
 </script>
 
-<style scoped>
-span.tag {
-    margin: 2px 5px 2px 0;
-}
-</style>
