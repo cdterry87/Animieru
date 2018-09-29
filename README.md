@@ -1,5 +1,8 @@
 # Animieru
 
+## Demo site
+http://animieru.chaseterry.com
+
 ## Project setup
 ```
 npm install
