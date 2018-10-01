@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import ActionBar from './ActionBar.vue';
+import ActionBar from './Utility/ActionBar.vue';
 
 export default {
   name: 'NotFound',

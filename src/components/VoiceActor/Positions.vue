@@ -30,10 +30,10 @@
 </template>
 
 <script>
-import Loading from './Loading.vue';
+import Loading from '../Utility/Loading';
 
 export default {
-    name: 'ViewVoiceActorPositions',
+    name: 'Positions',
     props: ['positions', 'isLoading'],
     components: {
         Loading

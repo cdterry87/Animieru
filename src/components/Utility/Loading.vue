@@ -1,7 +1,7 @@
 <template>
     <div id="loading has-text-centered">
         <p class="subtitle has-text-centered">Loading...</p>
-        <img src="../assets/loading.gif" class="loading" height="200" width="200">
+        <img src="../../assets/loading.gif" class="loading" height="200" width="200">
     </div>
 </template>
 

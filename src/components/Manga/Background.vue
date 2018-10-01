@@ -4,21 +4,21 @@
 
         <div :class="{'is-hidden': isLoading}">
             <div class="line">
-                <span class="title is-5">Synopsis</span>
+                <span class="title is-5">Background</span>
             </div>
             <p>
-                {{ animeDetails.synopsis }}
+                {{ background }}
             </p>
         </div>
     </div>
 </template>
 
 <script>
-import Loading from './Loading.vue';
+import Loading from '../Utility/Loading';
 
 export default {
-    name: 'ViewAnimeSynopsis',
-    props: ['animeDetails', 'isLoading'],
+    name: 'Background',
+    props: ['background', 'isLoading'],
     components: {
         Loading
     }

@@ -7,18 +7,18 @@
                 <span class="title is-5">Synopsis</span>
             </div>
             <p>
-                {{ mangaDetails.synopsis }}
+                {{ synopsis }}
             </p>
         </div>
     </div>
 </template>
 
 <script>
-import Loading from './Loading.vue';
+import Loading from '../Utility/Loading';
 
 export default {
-    name: 'ViewAnimeSynopsis',
-    props: ['mangaDetails', 'isLoading'],
+    name: 'Synopsis',
+    props: ['synopsis', 'isLoading'],
     components: {
         Loading
     }

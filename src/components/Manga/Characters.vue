@@ -7,7 +7,7 @@
                 <span class="title is-5">Characters</span>    
             </div> 
             <div class="columns is-multiline is-mobile">
-                <div class="column is-one-third-mobile is-one-quarter-tablet is-one-fifth-desktop" v-for="character in mangaCharacters" :key="character.mal_id">
+                <div class="column is-one-third-mobile is-one-quarter-tablet is-one-fifth-desktop" v-for="character in characters" :key="character.mal_id">
                     <router-link :to="'/character/' + character.mal_id">
                         <div class="card">
                             <div class="card-image">
@@ -34,26 +34,13 @@
 </template>
 
 <script>
-import Loading from './Loading.vue';
+import Loading from '../Utility/Loading';
 
 export default {
-    name: 'ViewMangaCharacters',
-    props: ['mangaCharacters', 'isLoading'],
+    name: 'Characters',
+    props: ['characters', 'isLoading'],
     components: {
         Loading
     }
 }
 </script>
-
-<style scoped>
-.card {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    font-size: 12px;
-}
-
-.card-content {
-    padding: 0.5rem;
-}
-</style>

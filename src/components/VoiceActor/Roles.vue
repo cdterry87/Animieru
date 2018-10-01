@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import Loading from './Loading.vue';
+import Loading from '../Utility/Loading';
 
 export default {
     name: 'ViewVoiceActorRoles',

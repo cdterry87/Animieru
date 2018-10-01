@@ -58,10 +58,7 @@
 
 <script>
 export default {
-    name: 'SearchResultsItem',
+    name: 'ResultsItem',
     props: ['searchType', 'searchResults']
 }
 </script>
-
-<style scoped>
-</style>

@@ -4,39 +4,39 @@
 
         <div :class="{'is-hidden': isLoading}">
             <span class="title">
-                {{ mangaDetails.title }}
+                {{ details.title }}
             </span> 
             <div class="line">
-                <span class="subtitle"> ({{ mangaDetails.title_english }})</span>    
-                <span class="subtitle"> ({{ mangaDetails.title_japanese }})</span>    
+                <span class="subtitle"> ({{ details.title_english }})</span>    
+                <span class="subtitle"> ({{ details.title_japanese }})</span>    
             </div>
             <table class="table is-fullwidth">
                 <tr>
                     <td>Published:</td>
-                    <td>{{ mangaDetails.published_string }} ({{ mangaDetails.status }})</td>
+                    <td>{{ details.published_string }} ({{ details.status }})</td>
                 </tr>
                 <tr>
                     <td>Author(s):</td>
-                    <td><span class="tag is-link" v-for="author in mangaDetails.author" :key="author.mal_id">{{ author.name }}</span></td>
+                    <td><span class="tag is-link" v-for="author in details.author" :key="author.mal_id">{{ author.name }}</span></td>
                 </tr>
                 <tr>
                     <td>Genre(s):</td>
-                    <td><span class="tag is-warning" v-for="genre in mangaDetails.genre" :key="genre.mal_id">{{ genre.title }}</span></td>
+                    <td><span class="tag is-warning" v-for="genre in details.genre" :key="genre.mal_id">{{ genre.title }}</span></td>
                 </tr>
                 <tr>
                     <td>Volumes:</td>
-                    <td>{{ mangaDetails.volumes }}</td>
+                    <td>{{ details.volumes }}</td>
                 </tr>
                 <tr>
                     <td>Chapters:</td>
-                    <td>{{ mangaDetails.chapters }}</td>
+                    <td>{{ details.chapters }}</td>
                 </tr>
                 <tr>
                     <td>Score:</td>
                     <td>
-                        <strong>{{ mangaDetails.score }} / 10</strong>
+                        <strong>{{ details.score }} / 10</strong>
                         <br>
-                        <progress class="progress is-success" :value="mangaDetails.score" max="10"></progress>
+                        <progress class="progress is-success" :value="details.score" max="10"></progress>
                     </td>
                 </tr>
             </table>
@@ -45,11 +45,11 @@
 </template>
 
 <script>
-import Loading from './Loading.vue';
+import Loading from '../Utility/Loading';
 
 export default {
-    name: 'ViewMangaDetails',
-    props: ['mangaDetails', 'isLoading'],
+    name: 'Details',
+    props: ['details', 'isLoading'],
     components: {
         Loading
     }

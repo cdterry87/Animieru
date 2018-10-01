@@ -1,11 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Main from "../components/Main.vue";
-import ViewAnime from "../components/ViewAnime.vue";
-import ViewManga from "../components/ViewManga.vue";
-import ViewCharacter from "../components/ViewCharacter.vue";
-import ViewVoiceActor from "../components/ViewVoiceActor.vue";
-import NotFound from "../components/NotFound.vue";
+
+import Search from "../components/Search/Search";
+import Anime from "../components/Anime/Anime";
+import Manga from "../components/Manga/Manga";
+import Character from "../components/Character/Character";
+import VoiceActor from "../components/VoiceActor/VoiceActor";
+import NotFound from "../components/NotFound";
 
 Vue.use(VueRouter);
 
@@ -14,29 +15,30 @@ const router = new VueRouter({
     routes: [
         {
             path: "/",
-            component: Main
+            component: Search
         },
         {
             path: "/anime/:id",
-            component: ViewAnime,
+            component: Anime,
             props: true
         },
         {
             path: "/manga/:id",
-            component: ViewManga,
+            component: Manga,
             props: true
         },
         {
             path: "/character/:id",
-            component: ViewCharacter,
+            component: Character,
             props: true
         },
         {
             path: "/actor/:id",
-            component: ViewVoiceActor,
+            component: VoiceActor,
             props: true
         },
         {
+            //Alternate route for voice actors.
             path: "/people/:id",
             redirect: "/actor/:id"
         },

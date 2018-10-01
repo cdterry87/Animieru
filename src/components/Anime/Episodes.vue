@@ -14,7 +14,7 @@
                         <th>Title</th>
                         <th>Aired Date</th>
                     </tr>
-                    <tr v-for="episode in animeEpisodes" :key="episode.id">
+                    <tr v-for="episode in episodes" :key="episode.id">
                         <td>{{ episode.id }}</td>
                         <td>{{ episode.title }}</td>
                         <td>{{ episode.aired }}</td>
@@ -26,11 +26,11 @@
 </template>
 
 <script>
-import Loading from './Loading.vue';
+import Loading from '../Utility/Loading';
 
 export default {
-    name: 'ViewAnimeEpisodes',
-    props: ['animeEpisodes', 'isLoading'],
+    name: 'Episodes',
+    props: ['episodes', 'isLoading'],
     components: {
         Loading
     }

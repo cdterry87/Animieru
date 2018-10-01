@@ -9,15 +9,8 @@
 </template>
 
 <script>
-import Search from './components/Search.vue'
-import SearchResults from './components/SearchResults.vue'
-
 export default {
     name: 'App',
-    components: {
-        Search,
-        SearchResults,
-    },
 }
 </script>
 
@@ -28,8 +21,25 @@ body {
     background: #f2f6fa !important;
 }
 
+table, small {
+    font-size: 12px;
+}
+
 table thead {
     font-weight: bold;
+}
+
+footer {
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+
+span.tag {
+    margin: 2px 5px 2px 0;
+}
+
+div.line {
+    margin-bottom: 8px;
 }
 
 #app {
@@ -42,21 +52,24 @@ table thead {
     margin-bottom: 15px !important;
 }
 
+.card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+}
+
 .card-content {
     padding: 0.5rem;
     font-size: 12px;
 }
 
+.return-icon {
+    cursor: pointer;
+    margin: 10px 0;
+}
+
 .clear {
     clear: both;
-}
-
-footer {
-    margin-top: 50px;
-    margin-bottom: 25px;
-}
-
-span.tag {
-    margin: 2px 5px 2px 0;
 }
 </style>
