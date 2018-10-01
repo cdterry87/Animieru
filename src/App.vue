@@ -22,7 +22,7 @@ body {
 }
 
 table, small {
-    font-size: 12px;
+    font-size: 12px !important;
 }
 
 table thead {
@@ -60,7 +60,7 @@ div.line {
 }
 
 .card-content {
-    padding: 0.5rem;
+    padding: 0.5rem !important;
     font-size: 12px;
 }
 
