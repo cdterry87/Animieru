@@ -3,7 +3,7 @@
         <router-view></router-view>
 
         <footer class="has-text-centered">
-            Made with <span class="fa fa-heart"></span> by Chase Terry &copy; 2018
+            Made with <span class="fa fa-heart"></span> by <a href="http://chaseterry.com">Chase Terry</a> &copy; 2018 using the <a href="https://jikan.moe" target="_blank">Jikan API</a>
         </footer>
     </div>
 </template>
