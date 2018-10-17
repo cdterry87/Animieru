@@ -3,6 +3,8 @@
 ## Demo site
 http://animieru.chaseterry.com
 
+Uses the Jikan - Unofficial MyAnimeList API ( https://jikan.moe )
+
 ## Project setup
 ```
 npm install
