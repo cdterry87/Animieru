@@ -18,7 +18,7 @@
                     <td colspan="2"><a :href="details.website_url" target="_blank">{{ details.website_url }}</a></td>
                 </tr>
                 <tr v-if="details.more != null">
-                    <td colspan="2" v-html="details.more.replace('\\n', '<br>')">
+                    <td colspan="2" v-html="details.more">
                     </td>
                 </tr>
             </table>

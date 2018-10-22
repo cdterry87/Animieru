@@ -8,8 +8,10 @@ const state = {
 
 const mutations = {
     UPDATE_DETAILS(state, payload) {
-        var more_details = payload.details.more.replace(/\\n/g, "<br/>");
-        payload.details.more = more_details;
+        if (typeof(payload.details.more) !== 'undefined') {
+            var more_details = payload.details.more.replace(/\\n/g, "<br/>");
+            payload.details.more = more_details;
+        }
         state.actorDetails = payload.details;
     },
     START_LOADING(state) {
