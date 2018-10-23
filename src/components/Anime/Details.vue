@@ -7,8 +7,8 @@
                 {{ details.title }}
             </span> 
             <div class="line">
-                <span class="subtitle"> ({{ details.title_english }})</span>    
-                <span class="subtitle"> ({{ details.title_japanese }})</span>    
+                <span class="subtitle"> ({{ details.title_english ? details.title_english : 'N/A' }})</span>    
+                <span class="subtitle"> ({{ details.title_japanese ? details.title_japanese : 'N/A' }})</span>    
             </div>
             <table class="table is-fullwidth">
                 <tr>
