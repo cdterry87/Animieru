@@ -18,7 +18,7 @@
                             <div class="card-content">
                                 <div class="media">
                                     <div class="media-content">
-                                        <p>{{ character.name }}</p>
+                                        <p v-html="character.name"></p>
                                         <p class="is-italic">
                                             Role: {{ character.role }}
                                         </p>
