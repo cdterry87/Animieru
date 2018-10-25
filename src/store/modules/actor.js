@@ -8,7 +8,7 @@ const state = {
 
 const mutations = {
     UPDATE_DETAILS(state, payload) {
-        if (typeof(payload.details.more) !== 'undefined') {
+        if (typeof(payload.details.more) !== 'undefined' && payload.details.more != null) {
             var more_details = payload.details.more.replace(/\\n/g, "<br/>");
             payload.details.more = more_details;
         }
