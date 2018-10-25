@@ -4,11 +4,11 @@
         <div class="columns">
             <div class="column is-5">
                 <Details :details="mangaDetails" :isLoading="isLoadingManga"/>
-                <Synopsis :synopsis="mangaDetails.synopsis" :isLoading="isLoadingManga" />
-                <Background :background="mangaDetails.background" :isLoading="isLoadingManga" />
+                <Synopsis :synopsis="mangaDetails.synopsis" v-if="typeof(mangaDetails.synopsis) !== 'undefined' && mangaDetails.synopsis != null" :isLoading="isLoadingManga" />
+                <Background :background="mangaDetails.background" v-if="typeof(mangaDetails.background) !== 'undefined' && mangaDetails.background != null" :isLoading="isLoadingManga" />
             </div>
             <div class="column is-7">
-                <Characters :characters="mangaCharacters" :isLoading="isLoadingManga" />
+                <Characters :characters="mangaCharacters" v-if="typeof(mangaCharacters) !== 'undefined' && mangaCharacters.length > 0" :isLoading="isLoadingManga" />
             </div>
         </div>
     </div>

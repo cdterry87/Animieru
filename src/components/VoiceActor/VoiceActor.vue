@@ -5,10 +5,10 @@
             <div class="column is-one-quarter">
                 <Details :details="actorDetails" :isLoading="isLoadingActor" />
 
-                <Positions :positions="actorDetails.anime_staff_position" :isLoading="isLoadingActor" />
+                <Positions :positions="actorDetails.anime_staff_position" v-if="typeof(actorDetails.anime_staff_position) !== 'undefined' && actorDetails.anime_staff_position.length > 0" :isLoading="isLoadingActor" />
             </div>
             <div class="column is-three-quarters">
-                <Roles :roles="actorDetails.voice_acting_role" :isLoading="isLoadingActor" />
+                <Roles :roles="actorDetails.voice_acting_role" v-if="typeof(actorDetails.voice_acting_role) !== 'undefined' && actorDetails.voice_acting_role.length > 0" :isLoading="isLoadingActor" />
             </div>
         </div>
     </div>

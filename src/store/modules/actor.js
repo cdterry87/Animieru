@@ -12,6 +12,7 @@ const mutations = {
             var more_details = payload.details.more.replace(/\\n/g, "<br/>");
             payload.details.more = more_details;
         }
+
         state.actorDetails = payload.details;
     },
     START_LOADING(state) {

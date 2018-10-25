@@ -12,7 +12,7 @@
                 <VoiceActors :actors="characterDetails.voice_actor" :isLoading="isLoadingCharacter" />
             </div>
             <div class="column is-4">
-                <Images :images="characterDetails.image" :isLoading="isLoadingCharacter" />
+                <Images :images="characterDetails.image" v-if="typeof(characterDetails.image) !== 'undefined' && characterDetails.image.length > 0" :isLoading="isLoadingCharacter" />
             </div>
         </div>
     </div>
