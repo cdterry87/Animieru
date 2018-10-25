@@ -44,13 +44,15 @@ export default {
     },
     methods: {
         search() {
-            let payload = {
-                'searchField': this.searchField,
-                'selectField': this.selectField,
-            }
+            if (this.searchField) {
+                let payload = {
+                    'searchField': this.searchField,
+                    'selectField': this.selectField,
+                }
 
-            this.$store.dispatch('getSearchResults', payload);
-            this.searchField = '';
+                this.$store.dispatch('getSearchResults', payload);
+                this.searchField = '';
+            }
         },
         clear() {
             this.$store.dispatch('clearSearchResults');
