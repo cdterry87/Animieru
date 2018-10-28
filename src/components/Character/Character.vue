@@ -3,23 +3,23 @@
         <ActionBar />
         <div class="columns is-multiline">
             <div class="column is-12">
-                <Details :details="characterDetails" :isLoading="isLoadingCharacter" />
+                <Details :details="details" :isLoading="isLoading" />
             </div>
             <div class="column is-4">
-                <Related :related="characterDetails" :isLoading="isLoadingCharacter" />
+                <Related :related="details" :isLoading="isLoading" />
             </div>
             <div class="column is-4">
-                <VoiceActors :actors="characterDetails.voice_actor" :isLoading="isLoadingCharacter" />
+                <VoiceActors :actors="details.voice_actor" :isLoading="isLoading" />
             </div>
             <div class="column is-4">
-                <Images :images="characterDetails.image" v-if="typeof(characterDetails.image) !== 'undefined' && characterDetails.image.length > 0" :isLoading="isLoadingCharacter" />
+                <Images :images="details.image" v-if="typeof(details.image) !== 'undefined' && details.image.length > 0" :isLoading="isLoading" />
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import axios from "axios";
 import ActionBar from '../Utility/ActionBar';
 import Details from './Details';
 import Images from './Images';
@@ -29,6 +29,12 @@ import VoiceActors from './VoiceActors';
 export default {
     name: 'Character',
     props: ['id'],
+    data() {
+        return {
+            details: '',
+            isLoading: true
+        }
+    },
     components: {
         ActionBar,
         Details,
@@ -39,9 +45,6 @@ export default {
     created() {
         this.getInfo();
     },
-    computed: {
-        ...mapGetters(['characterDetails', 'isLoadingCharacter'])
-    },
     watch: {
         '$route' () {
             this.getInfo();
@@ -49,11 +52,15 @@ export default {
     },
     methods: {
         getInfo() {
-            let payload = {
-                'id': this.id,
-            }
-
-            this.$store.dispatch('getCharacterDetails', payload);
+            this.isLoading = true;
+            axios.get("https://api.jikan.moe/character/" + this.id + "/pictures")
+            .then(response => {
+                this.details = response.data
+                this.isLoading = false;
+            })
+            .catch(error => {
+                console.log(error);
+            });
         }
     }
 }

@@ -3,12 +3,12 @@
         <ActionBar />
         <div class="columns">
             <div class="column is-one-quarter">
-                <Details :details="actorDetails" :isLoading="isLoadingActor" />
+                <Details :details="details" :isLoading="isLoading" />
 
-                <Positions :positions="actorDetails.anime_staff_position" v-if="typeof(actorDetails.anime_staff_position) !== 'undefined' && actorDetails.anime_staff_position.length > 0" :isLoading="isLoadingActor" />
+                <Positions :positions="details.anime_staff_position" v-if="typeof(details.anime_staff_position) !== 'undefined' && details.anime_staff_position.length > 0" :isLoading="isLoading" />
             </div>
             <div class="column is-three-quarters">
-                <Roles :roles="actorDetails.voice_acting_role" v-if="typeof(actorDetails.voice_acting_role) !== 'undefined' && actorDetails.voice_acting_role.length > 0" :isLoading="isLoadingActor" />
+                <Roles :roles="details.voice_acting_role" v-if="typeof(details.voice_acting_role) !== 'undefined' && details.voice_acting_role.length > 0" :isLoading="isLoading" />
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
 
 <script>
 /* eslint-disable */
-import { mapGetters } from 'vuex';
+import axios from 'axios';
 import ActionBar from '../Utility/ActionBar';
 import Loading from '../Utility/Loading';
 import Details from './Details';
@@ -26,6 +26,12 @@ import Roles from './Roles';
 export default {
     name: 'ViewVoiceActor',
     props: ['id'],
+    data() {
+        return {
+            details: '',
+            isLoading: true
+        }
+    },
     components: {
         ActionBar,
         Loading,
@@ -34,15 +40,26 @@ export default {
         Roles
     },
     created() {
-        let payload = {
-            'id': this.id,
+        this.getInfo();
+    },
+    watch: {
+        '$route' () {
+            this.getInfo();
         }
-
-        this.$store.dispatch('getActorDetails', payload);
     },
-    computed: {
-        ...mapGetters(['actorDetails', 'isLoadingActor'])
-    },
+    methods: {
+        getInfo() {
+            this.isLoading = true;
+            axios.get('https://api.jikan.moe/person/' + this.id)
+                .then(response => {
+                    this.details = response.data;
+                    this.isLoading = false;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    }
 }
 </script>
 
