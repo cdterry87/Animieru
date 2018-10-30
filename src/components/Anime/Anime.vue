@@ -1,15 +1,17 @@
 <template>
-    <div id="view-anime" class="container">
+    <div id="view-anime">
         <ActionBar />
-        <div class="columns">
-            <div class="column is-5">
-                <Details :details="details" :isLoading="isLoading" />
-                <Synopsis :synopsis="details.synopsis" v-if="typeof(details.synopsis) !== 'undefined' && details.synopsis.length > 0" :isLoading="isLoading" />
-                <Related :related="details.related" v-if="typeof(details.related) !== 'undefined' && details.related.length > 0" :isLoading="isLoading" />
-                <Episodes :episodes="episodes" v-if="typeof(episodes) !== 'undefined' && episodes.length > 0" :isLoading="isLoading" />
-            </div>
-            <div class="column is-7">
-                <Characters :characters="characters" :isLoading="isLoading" />
+        <div class="container">
+            <div class="columns">
+                <div class="column is-5">
+                    <Details :details="details" :isLoading="isLoading" />
+                    <Synopsis :synopsis="details.synopsis" v-if="typeof(details.synopsis) !== 'undefined' && details.synopsis.length > 0" :isLoading="isLoading" />
+                    <Related :related="details.related" v-if="typeof(details.related) !== 'undefined' && details.related.length > 0" :isLoading="isLoading" />
+                    <Episodes :episodes="episodes" v-if="typeof(episodes) !== 'undefined' && episodes.length > 0" :isLoading="isLoading" />
+                </div>
+                <div class="column is-7">
+                    <Characters :characters="characters" :isLoading="isLoading" />
+                </div>
             </div>
         </div>
     </div>
@@ -61,7 +63,7 @@ export default {
                     this.isLoading = false;
                 })
                 .catch(error => {
-                    console.log(error);
+                    // console.log(error);
                 });
 
             axios.get('https://api.jikan.moe/anime/' + this.id + '/episodes')
@@ -69,7 +71,7 @@ export default {
                     this.episodes = response.data.episode
                 })
                 .catch(error => {
-                    console.log(error);
+                    // console.log(error);
                 });
         }
     }

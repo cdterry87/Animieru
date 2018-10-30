@@ -1,14 +1,16 @@
 <template>
-    <div class="container">
+    <div id="view-voice-actor">
         <ActionBar />
-        <div class="columns">
-            <div class="column is-one-quarter">
-                <Details :details="details" :isLoading="isLoading" />
+        <div class="container">
+            <div class="columns">
+                <div class="column is-one-quarter">
+                    <Details :details="details" :isLoading="isLoading" />
 
-                <Positions :positions="details.anime_staff_position" v-if="typeof(details.anime_staff_position) !== 'undefined' && details.anime_staff_position.length > 0" :isLoading="isLoading" />
-            </div>
-            <div class="column is-three-quarters">
-                <Roles :roles="details.voice_acting_role" v-if="typeof(details.voice_acting_role) !== 'undefined' && details.voice_acting_role.length > 0" :isLoading="isLoading" />
+                    <Positions :positions="details.anime_staff_position" v-if="typeof(details.anime_staff_position) !== 'undefined' && details.anime_staff_position.length > 0" :isLoading="isLoading" />
+                </div>
+                <div class="column is-three-quarters">
+                    <Roles :roles="details.voice_acting_role" v-if="typeof(details.voice_acting_role) !== 'undefined' && details.voice_acting_role.length > 0" :isLoading="isLoading" />
+                </div>
             </div>
         </div>
     </div>
@@ -56,7 +58,7 @@ export default {
                     this.isLoading = false;
                 })
                 .catch(error => {
-                    console.log(error);
+                    // console.log(error);
                 });
         }
     }

@@ -1,18 +1,20 @@
 <template>
-    <div id="view-character" class="container">
+    <div id="view-character">
         <ActionBar />
-        <div class="columns is-multiline">
-            <div class="column is-12">
-                <Details :details="details" :isLoading="isLoading" />
-            </div>
-            <div class="column is-4">
-                <Related :related="details" :isLoading="isLoading" />
-            </div>
-            <div class="column is-4">
-                <VoiceActors :actors="details.voice_actor" :isLoading="isLoading" />
-            </div>
-            <div class="column is-4">
-                <Images :images="details.image" v-if="typeof(details.image) !== 'undefined' && details.image.length > 0" :isLoading="isLoading" />
+        <div class="container">
+            <div class="columns is-multiline">
+                <div class="column is-12">
+                    <Details :details="details" :isLoading="isLoading" />
+                </div>
+                <div class="column is-4">
+                    <Related :related="details" :isLoading="isLoading" />
+                </div>
+                <div class="column is-4">
+                    <VoiceActors :actors="details.voice_actor" :isLoading="isLoading" />
+                </div>
+                <div class="column is-4">
+                    <Images :images="details.image" v-if="typeof(details.image) !== 'undefined' && details.image.length > 0" :isLoading="isLoading" />
+                </div>
             </div>
         </div>
     </div>
@@ -59,7 +61,7 @@ export default {
                 this.isLoading = false;
             })
             .catch(error => {
-                console.log(error);
+                // console.log(error);
             });
         }
     }

@@ -1,14 +1,16 @@
 <template>
-    <div id="view-manga" class="container">
+    <div id="view-manga">
         <ActionBar />
-        <div class="columns">
-            <div class="column is-5">
-                <Details :details="details" :isLoading="isLoading"/>
-                <Synopsis :synopsis="details.synopsis" v-if="typeof(details.synopsis) !== 'undefined' && details.synopsis != null" :isLoading="isLoading" />
-                <Background :background="details.background" v-if="typeof(details.background) !== 'undefined' && details.background != null" :isLoading="isLoading" />
-            </div>
-            <div class="column is-7">
-                <Characters :characters="characters" v-if="typeof(characters) !== 'undefined' && characters.length > 0" :isLoading="isLoading" />
+        <div class="container">
+            <div class="columns">
+                <div class="column is-5">
+                    <Details :details="details" :isLoading="isLoading"/>
+                    <Synopsis :synopsis="details.synopsis" v-if="typeof(details.synopsis) !== 'undefined' && details.synopsis != null" :isLoading="isLoading" />
+                    <Background :background="details.background" v-if="typeof(details.background) !== 'undefined' && details.background != null" :isLoading="isLoading" />
+                </div>
+                <div class="column is-7">
+                    <Characters :characters="characters" v-if="typeof(characters) !== 'undefined' && characters.length > 0" :isLoading="isLoading" />
+                </div>
             </div>
         </div>
     </div>
@@ -57,7 +59,7 @@ export default {
                     this.isLoading = false;
                 })
                 .catch(error => {
-                    console.log(error);
+                    // console.log(error);
                 });
             }
     }

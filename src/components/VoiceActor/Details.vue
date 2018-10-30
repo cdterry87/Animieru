@@ -38,3 +38,10 @@ export default {
 
 }
 </script>
+
+<style scoped>
+.image {
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+</style>
