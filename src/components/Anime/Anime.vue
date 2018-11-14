@@ -69,10 +69,34 @@ export default {
             axios.get('https://api.jikan.moe/anime/' + this.id + '/episodes')
                 .then(response => {
                     this.episodes = response.data.episode
+
+                    // this.episodes = this.getEpisodes(this.id, response.data.episode.episode_last_page);
                 })
                 .catch(error => {
                     // console.log(error);
                 });
+        },
+        //This is an experimental function to get the full list of episodes even when it's paginated.
+        getEpisodes(id, last_page) {
+            let episodes = {};
+            let api_path = '';
+
+            for (let i = 1; i < last_page; i++) {
+                api_path = 'https://api.jikan.moe/anime/' + id + '/episodes/' + i;
+                axios.get(api_path)
+                    .then(response => {
+                        //Need to push the list of episodes here.
+                    })
+                    .catch(error => {
+                        // console.log(error);
+                    });
+            }
+
+            episodes = Object.assign(e[0], e[1]);
+
+            console.log('episodes: ', episodes);
+
+            return episodes;
         }
     }
 }
