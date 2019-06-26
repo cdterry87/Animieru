@@ -48,7 +48,6 @@
                                                 </v-radio-group>
                                                 <div class="mt-3">
                                                     <v-btn type="submit" color="blue" dark>
-                                                        <v-icon>search</v-icon>
                                                         Search
                                                     </v-btn>
                                                     <v-btn color="red" outline dark @click="reset">
@@ -71,63 +70,36 @@
                     Search Results for "<span class="italic">{{ searchField }}</span>"
                 </v-flex>
                 <v-flex xs12 md10 offset-md1>
-                    <!-- <v-list three-line class="elevation-2" v-if="selectField == 'anime' || selectField == 'manga'">
-                        <v-list-tile avatar v-for="(result, index) in results" :key="index" :to="'/' + selectField + '/' + result.mal_id" class="mb-2">
-                            <v-list-tile-avatar>
-                                <v-img :src="result.image_url"></v-img>
-                            </v-list-tile-avatar>
-                            <v-list-tile-content>
-                                <v-list-tile-title v-html="result.title"></v-list-tile-title>
-                                <v-list-tile-sub-title v-if="selectField == 'anime'">
-                                    <span class="mr-3">Episodes: {{ result.episodes }}</span>
-                                    <span class="mr-3">Rated: {{ result.rated }}</span>
-                                    <span>Score: {{ result.score }}</span>
-                                </v-list-tile-sub-title>
-                                <v-list-tile-sub-title v-if="selectField == 'manga'">
-                                    <span class="mr-3">Chapters: {{ result.chapters }}</span>
-                                    <span class="mr-3">Volumes: {{ result.volumes }}</span>
-                                    <span>Score: {{ result.score }}</span>
-                                </v-list-tile-sub-title>
-                            </v-list-tile-content>
-                            <v-list-tile-action>
-                                <v-btn icon ripple>
-                                    <v-icon color="grey lighten-1">favorite</v-icon>
-                                </v-btn>
-                            </v-list-tile-action>
-                        </v-list-tile>
-                    </v-list> -->
                     <v-layout row wrap v-if="selectField == 'anime' || selectField == 'manga'">
-                        <v-flex xs12 md4 v-for="(result, index) in results" :key="index" >
-                            <v-card>
-                                 <v-card-actions class="pa-3">
-                                    <span class="subheading">{{ result.title | truncate(30) }}</span>
-                                    <v-spacer></v-spacer>
-                                    <v-icon>favorite</v-icon>
-                                </v-card-actions>
-                                <v-divider light></v-divider>
-                                <v-layout>
-                                    <v-flex xs5>
-                                        <v-img
-                                        :src="result.image_url"
-                                        height="100px"
-                                        contain
-                                        ></v-img>
+                        <v-flex xs12 v-for="(result, index) in results" :key="index" >
+                            <v-card :to="'/' + selectField + '/' + result.mal_id" class="mb-2">
+                                <v-layout row>
+                                    <v-flex xs12 sm2>
+                                        <v-img :src="result.image_url" height="150" contain></v-img>
                                     </v-flex>
-                                    <v-flex xs7>
-                                        <v-card-title primary-title>
-                                        <div>
-                                            <div v-if="selectField == 'anime'">
-                                                <div v-if="result.episodes > 1">Episodes: {{ result.episodes }}</div>
-                                                <div v-if="result.rated != ''">Rated: {{ result.rated }}</div>
-                                                <div v-if="result.score > 0">Score: {{ result.score }}</div>
-                                            </div>
-                                            <div v-else>
-                                                <div v-if="result.chapters > 0">Chapters: {{ result.chapters }}</div>
-                                                <div v-if="result.volumes > 0">Volumes: {{ result.volumes }}</div>
-                                                <div v-if="result.score > 0">Score: {{ result.score }}</div>
-                                            </div>
-                                        </div>
-                                        </v-card-title>
+                                    <v-flex xs12 sm10>
+                                        <v-card-actions>
+                                            <span class="title">{{ result.title | truncate(30) }}</span>
+                                            <v-spacer></v-spacer>
+                                            <v-btn icon @click="favorite">
+                                                <v-icon>favorite</v-icon>
+                                            </v-btn>
+                                        </v-card-actions>
+                                        <v-card-actions>
+                                            {{ result.synopsis }}
+                                        </v-card-actions>
+                                        <v-card-actions class="grey--text caption">
+                                            <v-layout row v-if="selectField == 'anime'">
+                                                <v-flex xs4 v-if="result.episodes > 1">Episodes: {{ result.episodes }}</v-flex>
+                                                <v-flex xs4 v-if="result.rated != ''">Rated: {{ result.rated }}</v-flex>
+                                                <v-flex xs4 v-if="result.score > 0">Score: {{ result.score }}</v-flex>
+                                            </v-layout>
+                                            <v-layout v-else>
+                                                <v-flex xs4 v-if="result.chapters > 0">Chapters: {{ result.chapters }}</v-flex>
+                                                <v-flex xs4 v-if="result.volumes > 0">Volumes: {{ result.volumes }}</v-flex>
+                                                <v-flex xs4 v-if="result.score > 0">Score: {{ result.score }}</v-flex>
+                                            </v-layout>
+                                        </v-card-actions>
                                     </v-flex>
                                 </v-layout>
                             </v-card>
@@ -205,6 +177,9 @@
             changeSearchType() {
                 this.results = '',
                 this.searchPerformed = false
+            },
+            favorite(e) {
+                e.preventDefault()
             }
         }
     }

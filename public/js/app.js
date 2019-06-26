@@ -2033,34 +2033,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Search',
@@ -2096,6 +2068,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     changeSearchType: function changeSearchType() {
       this.results = '', this.searchPerformed = false;
+    },
+    favorite: function favorite(e) {
+      e.preventDefault();
     }
   }
 });
@@ -2802,14 +2777,10 @@ var render = function() {
                                                       }
                                                     },
                                                     [
-                                                      _c("v-icon", [
-                                                        _vm._v("search")
-                                                      ]),
                                                       _vm._v(
                                                         "\n                                                    Search\n                                                "
                                                       )
-                                                    ],
-                                                    1
+                                                    ]
                                                   ),
                                                   _vm._v(" "),
                                                   _c(
@@ -2897,50 +2868,33 @@ var render = function() {
                             _vm._l(_vm.results, function(result, index) {
                               return _c(
                                 "v-flex",
-                                { key: index, attrs: { xs12: "", md4: "" } },
+                                { key: index, attrs: { xs12: "" } },
                                 [
                                   _c(
                                     "v-card",
+                                    {
+                                      staticClass: "mb-2",
+                                      attrs: {
+                                        to:
+                                          "/" +
+                                          _vm.selectField +
+                                          "/" +
+                                          result.mal_id
+                                      }
+                                    },
                                     [
                                       _c(
-                                        "v-card-actions",
-                                        { staticClass: "pa-3" },
-                                        [
-                                          _c(
-                                            "span",
-                                            { staticClass: "subheading" },
-                                            [
-                                              _vm._v(
-                                                _vm._s(
-                                                  _vm._f("truncate")(
-                                                    result.title,
-                                                    30
-                                                  )
-                                                )
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("v-spacer"),
-                                          _vm._v(" "),
-                                          _c("v-icon", [_vm._v("favorite")])
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c("v-divider", { attrs: { light: "" } }),
-                                      _vm._v(" "),
-                                      _c(
                                         "v-layout",
+                                        { attrs: { row: "" } },
                                         [
                                           _c(
                                             "v-flex",
-                                            { attrs: { xs5: "" } },
+                                            { attrs: { xs12: "", sm2: "" } },
                                             [
                                               _c("v-img", {
                                                 attrs: {
                                                   src: result.image_url,
-                                                  height: "100px",
+                                                  height: "150",
                                                   contain: ""
                                                 }
                                               })
@@ -2950,86 +2904,190 @@ var render = function() {
                                           _vm._v(" "),
                                           _c(
                                             "v-flex",
-                                            { attrs: { xs7: "" } },
+                                            { attrs: { xs12: "", sm10: "" } },
                                             [
                                               _c(
-                                                "v-card-title",
+                                                "v-card-actions",
+                                                [
+                                                  _c(
+                                                    "span",
+                                                    { staticClass: "title" },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          _vm._f("truncate")(
+                                                            result.title,
+                                                            30
+                                                          )
+                                                        )
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("v-spacer"),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "v-btn",
+                                                    {
+                                                      attrs: { icon: "" },
+                                                      on: {
+                                                        click: _vm.favorite
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("v-icon", [
+                                                        _vm._v("favorite")
+                                                      ])
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c("v-card-actions", [
+                                                _vm._v(
+                                                  "\n                                        " +
+                                                    _vm._s(result.synopsis) +
+                                                    "\n                                    "
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-card-actions",
                                                 {
-                                                  attrs: { "primary-title": "" }
+                                                  staticClass:
+                                                    "grey--text caption"
                                                 },
                                                 [
-                                                  _c("div", [
-                                                    _vm.selectField == "anime"
-                                                      ? _c("div", [
+                                                  _vm.selectField == "anime"
+                                                    ? _c(
+                                                        "v-layout",
+                                                        { attrs: { row: "" } },
+                                                        [
                                                           result.episodes > 1
-                                                            ? _c("div", [
-                                                                _vm._v(
-                                                                  "Episodes: " +
-                                                                    _vm._s(
-                                                                      result.episodes
-                                                                    )
-                                                                )
-                                                              ])
+                                                            ? _c(
+                                                                "v-flex",
+                                                                {
+                                                                  attrs: {
+                                                                    xs4: ""
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Episodes: " +
+                                                                      _vm._s(
+                                                                        result.episodes
+                                                                      )
+                                                                  )
+                                                                ]
+                                                              )
                                                             : _vm._e(),
                                                           _vm._v(" "),
                                                           result.rated != ""
-                                                            ? _c("div", [
-                                                                _vm._v(
-                                                                  "Rated: " +
-                                                                    _vm._s(
-                                                                      result.rated
-                                                                    )
-                                                                )
-                                                              ])
+                                                            ? _c(
+                                                                "v-flex",
+                                                                {
+                                                                  attrs: {
+                                                                    xs4: ""
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Rated: " +
+                                                                      _vm._s(
+                                                                        result.rated
+                                                                      )
+                                                                  )
+                                                                ]
+                                                              )
                                                             : _vm._e(),
                                                           _vm._v(" "),
                                                           result.score > 0
-                                                            ? _c("div", [
-                                                                _vm._v(
-                                                                  "Score: " +
-                                                                    _vm._s(
-                                                                      result.score
-                                                                    )
-                                                                )
-                                                              ])
+                                                            ? _c(
+                                                                "v-flex",
+                                                                {
+                                                                  attrs: {
+                                                                    xs4: ""
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Score: " +
+                                                                      _vm._s(
+                                                                        result.score
+                                                                      )
+                                                                  )
+                                                                ]
+                                                              )
                                                             : _vm._e()
-                                                        ])
-                                                      : _c("div", [
+                                                        ],
+                                                        1
+                                                      )
+                                                    : _c(
+                                                        "v-layout",
+                                                        [
                                                           result.chapters > 0
-                                                            ? _c("div", [
-                                                                _vm._v(
-                                                                  "Chapters: " +
-                                                                    _vm._s(
-                                                                      result.chapters
-                                                                    )
-                                                                )
-                                                              ])
+                                                            ? _c(
+                                                                "v-flex",
+                                                                {
+                                                                  attrs: {
+                                                                    xs4: ""
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Chapters: " +
+                                                                      _vm._s(
+                                                                        result.chapters
+                                                                      )
+                                                                  )
+                                                                ]
+                                                              )
                                                             : _vm._e(),
                                                           _vm._v(" "),
                                                           result.volumes > 0
-                                                            ? _c("div", [
-                                                                _vm._v(
-                                                                  "Volumes: " +
-                                                                    _vm._s(
-                                                                      result.volumes
-                                                                    )
-                                                                )
-                                                              ])
+                                                            ? _c(
+                                                                "v-flex",
+                                                                {
+                                                                  attrs: {
+                                                                    xs4: ""
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Volumes: " +
+                                                                      _vm._s(
+                                                                        result.volumes
+                                                                      )
+                                                                  )
+                                                                ]
+                                                              )
                                                             : _vm._e(),
                                                           _vm._v(" "),
                                                           result.score > 0
-                                                            ? _c("div", [
-                                                                _vm._v(
-                                                                  "Score: " +
-                                                                    _vm._s(
-                                                                      result.score
-                                                                    )
-                                                                )
-                                                              ])
+                                                            ? _c(
+                                                                "v-flex",
+                                                                {
+                                                                  attrs: {
+                                                                    xs4: ""
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Score: " +
+                                                                      _vm._s(
+                                                                        result.score
+                                                                      )
+                                                                  )
+                                                                ]
+                                                              )
                                                             : _vm._e()
-                                                        ])
-                                                  ])
-                                                ]
+                                                        ],
+                                                        1
+                                                      )
+                                                ],
+                                                1
                                               )
                                             ],
                                             1
