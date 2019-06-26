@@ -68,18 +68,21 @@
             <v-layout row wrap>
                 <v-flex text-xs-center class="title mb-3" xs12>
                     Search Results for "<span class="italic">{{ searchField }}</span>"
+                    <div class="caption mt-2">
+                        <strong>({{ results.length }} Results)</strong>
+                    </div>
                 </v-flex>
-                <v-flex xs12 md10 offset-md1>
+                <v-flex xs12 md8 offset-md2>
                     <v-layout row wrap v-if="selectField == 'anime' || selectField == 'manga'">
                         <v-flex xs12 v-for="(result, index) in results" :key="index" >
                             <v-card :to="'/' + selectField + '/' + result.mal_id" class="mb-2">
                                 <v-layout row>
-                                    <v-flex xs12 sm2>
+                                    <v-flex xs5 sm2>
                                         <v-img :src="result.image_url" height="150" contain></v-img>
                                     </v-flex>
-                                    <v-flex xs12 sm10>
+                                    <v-flex xs7 sm10>
                                         <v-card-actions>
-                                            <span class="title">{{ result.title | truncate(30) }}</span>
+                                            <span class="title">{{ index + 1 }}. {{ result.title | truncate(30) }}</span>
                                             <v-spacer></v-spacer>
                                             <v-btn icon @click="favorite">
                                                 <v-icon>favorite</v-icon>

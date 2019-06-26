@@ -2033,6 +2033,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Search',
@@ -2853,13 +2856,18 @@ var render = function() {
                       _c("span", { staticClass: "italic" }, [
                         _vm._v(_vm._s(_vm.searchField))
                       ]),
-                      _vm._v('"\n            ')
+                      _vm._v('"\n                '),
+                      _c("div", { staticClass: "caption mt-2" }, [
+                        _c("strong", [
+                          _vm._v("(" + _vm._s(_vm.results.length) + " Results)")
+                        ])
+                      ])
                     ]
                   ),
                   _vm._v(" "),
                   _c(
                     "v-flex",
-                    { attrs: { xs12: "", md10: "", "offset-md1": "" } },
+                    { attrs: { xs12: "", md8: "", "offset-md2": "" } },
                     [
                       _vm.selectField == "anime" || _vm.selectField == "manga"
                         ? _c(
@@ -2889,7 +2897,7 @@ var render = function() {
                                         [
                                           _c(
                                             "v-flex",
-                                            { attrs: { xs12: "", sm2: "" } },
+                                            { attrs: { xs5: "", sm2: "" } },
                                             [
                                               _c("v-img", {
                                                 attrs: {
@@ -2904,7 +2912,7 @@ var render = function() {
                                           _vm._v(" "),
                                           _c(
                                             "v-flex",
-                                            { attrs: { xs12: "", sm10: "" } },
+                                            { attrs: { xs7: "", sm10: "" } },
                                             [
                                               _c(
                                                 "v-card-actions",
@@ -2914,12 +2922,14 @@ var render = function() {
                                                     { staticClass: "title" },
                                                     [
                                                       _vm._v(
-                                                        _vm._s(
-                                                          _vm._f("truncate")(
-                                                            result.title,
-                                                            30
+                                                        _vm._s(index + 1) +
+                                                          ". " +
+                                                          _vm._s(
+                                                            _vm._f("truncate")(
+                                                              result.title,
+                                                              30
+                                                            )
                                                           )
-                                                        )
                                                       )
                                                     ]
                                                   ),
