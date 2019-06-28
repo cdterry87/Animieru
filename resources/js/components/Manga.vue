@@ -24,43 +24,29 @@
                             <v-divider class="mt-2 mb-2"></v-divider>
                             <table>
                                 <tbody>
-                                    <tr v-if="details.aired">
-                                        <td>Aired:</td>
-                                        <td><v-chip color="teal" dark small>{{ details.aired.string }}</v-chip></td>
+                                    <tr v-if="details.published">
+                                        <td>Published:</td>
+                                        <td><v-chip color="teal" dark small>{{ details.published.string }}</v-chip></td>
                                     </tr>
                                     <tr>
-                                        <td>Rating:</td>
+                                        <td>Author(s):</td>
                                         <td>
-                                            <v-chip color="red" dark small>{{ details.rating }}</v-chip>
+                                            <v-chip color="deep-orange" v-for="author in details.authors" :key="author.mal_id" dark small>{{ author.name }}</v-chip>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Producer(s):</td>
-                                        <td>
-                                            <v-chip color="deep-orange" v-for="producer in details.producers" :key="producer.mal_id" dark small>{{ producer.name }}</v-chip>
-                                        </td>
+                                        <td>Volume(s):</td>
+                                        <td><v-chip color="red" dark small>{{ details.volumes }}</v-chip></td>
                                     </tr>
                                     <tr>
-                                        <td>Licenser(s):</td>
-                                        <td>
-                                            <v-chip color="deep-purple" v-for="licensor in details.licensors" :key="licensor.mal_id" dark small>{{ licensor.name }}</v-chip>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Studio(s):</td>
-                                        <td>
-                                            <v-chip color="green" v-for="studio in details.studios" :key="studio.mal_id" dark small>{{ studio.name }}</v-chip>
-                                        </td>
+                                        <td>Chapter(s):</td>
+                                        <td><v-chip color="green" dark small>{{ details.chapters }}</v-chip></td>
                                     </tr>
                                     <tr>
                                         <td>Genre(s):</td>
                                         <td>
                                             <v-chip color="blue" v-for="genre in details.genres" :key="genre.mal_id" dark small>{{ genre.name }}</v-chip>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Episodes:</td>
-                                        <td><v-chip color="pink" dark small>{{ details.episodes }}</v-chip></td>
                                     </tr>
                                     <tr>
                                         <td>Score:</td>
@@ -83,26 +69,13 @@
                             </div>
                         </v-card-text>
                     </v-card>
-                    <v-card class="mt-3" v-if="episodes">
+                    <v-card class="mt-3" v-if="details.background">
                         <v-card-text>
                             <div>
-                                <span class="title">Episodes</span>
+                                <span class="title">Background</span>
                             </div>
-                            <div class="mt-3">
-                                <v-data-table
-                                    :headers="headers"
-                                    :items="episodes"
-                                    :pagination.sync="pagination"
-                                    no-data-text="There are no episodes available."
-                                    disable-initial-sort
-                                    hide-actions
-                                >
-                                    <template v-slot:items="props">
-                                        <td>{{ props.item.episode_id }}</td>
-                                        <td>{{ props.item.title }}</td>
-                                        <td>{{ props.item.title_japanese }} ({{ props.item.title_romanji }})</td>
-                                    </template>
-                                </v-data-table>
+                            <div class="mt-3 subheading">
+                                {{ details.background }}
                             </div>
                         </v-card-text>
                     </v-card>
@@ -135,26 +108,17 @@
     import axios from 'axios'
 
     export default {
-        name: 'Anime',
+        name: 'Manga',
         props: ['id'],
         data() {
             return {
                 details: '',
                 characters: '',
-                episodes: '',
-                pagination: {
-                    rowsPerPage: -1
-                },
-                headers: [
-                    { text: '#', value: 'episode_id' },
-                    { text: 'Title', value: 'title' },
-                    { text: 'Title (Japanese)', value: 'title_japanese' },
-                ],
             }
         },
         methods: {
             getDetails() {
-                axios.get('https://api.jikan.moe/v3/anime/' + this.id)
+                axios.get('https://api.jikan.moe/v3/manga/' + this.id)
                 .then(response => {
                     this.details = response.data;
                 })
@@ -163,31 +127,9 @@
                 });
             },
             getCharacters() {
-                axios.get('https://api.jikan.moe/v3/anime/' + this.id + '/characters_staff')
+                axios.get('https://api.jikan.moe/v3/manga/' + this.id + '/characters')
                 .then(response => {
                     this.characters = response.data.characters;
-                })
-                .catch(error => {
-                    // console.log(error);
-                });
-            },
-            getEpisodes() {
-                axios.get('https://api.jikan.moe/v3/anime/' + this.id + '/episodes')
-                .then(response => {
-                    let episodes = response.data.episodes
-                    this.episodes = episodes
-
-                    let last_page = response.data.episodes_last_page
-
-                    if (last_page > 1) {
-                        var i;
-                        for(i = 2; i <= 2; i++) {
-                            // axios.get('https://api.jikan.moe/v3/anime/' + this.id + '/episodes/' + i)
-                            // .then(response2 => {
-
-                            // })
-                        }
-                    }
                 })
                 .catch(error => {
                     // console.log(error);
@@ -197,7 +139,6 @@
         created() {
             this.getDetails()
             this.getCharacters()
-            this.getEpisodes()
         }
     }
 </script>
