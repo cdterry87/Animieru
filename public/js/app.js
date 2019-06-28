@@ -1851,6 +1851,220 @@ module.exports = function isBuffer (obj) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Anime.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Anime.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'Anime',
+  props: ['id'],
+  data: function data() {
+    return {
+      details: '',
+      characters: '',
+      episodes: '',
+      pagination: {
+        rowsPerPage: -1
+      },
+      headers: [{
+        text: '#',
+        value: 'episode_id'
+      }, {
+        text: 'Title',
+        value: 'title'
+      }, {
+        text: 'Title (Japanese)',
+        value: 'title_japanese'
+      }]
+    };
+  },
+  methods: {
+    getDetails: function getDetails() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://api.jikan.moe/v3/anime/' + this.id).then(function (response) {
+        _this.details = response.data;
+      })["catch"](function (error) {// console.log(error);
+      });
+    },
+    getCharacters: function getCharacters() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://api.jikan.moe/v3/anime/' + this.id + '/characters_staff').then(function (response) {
+        _this2.characters = response.data.characters;
+      })["catch"](function (error) {// console.log(error);
+      });
+    },
+    getEpisodes: function getEpisodes() {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://api.jikan.moe/v3/anime/' + this.id + '/episodes').then(function (response) {
+        var episodes = response.data.episodes;
+        _this3.episodes = episodes;
+        var last_page = response.data.episodes_last_page;
+
+        if (last_page > 1) {
+          var i;
+
+          for (i = 2; i <= 2; i++) {// axios.get('https://api.jikan.moe/v3/anime/' + this.id + '/episodes/' + i)
+            // .then(response2 => {
+            // })
+          }
+        }
+      })["catch"](function (error) {// console.log(error);
+      });
+    }
+  },
+  created: function created() {
+    this.getDetails();
+    this.getCharacters();
+    this.getEpisodes();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/App.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/App.vue?vue&type=script&lang=js& ***!
@@ -2545,6 +2759,494 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (this && this.clearImmediate);
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Anime.vue?vue&type=template&id=152b9f19&":
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Anime.vue?vue&type=template&id=152b9f19& ***!
+  \********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "v-container",
+        { attrs: { "grid-list-md": "" } },
+        [
+          _c(
+            "v-layout",
+            { attrs: { row: "", wrap: "" } },
+            [
+              _c(
+                "v-flex",
+                { attrs: { xs12: "", md5: "" } },
+                [
+                  _c(
+                    "v-card",
+                    [
+                      _c(
+                        "v-card-text",
+                        [
+                          _c(
+                            "v-layout",
+                            { attrs: { row: "" } },
+                            [
+                              _c(
+                                "v-flex",
+                                { attrs: { xs2: "" } },
+                                [
+                                  _c(
+                                    "v-avatar",
+                                    [
+                                      _c("v-img", {
+                                        attrs: { src: _vm.details.image_url }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("v-flex", { attrs: { xs10: "" } }, [
+                                _c("div", { staticClass: "headline" }, [
+                                  _vm._v(
+                                    "\n                                    " +
+                                      _vm._s(_vm.details.title) +
+                                      "\n                                "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c("span", { staticClass: "subheading" }, [
+                                    _vm._v(
+                                      " (" +
+                                        _vm._s(
+                                          _vm.details.title_english
+                                            ? _vm.details.title_english
+                                            : "N/A"
+                                        ) +
+                                        ")"
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("span", { staticClass: "subheading" }, [
+                                    _vm._v(
+                                      " (" +
+                                        _vm._s(
+                                          _vm.details.title_japanese
+                                            ? _vm.details.title_japanese
+                                            : "N/A"
+                                        ) +
+                                        ")"
+                                    )
+                                  ])
+                                ])
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("v-divider", { staticClass: "mt-2 mb-2" }),
+                          _vm._v(" "),
+                          _c("table", [
+                            _c("tbody", [
+                              _vm.details.aired
+                                ? _c("tr", [
+                                    _c("td", [_vm._v("Aired:")]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      [
+                                        _c(
+                                          "v-chip",
+                                          {
+                                            attrs: {
+                                              color: "teal",
+                                              dark: "",
+                                              small: ""
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              _vm._s(_vm.details.aired.string)
+                                            )
+                                          ]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("td", [_vm._v("Rating:")]),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  [
+                                    _c(
+                                      "v-chip",
+                                      {
+                                        attrs: {
+                                          color: "red",
+                                          dark: "",
+                                          small: ""
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(_vm.details.rating))]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("td", [_vm._v("Producer(s):")]),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  _vm._l(_vm.details.producers, function(
+                                    producer
+                                  ) {
+                                    return _c(
+                                      "v-chip",
+                                      {
+                                        key: producer.mal_id,
+                                        attrs: {
+                                          color: "deep-orange",
+                                          dark: "",
+                                          small: ""
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(producer.name))]
+                                    )
+                                  }),
+                                  1
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("td", [_vm._v("Licenser(s):")]),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  _vm._l(_vm.details.licensors, function(
+                                    licensor
+                                  ) {
+                                    return _c(
+                                      "v-chip",
+                                      {
+                                        key: licensor.mal_id,
+                                        attrs: {
+                                          color: "deep-purple",
+                                          dark: "",
+                                          small: ""
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(licensor.name))]
+                                    )
+                                  }),
+                                  1
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("td", [_vm._v("Studio(s):")]),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  _vm._l(_vm.details.studios, function(studio) {
+                                    return _c(
+                                      "v-chip",
+                                      {
+                                        key: studio.mal_id,
+                                        attrs: {
+                                          color: "green",
+                                          dark: "",
+                                          small: ""
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(studio.name))]
+                                    )
+                                  }),
+                                  1
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("td", [_vm._v("Genre(s):")]),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  _vm._l(_vm.details.genres, function(genre) {
+                                    return _c(
+                                      "v-chip",
+                                      {
+                                        key: genre.mal_id,
+                                        attrs: {
+                                          color: "blue",
+                                          dark: "",
+                                          small: ""
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(genre.name))]
+                                    )
+                                  }),
+                                  1
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("td", [_vm._v("Episodes:")]),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  [
+                                    _c(
+                                      "v-chip",
+                                      {
+                                        attrs: {
+                                          color: "pink",
+                                          dark: "",
+                                          small: ""
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(_vm.details.episodes))]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("td", [_vm._v("Score:")]),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  [
+                                    _c("strong", [
+                                      _vm._v(
+                                        _vm._s(_vm.details.score) + " / 10"
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("v-progress-linear", {
+                                      attrs: {
+                                        color: "yellow darken-2",
+                                        value: _vm.details.score * 10
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ])
+                            ])
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm.details.synopsis
+                    ? _c(
+                        "v-card",
+                        { staticClass: "mt-3" },
+                        [
+                          _c("v-card-text", [
+                            _c("div", [
+                              _c("span", { staticClass: "title" }, [
+                                _vm._v("Synopsis")
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "mt-3 subheading" }, [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(_vm.details.synopsis) +
+                                  "\n                        "
+                              )
+                            ])
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.episodes
+                    ? _c(
+                        "v-card",
+                        { staticClass: "mt-3" },
+                        [
+                          _c("v-card-text", [
+                            _c("div", [
+                              _c("span", { staticClass: "title" }, [
+                                _vm._v("Episodes")
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "mt-3 subheading" },
+                              [
+                                _c("v-data-table", {
+                                  attrs: {
+                                    headers: _vm.headers,
+                                    items: _vm.episodes,
+                                    pagination: _vm.pagination,
+                                    "no-data-text":
+                                      "There are no episodes available.",
+                                    "disable-initial-sort": "",
+                                    "hide-actions": ""
+                                  },
+                                  on: {
+                                    "update:pagination": function($event) {
+                                      _vm.pagination = $event
+                                    }
+                                  },
+                                  scopedSlots: _vm._u(
+                                    [
+                                      {
+                                        key: "items",
+                                        fn: function(props) {
+                                          return [
+                                            _c("td", [
+                                              _vm._v(
+                                                _vm._s(props.item.episode_id)
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(_vm._s(props.item.title))
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                _vm._s(
+                                                  props.item.title_japanese
+                                                ) +
+                                                  " (" +
+                                                  _vm._s(
+                                                    props.item.title_romanji
+                                                  ) +
+                                                  ")"
+                                              )
+                                            ])
+                                          ]
+                                        }
+                                      }
+                                    ],
+                                    null,
+                                    false,
+                                    1296267132
+                                  )
+                                })
+                              ],
+                              1
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs12: "", md7: "" } },
+                [
+                  _c(
+                    "v-card",
+                    [
+                      _c(
+                        "v-card-text",
+                        [
+                          _c("div", [
+                            _c("span", { staticClass: "title" }, [
+                              _vm._v("Characters "),
+                              _c("span", { staticClass: "italic" }, [
+                                _vm._v(
+                                  "(" +
+                                    _vm._s(_vm.characters.length) +
+                                    " Characters Found)"
+                                )
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "v-layout",
+                            { attrs: { row: "", wrap: "" } },
+                            _vm._l(_vm.characters, function(character) {
+                              return _c(
+                                "v-flex",
+                                {
+                                  key: character.mal_id,
+                                  attrs: { xs4: "", lg3: "", xl2: "" }
+                                },
+                                [
+                                  _c(
+                                    "v-card",
+                                    [
+                                      _c("v-img", {
+                                        attrs: { src: character.image_url }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-card-text", [
+                                        _c("div", {
+                                          staticClass: "caption",
+                                          domProps: {
+                                            innerHTML: _vm._s(character.name)
+                                          }
+                                        })
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            }),
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
 
 /***/ }),
 
@@ -44075,6 +44777,75 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 
 /***/ }),
 
+/***/ "./resources/js/components/Anime.vue":
+/*!*******************************************!*\
+  !*** ./resources/js/components/Anime.vue ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Anime_vue_vue_type_template_id_152b9f19___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Anime.vue?vue&type=template&id=152b9f19& */ "./resources/js/components/Anime.vue?vue&type=template&id=152b9f19&");
+/* harmony import */ var _Anime_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Anime.vue?vue&type=script&lang=js& */ "./resources/js/components/Anime.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Anime_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Anime_vue_vue_type_template_id_152b9f19___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Anime_vue_vue_type_template_id_152b9f19___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Anime.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Anime.vue?vue&type=script&lang=js&":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/Anime.vue?vue&type=script&lang=js& ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Anime_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Anime.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Anime.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Anime_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Anime.vue?vue&type=template&id=152b9f19&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/Anime.vue?vue&type=template&id=152b9f19& ***!
+  \**************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Anime_vue_vue_type_template_id_152b9f19___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Anime.vue?vue&type=template&id=152b9f19& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Anime.vue?vue&type=template&id=152b9f19&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Anime_vue_vue_type_template_id_152b9f19___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Anime_vue_vue_type_template_id_152b9f19___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/App.vue":
 /*!*****************************************!*\
   !*** ./resources/js/components/App.vue ***!
@@ -44223,8 +44994,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Search__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Search */ "./resources/js/components/Search.vue");
- // import Anime from './components/Anime'
-// import Manga from './components/Manga'
+/* harmony import */ var _components_Anime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Anime */ "./resources/js/components/Anime.vue");
+
+ // import Manga from './components/Manga'
 // import Character from './components/Character'
 // import Person from './components/Person'
 // import NotFound from './components/NotFound'
@@ -44233,6 +45005,10 @@ __webpack_require__.r(__webpack_exports__);
   path: '/',
   name: 'search',
   component: _components_Search__WEBPACK_IMPORTED_MODULE_0__["default"]
+}, {
+  path: "/anime/:id",
+  component: _components_Anime__WEBPACK_IMPORTED_MODULE_1__["default"],
+  props: true
 }]);
 
 /***/ }),

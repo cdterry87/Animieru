@@ -38,6 +38,17 @@ a {
 }
 
 .italic {
-  font-style: italic;
+  font-style: italic !important;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+table td {
+  vertical-align: top !important;
+  border-bottom: solid 1px #dbdbdb;
+  padding: 0.5em 0.75em;
 }
 
