@@ -1,7 +1,7 @@
 import Search from './components/Search'
 import Anime from './components/Anime'
 import Manga from './components/Manga'
-// import Character from './components/Character'
+import Character from './components/Character'
 // import Person from './components/Person'
 // import NotFound from './components/NotFound'
 
@@ -21,11 +21,11 @@ export default [
         component: Manga,
         props: true
     },
-    // {
-    //     path: "/character/:id",
-    //     component: Character,
-    //     props: true
-    // },
+    {
+        path: "/character/:id",
+        component: Character,
+        props: true
+    },
     // {
     //     path: "/person/:id",
     //     component: Person,

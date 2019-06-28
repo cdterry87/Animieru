@@ -1,6 +1,6 @@
 <template>
     <div>
-         <v-container grid-list-md>
+        <v-container grid-list-md>
             <v-layout row wrap>
                 <v-flex xs12 md5>
                     <v-card>
@@ -115,7 +115,7 @@
                             </div>
                             <v-layout row wrap>
                                 <v-flex v-for="character in characters" :key="character.mal_id" xs4 lg3 xl2>
-                                    <v-card>
+                                    <v-card :to="'/character/' + character.mal_id">
                                         <v-img :src="character.image_url"></v-img>
                                         <v-card-text>
                                             <div class="caption" v-html="character.name"></div>

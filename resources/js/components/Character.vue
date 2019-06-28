@@ -1,0 +1,153 @@
+<template>
+    <div>
+        <v-container grid-list-md>
+            <v-layout row wrap>
+                <v-flex xs12>
+                    <v-card>
+                        <v-card-text>
+                            <v-layout row>
+                                <v-flex xs2 sm1>
+                                    <v-avatar>
+                                        <v-img :src="details.image_url"></v-img>
+                                    </v-avatar>
+                                </v-flex>
+                                <v-flex xs10 sm11>
+                                    <div class="headline">
+                                        {{ details.name }} {{ details.name_kanji }}
+                                    </div>
+                                    <div class="title" v-if="details.nicknames">
+                                        <v-chip color="blue" small dark v-for="nickname in details.nicknames" :key="nickname.mal_id">
+                                            {{ nickname }}
+                                        </v-chip>
+                                    </div>
+                                </v-flex>
+                            </v-layout>
+                            <v-divider class="mt-2 mb-2"></v-divider>
+                            <div class="body-1" v-html="details.about"></div>
+                        </v-card-text>
+                    </v-card>
+                </v-flex>
+                <v-flex xs12 md4>
+                    <v-card>
+                        <v-card-text>
+                            <div class="title">Animeography</div>
+                        </v-card-text>
+                        <v-list to="">
+                            <v-list-tile
+                                v-for="item in details.animeography"
+                                :key="item.mal_id"
+                                avatar
+                                :to="'/anime/' + item.mal_id"
+                            >
+                                <v-list-tile-avatar>
+                                    <img :src="item.image_url">
+                                </v-list-tile-avatar>
+
+                                <v-list-tile-content>
+                                    <v-list-tile-title class="body-1" v-html="item.name"></v-list-tile-title>
+                                </v-list-tile-content>
+                            </v-list-tile>
+                        </v-list>
+                        <v-card-text>
+                            <div class="title">Mangaography</div>
+                        </v-card-text>
+                        <v-list>
+                            <v-list-tile
+                                v-for="item in details.mangaography"
+                                :key="item.mal_id"
+                                avatar
+                                :to="'/manga/' + item.mal_id"
+                            >
+                                <v-list-tile-avatar>
+                                    <img :src="item.image_url">
+                                </v-list-tile-avatar>
+
+                                <v-list-tile-content>
+                                    <v-list-tile-title class="body-1" v-html="item.name"></v-list-tile-title>
+                                </v-list-tile-content>
+                            </v-list-tile>
+                        </v-list>
+                    </v-card>
+                </v-flex>
+                <v-flex xs12 md4>
+                    <v-card>
+                        <v-card-text>
+                            <div class="title">Voice Actors</div>
+                        </v-card-text>
+                        <v-list>
+                            <v-list-tile
+                                v-for="item in details.voice_actors"
+                                :key="item.mal_id"
+                                avatar
+                                :to="'/person/' + item.mal_id"
+                            >
+                                <v-list-tile-avatar>
+                                    <img :src="item.image_url">
+                                </v-list-tile-avatar>
+
+                                <v-list-tile-content>
+                                    <v-list-tile-title class="body-1" v-html="item.name"></v-list-tile-title>
+                                </v-list-tile-content>
+
+                                <v-list-tile-action>
+                                    <v-list-tile-title class="caption grey--text" v-html="item.language"></v-list-tile-title>
+                                </v-list-tile-action>
+                            </v-list-tile>
+                        </v-list>
+                    </v-card>
+                </v-flex>
+                <v-flex xs12 md4>
+                    <v-card>
+                        <v-card-text>
+                            <div class="title">Images</div>
+                            <v-layout row wrap>
+                                <v-flex xs6 sm4 v-for="picture in pictures" :key="picture.mal_id">
+                                    <v-img :src="picture.large"></v-img>
+                                </v-flex>
+                            </v-layout>
+                        </v-card-text>
+                    </v-card>
+                </v-flex>
+            </v-layout>
+        </v-container>
+    </div>
+</template>
+
+<script>
+    import axios from 'axios'
+
+    export default {
+        name: 'Character',
+        props: ['id'],
+        data() {
+            return {
+                details: '',
+                pictures: ''
+            }
+        },
+        methods: {
+            getDetails() {
+                axios.get('https://api.jikan.moe/v3/character/' + this.id)
+                .then(response => {
+                    this.details = response.data;
+                })
+                .catch(error => {
+                    // console.log(error);
+                });
+            },
+            getPictures() {
+                axios.get('https://api.jikan.moe/v3/character/' + this.id + '/pictures')
+                .then(response => {
+                    this.pictures = response.data.pictures;
+                })
+                .catch(error => {
+                    // console.log(error);
+                });
+            }
+        },
+        created() {
+            this.getDetails()
+            this.getPictures()
+        }
+    }
+</script>
