@@ -2,7 +2,7 @@ import Search from './components/Search'
 import Anime from './components/Anime'
 import Manga from './components/Manga'
 import Character from './components/Character'
-// import Person from './components/Person'
+import Person from './components/Person'
 // import NotFound from './components/NotFound'
 
 export default [
@@ -26,11 +26,11 @@ export default [
         component: Character,
         props: true
     },
-    // {
-    //     path: "/person/:id",
-    //     component: Person,
-    //     props: true
-    // },
+    {
+        path: "/person/:id",
+        component: Person,
+        props: true
+    },
     // {
     //     //Alternate route for voice actors.
     //     path: "/people/:id",
