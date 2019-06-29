@@ -3,13 +3,18 @@ import Anime from './components/Anime'
 import Manga from './components/Manga'
 import Character from './components/Character'
 import Person from './components/Person'
-// import NotFound from './components/NotFound'
+import Genres from './components/Genres'
 
 export default [
     {
         path: '/',
         name: 'search',
         component: Search,
+    },
+    {
+        path: '/genres',
+        name: 'genres',
+        component: Genres,
     },
     {
         path: "/anime/:id",
@@ -30,14 +35,5 @@ export default [
         path: "/person/:id",
         component: Person,
         props: true
-    },
-    // {
-    //     //Alternate route for voice actors.
-    //     path: "/people/:id",
-    //     redirect: "/person/:id"
-    // },
-    // {
-    //     path: "*",
-    //     component: NotFound
-    // }
+    }
 ]

@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Toolbar />
          <v-container grid-list-md>
             <v-layout row wrap>
                 <v-flex xs12 md5>
@@ -106,10 +107,14 @@
 
 <script>
     import axios from 'axios'
+    import Toolbar from './Toolbar'
 
     export default {
         name: 'Manga',
         props: ['id'],
+        components: {
+            Toolbar
+        },
         data() {
             return {
                 details: '',

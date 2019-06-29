@@ -1,11 +1,7 @@
 <template>
     <div>
         <v-jumbotron :gradient="gradient" dark>
-            <v-toolbar flat color="rgba(0,0,0,0)">
-                <v-spacer></v-spacer>
-                <v-btn href="/login" flat>Login</v-btn>
-                <v-btn href="/register" flat>Register</v-btn>
-            </v-toolbar>
+            <Toolbar />
             <v-container>
                 <v-layout align-center row wrap>
                     <v-flex text-xs-center xs12>
@@ -142,9 +138,13 @@
 
 <script>
     import axios from 'axios'
+    import Toolbar from './Toolbar'
 
     export default {
         name: 'Search',
+        components: {
+            Toolbar
+        },
         data() {
             return {
                 searchPerformed: false,
