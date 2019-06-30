@@ -4,7 +4,7 @@
          <v-container grid-list-lg align-center>
             <v-layout row wrap>
                 <v-flex xs6 sm4 md3 lg2 v-for="(genre, index) in genres" :key="index">
-                    <v-card :to="'/genre/' + genre.id" class="text-xs-center" dark :color="colors[Math.round(Math.random() * 12)]">
+                    <v-card :to="'/genre/' + genre.name + '/' + genre.id + '/1'" class="text-xs-center" dark :color="colors[Math.round(Math.random() * 12)]">
                         <v-card-text class="title">
                             {{ genre.name }}
                         </v-card-text>
