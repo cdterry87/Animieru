@@ -1,7 +1,8 @@
 <template>
     <div>
         <Toolbar />
-         <v-container grid-list-md>
+        <Loading v-if="loading" />
+         <v-container v-else grid-list-md>
             <v-layout row wrap>
                 <v-flex xs12 md5>
                     <v-card>
@@ -9,7 +10,11 @@
                             <v-layout row>
                                 <v-flex xs2>
                                     <v-avatar>
-                                        <v-img :src="details.image_url"></v-img>
+                                        <v-img :src="details.image_url">
+                                            <template v-slot:placeholder>
+                                               <ImagePlaceholder />
+                                            </template>
+                                        </v-img>
                                     </v-avatar>
                                 </v-flex>
                                 <v-flex xs10>
@@ -83,14 +88,21 @@
                 </v-flex>
                 <v-flex xs12 md7>
                     <v-card>
-                        <v-card-text>
+                        <v-card-text v-if="loadingCharacters">
+                            <Loading />
+                        </v-card-text>
+                        <v-card-text v-else>
                             <div>
                                 <span class="title">Characters <span class="italic">({{ characters.length }} Characters Found)</span></span>
                             </div>
                             <v-layout row wrap>
-                                <v-flex v-for="character in characters" :key="character.mal_id" xs4 lg3 xl2>
+                                <v-flex v-for="character in characters" :key="character.mal_id" xs6 sm4 lg3 xl2>
                                     <v-card>
-                                        <v-img :src="character.image_url"></v-img>
+                                        <v-img :src="character.image_url" max-height="300" position="top center">
+                                            <template v-slot:placeholder>
+                                               <ImagePlaceholder />
+                                            </template>
+                                        </v-img>
                                         <v-card-text>
                                             <div class="caption" v-html="character.name"></div>
                                         </v-card-text>
@@ -108,15 +120,21 @@
 <script>
     import axios from 'axios'
     import Toolbar from './Toolbar'
+    import Loading from './Loading'
+    import ImagePlaceholder from './ImagePlaceholder'
 
     export default {
         name: 'Manga',
         props: ['id'],
         components: {
-            Toolbar
+            Toolbar,
+            Loading,
+            ImagePlaceholder
         },
         data() {
             return {
+                loading: true,
+                loadingCharacters: true,
                 details: '',
                 characters: '',
             }
@@ -126,6 +144,7 @@
                 axios.get('https://api.jikan.moe/v3/manga/' + this.id)
                 .then(response => {
                     this.details = response.data;
+                    this.loading = false
                 })
                 .catch(error => {
                     // console.log(error);
@@ -135,6 +154,7 @@
                 axios.get('https://api.jikan.moe/v3/manga/' + this.id + '/characters')
                 .then(response => {
                     this.characters = response.data.characters;
+                    this.loadingCharacters = false
                 })
                 .catch(error => {
                     // console.log(error);

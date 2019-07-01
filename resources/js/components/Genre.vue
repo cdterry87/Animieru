@@ -1,10 +1,11 @@
 <template>
     <div>
         <Toolbar />
-        <v-container grid-list-md>
+        <Loading v-if="loading" />
+        <v-container v-else grid-list-md>
             <v-layout row wrap>
                 <v-flex text-xs-center class="title mb-3" xs12>
-                    Results in the "<span class="italic">{{ name }}</span>" genre
+                    Results for <span class="italic">"{{ name }}"</span>
                 </v-flex>
                 <v-flex xs12 md8 offset-md2>
                     <v-layout row wrap>
@@ -12,7 +13,11 @@
                             <v-card :to="'/anime/' + result.mal_id" class="mb-2">
                                 <v-layout row>
                                     <v-flex xs5 sm2>
-                                        <v-img :src="result.image_url" height="150" contain></v-img>
+                                        <v-img :src="result.image_url" height="150" contain>
+                                            <template v-slot:placeholder>
+                                               <ImagePlaceholder />
+                                            </template>
+                                        </v-img>
                                     </v-flex>
                                     <v-flex xs7 sm10>
                                         <v-card-actions>
@@ -50,15 +55,20 @@
 <script>
     import axios from 'axios'
     import Toolbar from './Toolbar'
+    import Loading from './Loading'
+    import ImagePlaceholder from './ImagePlaceholder'
 
     export default {
         name: 'Genre',
         props: ['name', 'id', 'page'],
         components: {
-            Toolbar
+            Toolbar,
+            Loading,
+            ImagePlaceholder
         },
         data() {
             return {
+                loading: true,
                 results: ''
             }
         },
@@ -75,6 +85,7 @@
                 })
                 .then(response => {
                     this.results = response.data.results
+                    this.loading = false
                 })
                 .catch(error => {
 

@@ -1,7 +1,8 @@
 <template>
     <div>
         <Toolbar />
-        <v-container grid-list-md>
+        <Loading v-if="loading" />
+        <v-container v-else grid-list-md>
             <v-layout row wrap>
                 <v-flex xs12 md3>
                     <v-card>
@@ -10,7 +11,11 @@
                                 {{ details.name }}
                             </div>
                             <div>
-                                <v-img :src="details.image_url"></v-img>
+                                <v-img :src="details.image_url">
+                                    <template v-slot:placeholder>
+                                        <ImagePlaceholder />
+                                    </template>
+                                </v-img>
                             </div>
                             <table class="caption">
                                 <tr v-if="details.birthday != null">
@@ -56,9 +61,13 @@
                                 <span class="title">Voice Acting Roles <span class="italic">({{ details.voice_acting_roles.length }} Roles Found)</span></span>
                             </div>
                             <v-layout row wrap>
-                                <v-flex v-for="role in details.voice_acting_roles" :key="role.mal_id" xs4 lg3 xl2>
+                                <v-flex v-for="role in details.voice_acting_roles" :key="role.mal_id" xs6 sm4 lg3 xl2>
                                     <v-card :to="'/character/' + role.character.mal_id">
-                                        <v-img :src="role.character.image_url"></v-img>
+                                        <v-img :src="role.character.image_url" max-height="300" position="top center">
+                                            <template v-slot:placeholder>
+                                               <ImagePlaceholder />
+                                            </template>
+                                        </v-img>
                                         <v-card-text>
                                             <div class="caption" v-html="role.character.name"></div>
                                             <div class="caption" v-html="role.anime.name"></div>
@@ -77,15 +86,20 @@
 <script>
     import axios from 'axios'
     import Toolbar from './Toolbar'
+    import Loading from './Loading'
+    import ImagePlaceholder from './ImagePlaceholder'
 
     export default {
         name: 'Person',
         props: ['id'],
         components: {
-            Toolbar
+            Toolbar,
+            Loading,
+            ImagePlaceholder
         },
         data() {
             return {
+                loading: true,
                 details: '',
             }
         },
@@ -93,7 +107,8 @@
             getDetails() {
                 axios.get('https://api.jikan.moe/v3/person/' + this.id)
                 .then(response => {
-                    this.details = response.data;
+                    this.details = response.data
+                    this.loading = false
                 })
                 .catch(error => {
                     // console.log(error);

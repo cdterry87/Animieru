@@ -74,7 +74,11 @@
                             <v-card :to="'/' + selectField + '/' + result.mal_id" class="mb-2">
                                 <v-layout row>
                                     <v-flex xs5 sm2>
-                                        <v-img :src="result.image_url" height="150" contain></v-img>
+                                        <v-img :src="result.image_url" height="150" contain>
+                                            <template v-slot:placeholder>
+                                               <ImagePlaceholder />
+                                            </template>
+                                        </v-img>
                                     </v-flex>
                                     <v-flex xs7 sm10>
                                         <v-card-actions>
@@ -107,7 +111,11 @@
                     <v-layout row wrap v-else>
                         <v-flex xs12 md3 v-for="(result, index) in results" :key="index" >
                             <v-card :to="'/' + selectField + '/' + result.mal_id">
-                                <v-img :src="result.image_url" height="200"></v-img>
+                                <v-img :src="result.image_url" height="200">
+                                    <template v-slot:placeholder>
+                                        <ImagePlaceholder />
+                                    </template>
+                                </v-img>
                                 <v-card-title primary-title>
                                     <div>
                                         <h3 class="subheading">{{ result.name }}</h3>
@@ -129,6 +137,7 @@
                 </v-flex>
             </v-layout>
         </v-container>
+        <Loading v-else-if="loading" />
         <v-container v-else class="mt-2" grid-list-md text-xs-center>
             <v-icon size="125" color="blue">stars</v-icon>
             <h4 class="headline">Your search results will appear here!</h4>
@@ -139,14 +148,19 @@
 <script>
     import axios from 'axios'
     import Toolbar from './Toolbar'
+    import Loading from './Loading'
+    import ImagePlaceholder from './ImagePlaceholder'
 
     export default {
         name: 'Search',
         components: {
-            Toolbar
+            Toolbar,
+            Loading,
+            ImagePlaceholder
         },
         data() {
             return {
+                loading: false,
                 searchPerformed: false,
                 searchField: '',
                 selectField: 'anime',
@@ -156,6 +170,8 @@
         },
         methods: {
             search() {
+                this.loading = true
+
                 if (!_.isEmpty(this.searchField) && !_.isEmpty(this.selectField)) {
                     axios.get('https://api.jikan.moe/v3/search/' + this.selectField, {
                         params: {
@@ -168,6 +184,8 @@
                     .then(response => {
                         this.searchPerformed = true
                         this.results = response.data.results
+
+                        this.loading = false
                     })
                     .catch(error => {
 
