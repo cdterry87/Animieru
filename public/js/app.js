@@ -1997,6 +1997,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2010,6 +2015,8 @@ __webpack_require__.r(__webpack_exports__);
       details: '',
       characters: '',
       episodes: '',
+      episodesPage: 1,
+      episodesLastPage: '',
       pagination: {
         rowsPerPage: -1
       },
@@ -2045,21 +2052,21 @@ __webpack_require__.r(__webpack_exports__);
     getEpisodes: function getEpisodes() {
       var _this3 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://api.jikan.moe/v3/anime/' + this.id + '/episodes').then(function (response) {
-        var episodes = response.data.episodes;
-        _this3.episodes = episodes;
-        var last_page = response.data.episodes_last_page;
-
-        if (last_page > 1) {
-          var i;
-
-          for (i = 2; i <= 2; i++) {// axios.get('https://api.jikan.moe/v3/anime/' + this.id + '/episodes/' + i)
-            // .then(response2 => {
-            // })
-          }
-        }
+      var page = this.episodesPage;
+      this.episodes = '';
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://api.jikan.moe/v3/anime/' + this.id + '/episodes/' + page).then(function (response) {
+        _this3.episodes = response.data.episodes;
+        _this3.episodesLastPage = response.data.episodes_last_page;
       })["catch"](function (error) {// console.log(error);
       });
+    },
+    nextEpisodes: function nextEpisodes() {
+      this.episodesPage++;
+      this.getEpisodes();
+    },
+    prevEpisodes: function prevEpisodes() {
+      this.episodesPage--;
+      this.getEpisodes();
     }
   },
   created: function created() {
@@ -2349,10 +2356,12 @@ __webpack_require__.r(__webpack_exports__);
     search: function search() {
       var _this = this;
 
+      this.results = '';
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://api.jikan.moe/v3/search/anime', {
         params: {
           genre: this.id,
-          page: this.page
+          page: this.page,
+          limit: 100
         }
       }).then(function (response) {
         _this.results = response.data.results;
@@ -2439,10 +2448,8 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         id: 11,
         name: 'Game'
-      }, {
-        id: 12,
-        name: 'Hentai'
-      }, {
+      }, // { id: 12, name: 'Hentai'},
+      {
         id: 13,
         name: 'Historical'
       }, {
@@ -2992,7 +2999,10 @@ __webpack_require__.r(__webpack_exports__);
       if (!_.isEmpty(this.searchField) && !_.isEmpty(this.selectField)) {
         axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://api.jikan.moe/v3/search/' + this.selectField, {
           params: {
-            q: this.searchField
+            q: this.searchField,
+            genre: 12,
+            genre_exclude: 0,
+            limit: 100
           }
         }).then(function (response) {
           _this.searchPerformed = true;
@@ -3914,7 +3924,38 @@ var render = function() {
                               ],
                               1
                             )
-                          ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-actions",
+                            { staticClass: "text-xs-center align-center" },
+                            [
+                              _vm.episodesPage > 1
+                                ? _c(
+                                    "v-btn",
+                                    {
+                                      attrs: { color: "blue", dark: "" },
+                                      on: { click: _vm.prevEpisodes }
+                                    },
+                                    [_vm._v("Previous")]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _vm.episodesPage < _vm.episodesLastPage
+                                ? _c(
+                                    "v-btn",
+                                    {
+                                      attrs: { color: "blue", dark: "" },
+                                      on: { click: _vm.nextEpisodes }
+                                    },
+                                    [_vm._v("Next")]
+                                  )
+                                : _vm._e()
+                            ],
+                            1
+                          )
                         ],
                         1
                       )
@@ -4429,11 +4470,11 @@ var render = function() {
                   attrs: { "text-xs-center": "", xs12: "" }
                 },
                 [
-                  _vm._v('\n                Results for "'),
+                  _vm._v('\n                Results in the "'),
                   _c("span", { staticClass: "italic" }, [
                     _vm._v(_vm._s(_vm.name))
                   ]),
-                  _vm._v('"\n            ')
+                  _vm._v('" genre\n            ')
                 ]
               ),
               _vm._v(" "),
@@ -4608,7 +4649,8 @@ var render = function() {
                                   _vm.id +
                                   "/" +
                                   (parseInt(_vm.page) - 1)
-                              }
+                              },
+                              on: { click: _vm.search }
                             },
                             [_vm._v("Previous Page")]
                           )
@@ -4627,7 +4669,8 @@ var render = function() {
                               _vm.id +
                               "/" +
                               (parseInt(_vm.page) + 1)
-                          }
+                          },
+                          on: { click: _vm.search }
                         },
                         [_vm._v("Next Page")]
                       )
@@ -5965,7 +6008,7 @@ var render = function() {
                                                                   result
                                                                     .anime[0]
                                                                     .name,
-                                                                  20
+                                                                  18
                                                                 )
                                                               ) +
                                                               "\n                                        "
@@ -5992,7 +6035,7 @@ var render = function() {
                                                                         result
                                                                           .manga[0]
                                                                           .name,
-                                                                        20
+                                                                        18
                                                                       )
                                                                     ) +
                                                                     "\n                                            "
@@ -46912,6 +46955,16 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuetify__WEBPACK_IMPORTED_MODULE_
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   mode: 'history',
+  scrollBehavior: function scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return {
+        x: 0,
+        y: 0
+      };
+    }
+  },
   routes: _routes__WEBPACK_IMPORTED_MODULE_3__["default"]
 }); //Primary components
 

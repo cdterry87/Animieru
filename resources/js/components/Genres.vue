@@ -52,7 +52,7 @@
                     { id: 9, name: 'Ecchi'},
                     { id: 10, name: 'Fantasy'},
                     { id: 11, name: 'Game'},
-                    { id: 12, name: 'Hentai'},
+                    // { id: 12, name: 'Hentai'},
                     { id: 13, name: 'Historical'},
                     { id: 14, name: 'Horror'},
                     { id: 15, name: 'Kids'},

@@ -106,6 +106,11 @@
                                 </v-data-table>
                             </div>
                         </v-card-text>
+                        <v-card-actions class="text-xs-center align-center">
+                            <v-btn color="blue" dark v-if="episodesPage > 1" @click="prevEpisodes">Previous</v-btn>
+                            <v-spacer></v-spacer>
+                            <v-btn color="blue" dark v-if="episodesPage < episodesLastPage" @click="nextEpisodes">Next</v-btn>
+                        </v-card-actions>
                     </v-card>
                 </v-flex>
                 <v-flex xs12 md7>
@@ -147,6 +152,8 @@
                 details: '',
                 characters: '',
                 episodes: '',
+                episodesPage: 1,
+                episodesLastPage: '',
                 pagination: {
                     rowsPerPage: -1
                 },
@@ -177,26 +184,25 @@
                 });
             },
             getEpisodes() {
-                axios.get('https://api.jikan.moe/v3/anime/' + this.id + '/episodes')
+                let page = this.episodesPage
+                this.episodes = ''
+
+                axios.get('https://api.jikan.moe/v3/anime/' + this.id + '/episodes/' + page)
                 .then(response => {
-                    let episodes = response.data.episodes
-                    this.episodes = episodes
-
-                    let last_page = response.data.episodes_last_page
-
-                    if (last_page > 1) {
-                        var i;
-                        for(i = 2; i <= 2; i++) {
-                            // axios.get('https://api.jikan.moe/v3/anime/' + this.id + '/episodes/' + i)
-                            // .then(response2 => {
-
-                            // })
-                        }
-                    }
+                    this.episodes = response.data.episodes
+                    this.episodesLastPage = response.data.episodes_last_page
                 })
                 .catch(error => {
                     // console.log(error);
                 });
+            },
+            nextEpisodes() {
+                this.episodesPage++
+                this.getEpisodes()
+            },
+            prevEpisodes() {
+                this.episodesPage--
+                this.getEpisodes()
             }
         },
         created() {

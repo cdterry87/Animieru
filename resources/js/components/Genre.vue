@@ -4,7 +4,7 @@
         <v-container grid-list-md>
             <v-layout row wrap>
                 <v-flex text-xs-center class="title mb-3" xs12>
-                    Results for "<span class="italic">{{ name }}</span>"
+                    Results in the "<span class="italic">{{ name }}</span>" genre
                 </v-flex>
                 <v-flex xs12 md8 offset-md2>
                     <v-layout row wrap>
@@ -38,8 +38,8 @@
                         </v-flex>
                     </v-layout>
                     <div class="text-xs-center">
-                        <v-btn v-if="page > 1" dark color="blue" :to="'/genre/' + name + '/' + id + '/' + (parseInt(page) - 1)">Previous Page</v-btn>
-                        <v-btn dark color="blue" :to="'/genre/' + name + '/' + id + '/' + (parseInt(page) + 1)">Next Page</v-btn>
+                        <v-btn @click="search" v-if="page > 1" dark color="blue" :to="'/genre/' + name + '/' + id + '/' + (parseInt(page) - 1)">Previous Page</v-btn>
+                        <v-btn @click="search" dark color="blue" :to="'/genre/' + name + '/' + id + '/' + (parseInt(page) + 1)">Next Page</v-btn>
                     </div>
                 </v-flex>
             </v-layout>
@@ -64,10 +64,13 @@
         },
         methods: {
             search() {
+                this.results = ''
+
                 axios.get('https://api.jikan.moe/v3/search/anime', {
                     params: {
                         genre: this.id,
-                        page: this.page
+                        page: this.page,
+                        limit: 100
                     }
                 })
                 .then(response => {

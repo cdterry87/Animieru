@@ -113,11 +113,11 @@
                                         <h3 class="subheading">{{ result.name }}</h3>
                                         <div v-if="selectField == 'character'">
                                             <div class="grey--text" v-if="typeof(result.anime[0]) != 'undefined'">
-                                                {{ result.anime[0].name | truncate(20) }}
+                                                {{ result.anime[0].name | truncate(18) }}
                                             </div>
                                             <div v-else>
                                                 <span v-if="typeof(result.manga[0]) != 'undefined'" class="grey--text">
-                                                    {{ result.manga[0].name | truncate(20) }}
+                                                    {{ result.manga[0].name | truncate(18) }}
                                                 </span>
                                             </div>
                                         </div>
@@ -159,7 +159,10 @@
                 if (!_.isEmpty(this.searchField) && !_.isEmpty(this.selectField)) {
                     axios.get('https://api.jikan.moe/v3/search/' + this.selectField, {
                         params: {
-                            q: this.searchField
+                            q: this.searchField,
+                            genre: 12,
+                            genre_exclude: 0,
+                            limit: 100
                         }
                     })
                     .then(response => {
