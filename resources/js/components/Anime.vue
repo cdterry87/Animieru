@@ -89,7 +89,7 @@
                             </div>
                         </v-card-text>
                     </v-card>
-                    <v-card class="mt-3" v-if="episodes">
+                    <v-card class="mt-3" v-if="episodes.length > 0">
                         <v-card-text v-if="loadingEpisodes">
                             <Loading />
                         </v-card-text>
@@ -205,6 +205,7 @@
                 })
                 .catch(error => {
                     // console.log(error);
+                    this.loadingCharacters = false
                 });
             },
             getEpisodes() {
@@ -221,6 +222,7 @@
                 })
                 .catch(error => {
                     // console.log(error);
+                    this.loadingEpisodes = false
                 });
             },
             nextEpisodes() {

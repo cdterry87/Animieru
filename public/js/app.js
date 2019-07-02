@@ -2072,7 +2072,9 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://api.jikan.moe/v3/anime/' + this.id + '/characters_staff').then(function (response) {
         _this2.characters = response.data.characters;
         _this2.loadingCharacters = false;
-      })["catch"](function (error) {// console.log(error);
+      })["catch"](function (error) {
+        // console.log(error);
+        _this2.loadingCharacters = false;
       });
     },
     getEpisodes: function getEpisodes() {
@@ -2085,7 +2087,9 @@ __webpack_require__.r(__webpack_exports__);
         _this3.episodes = response.data.episodes;
         _this3.episodesLastPage = response.data.episodes_last_page;
         _this3.loadingEpisodes = false;
-      })["catch"](function (error) {// console.log(error);
+      })["catch"](function (error) {
+        // console.log(error);
+        _this3.loadingEpisodes = false;
       });
     },
     nextEpisodes: function nextEpisodes() {
@@ -2392,7 +2396,9 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://api.jikan.moe/v3/character/' + this.id + '/pictures').then(function (response) {
         _this2.pictures = response.data.pictures;
         _this2.loadingPictures = false;
-      })["catch"](function (error) {// console.log(error);
+      })["catch"](function (error) {
+        // console.log(error);
+        _this2.loading = false;
       });
     }
   },
@@ -2913,7 +2919,9 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://api.jikan.moe/v3/manga/' + this.id + '/characters').then(function (response) {
         _this2.characters = response.data.characters;
         _this2.loadingCharacters = false;
-      })["catch"](function (error) {// console.log(error);
+      })["catch"](function (error) {
+        // console.log(error);
+        _this2.loadingCharacters = false;
       });
     }
   },
@@ -4151,7 +4159,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      _vm.episodes
+                      _vm.episodes.length > 0
                         ? _c(
                             "v-card",
                             { staticClass: "mt-3" },

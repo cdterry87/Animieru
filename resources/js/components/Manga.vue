@@ -158,6 +158,7 @@
                 })
                 .catch(error => {
                     // console.log(error);
+                    this.loadingCharacters = false
                 });
             }
         },
