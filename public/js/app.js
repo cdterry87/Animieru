@@ -2115,6 +2115,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../events */ "./resources/js/events.js");
 //
 //
 //
@@ -2127,12 +2128,87 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'App',
   data: function data() {
     return {
-      results: ''
+      drawer: false
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    _events__WEBPACK_IMPORTED_MODULE_0__["default"].$on('openDrawer', function (drawer) {
+      _this.drawer = drawer;
+    });
   }
 });
 
@@ -3170,9 +3246,8 @@ __webpack_require__.r(__webpack_exports__);
     search: function search() {
       var _this = this;
 
-      this.loading = true;
-
       if (!_.isEmpty(this.searchField) && !_.isEmpty(this.selectField)) {
+        this.loading = true;
         axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://api.jikan.moe/v3/search/' + this.selectField, {
           params: {
             q: this.searchField,
@@ -3213,6 +3288,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../events */ "./resources/js/events.js");
 //
 //
 //
@@ -3230,8 +3306,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Toolbar'
+  name: 'Toolbar',
+  methods: {
+    openDrawer: function openDrawer() {
+      _events__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('openDrawer', true);
+    }
+  }
 });
 
 /***/ }),
@@ -3881,105 +3963,115 @@ var render = function() {
                                     )
                                   ]),
                                   _vm._v(" "),
-                                  _c("tr", [
-                                    _c("td", [_vm._v("Producer(s):")]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      _vm._l(_vm.details.producers, function(
-                                        producer
-                                      ) {
-                                        return _c(
-                                          "v-chip",
-                                          {
-                                            key: producer.mal_id,
-                                            attrs: {
-                                              color: "deep-orange",
-                                              dark: "",
-                                              small: ""
+                                  _vm.details.producers.length > 0
+                                    ? _c("tr", [
+                                        _c("td", [_vm._v("Producer(s):")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          _vm._l(
+                                            _vm.details.producers,
+                                            function(producer) {
+                                              return _c(
+                                                "v-chip",
+                                                {
+                                                  key: producer.mal_id,
+                                                  attrs: {
+                                                    color: "deep-orange",
+                                                    dark: "",
+                                                    small: ""
+                                                  }
+                                                },
+                                                [_vm._v(_vm._s(producer.name))]
+                                              )
                                             }
-                                          },
-                                          [_vm._v(_vm._s(producer.name))]
+                                          ),
+                                          1
                                         )
-                                      }),
-                                      1
-                                    )
-                                  ]),
+                                      ])
+                                    : _vm._e(),
                                   _vm._v(" "),
-                                  _c("tr", [
-                                    _c("td", [_vm._v("Licenser(s):")]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      _vm._l(_vm.details.licensors, function(
-                                        licensor
-                                      ) {
-                                        return _c(
-                                          "v-chip",
-                                          {
-                                            key: licensor.mal_id,
-                                            attrs: {
-                                              color: "deep-purple",
-                                              dark: "",
-                                              small: ""
+                                  _vm.details.licensors.length > 0
+                                    ? _c("tr", [
+                                        _c("td", [_vm._v("Licenser(s):")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          _vm._l(
+                                            _vm.details.licensors,
+                                            function(licensor) {
+                                              return _c(
+                                                "v-chip",
+                                                {
+                                                  key: licensor.mal_id,
+                                                  attrs: {
+                                                    color: "deep-purple",
+                                                    dark: "",
+                                                    small: ""
+                                                  }
+                                                },
+                                                [_vm._v(_vm._s(licensor.name))]
+                                              )
                                             }
-                                          },
-                                          [_vm._v(_vm._s(licensor.name))]
+                                          ),
+                                          1
                                         )
-                                      }),
-                                      1
-                                    )
-                                  ]),
+                                      ])
+                                    : _vm._e(),
                                   _vm._v(" "),
-                                  _c("tr", [
-                                    _c("td", [_vm._v("Studio(s):")]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      _vm._l(_vm.details.studios, function(
-                                        studio
-                                      ) {
-                                        return _c(
-                                          "v-chip",
-                                          {
-                                            key: studio.mal_id,
-                                            attrs: {
-                                              color: "green",
-                                              dark: "",
-                                              small: ""
-                                            }
-                                          },
-                                          [_vm._v(_vm._s(studio.name))]
+                                  _vm.details.studios.length > 0
+                                    ? _c("tr", [
+                                        _c("td", [_vm._v("Studio(s):")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          _vm._l(_vm.details.studios, function(
+                                            studio
+                                          ) {
+                                            return _c(
+                                              "v-chip",
+                                              {
+                                                key: studio.mal_id,
+                                                attrs: {
+                                                  color: "green",
+                                                  dark: "",
+                                                  small: ""
+                                                }
+                                              },
+                                              [_vm._v(_vm._s(studio.name))]
+                                            )
+                                          }),
+                                          1
                                         )
-                                      }),
-                                      1
-                                    )
-                                  ]),
+                                      ])
+                                    : _vm._e(),
                                   _vm._v(" "),
-                                  _c("tr", [
-                                    _c("td", [_vm._v("Genre(s):")]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      _vm._l(_vm.details.genres, function(
-                                        genre
-                                      ) {
-                                        return _c(
-                                          "v-chip",
-                                          {
-                                            key: genre.mal_id,
-                                            attrs: {
-                                              color: "blue",
-                                              dark: "",
-                                              small: ""
-                                            }
-                                          },
-                                          [_vm._v(_vm._s(genre.name))]
+                                  _vm.details.genres.length > 0
+                                    ? _c("tr", [
+                                        _c("td", [_vm._v("Genre(s):")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          _vm._l(_vm.details.genres, function(
+                                            genre
+                                          ) {
+                                            return _c(
+                                              "v-chip",
+                                              {
+                                                key: genre.mal_id,
+                                                attrs: {
+                                                  color: "blue",
+                                                  dark: "",
+                                                  small: ""
+                                                }
+                                              },
+                                              [_vm._v(_vm._s(genre.name))]
+                                            )
+                                          }),
+                                          1
                                         )
-                                      }),
-                                      1
-                                    )
-                                  ]),
+                                      ])
+                                    : _vm._e(),
                                   _vm._v(" "),
                                   _c("tr", [
                                     _c("td", [_vm._v("Episodes:")]),
@@ -4338,7 +4430,174 @@ var render = function() {
               { attrs: { href: "https://jikan.moe", target: "_blank" } },
               [_vm._v("Jikan API")]
             )
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-navigation-drawer",
+            {
+              attrs: { absolute: "", temporary: "", light: "" },
+              model: {
+                value: _vm.drawer,
+                callback: function($$v) {
+                  _vm.drawer = $$v
+                },
+                expression: "drawer"
+              }
+            },
+            [
+              _c(
+                "v-list",
+                { staticClass: "pa-1" },
+                [
+                  _c(
+                    "v-list-tile",
+                    [
+                      _c(
+                        "v-list-tile-content",
+                        [
+                          _c("v-list-tile-title", [
+                            _c("a", { attrs: { href: "/" } }, [
+                              _vm._v("Animieru")
+                            ])
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-tile-action",
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { icon: "" },
+                              on: {
+                                click: function($event) {
+                                  $event.stopPropagation()
+                                  _vm.drawer = false
+                                }
+                              }
+                            },
+                            [_c("v-icon", [_vm._v("chevron_left")])],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list",
+                { staticClass: "pt-0", attrs: { dense: "" } },
+                [
+                  _c("v-divider"),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-tile",
+                    { attrs: { to: "/" } },
+                    [
+                      _c(
+                        "v-list-tile-action",
+                        [_c("v-icon", [_vm._v("search")])],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-tile-content",
+                        [_c("v-list-tile-title", [_vm._v("Search")])],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-divider"),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-tile",
+                    { attrs: { to: "/genres" } },
+                    [
+                      _c(
+                        "v-list-tile-action",
+                        [_c("v-icon", [_vm._v("dashboard")])],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-tile-content",
+                        [_c("v-list-tile-title", [_vm._v("Genres")])],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-divider"),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    { attrs: { href: "/login" } },
+                    [
+                      _c(
+                        "v-list-tile",
+                        [
+                          _c(
+                            "v-list-tile-action",
+                            [_c("v-icon", [_vm._v("account_box")])],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-list-tile-content",
+                            [_c("v-list-tile-title", [_vm._v("Login")])],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-divider"),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    { attrs: { href: "/register" } },
+                    [
+                      _c(
+                        "v-list-tile",
+                        [
+                          _c(
+                            "v-list-tile-action",
+                            [_c("v-icon", [_vm._v("assignment")])],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-list-tile-content",
+                            [_c("v-list-tile-title", [_vm._v("Register")])],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-divider")
+                ],
+                1
+              )
+            ],
+            1
+          )
         ],
         1
       )
@@ -4870,7 +5129,11 @@ var render = function() {
                                               _c(
                                                 "v-btn",
                                                 {
-                                                  attrs: { icon: "" },
+                                                  attrs: {
+                                                    icon: "",
+                                                    color: "pink accent-2",
+                                                    flat: ""
+                                                  },
                                                   on: { click: _vm.favorite }
                                                 },
                                                 [
@@ -5339,30 +5602,32 @@ var render = function() {
                                       ])
                                     : _vm._e(),
                                   _vm._v(" "),
-                                  _c("tr", [
-                                    _c("td", [_vm._v("Author(s):")]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      _vm._l(_vm.details.authors, function(
-                                        author
-                                      ) {
-                                        return _c(
-                                          "v-chip",
-                                          {
-                                            key: author.mal_id,
-                                            attrs: {
-                                              color: "deep-orange",
-                                              dark: "",
-                                              small: ""
-                                            }
-                                          },
-                                          [_vm._v(_vm._s(author.name))]
+                                  _vm.details.producers.length > 0
+                                    ? _c("tr", [
+                                        _c("td", [_vm._v("Author(s):")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          _vm._l(_vm.details.authors, function(
+                                            author
+                                          ) {
+                                            return _c(
+                                              "v-chip",
+                                              {
+                                                key: author.mal_id,
+                                                attrs: {
+                                                  color: "deep-orange",
+                                                  dark: "",
+                                                  small: ""
+                                                }
+                                              },
+                                              [_vm._v(_vm._s(author.name))]
+                                            )
+                                          }),
+                                          1
                                         )
-                                      }),
-                                      1
-                                    )
-                                  ]),
+                                      ])
+                                    : _vm._e(),
                                   _vm._v(" "),
                                   _c("tr", [
                                     _c("td", [_vm._v("Volume(s):")]),
@@ -5408,30 +5673,32 @@ var render = function() {
                                     )
                                   ]),
                                   _vm._v(" "),
-                                  _c("tr", [
-                                    _c("td", [_vm._v("Genre(s):")]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      _vm._l(_vm.details.genres, function(
-                                        genre
-                                      ) {
-                                        return _c(
-                                          "v-chip",
-                                          {
-                                            key: genre.mal_id,
-                                            attrs: {
-                                              color: "blue",
-                                              dark: "",
-                                              small: ""
-                                            }
-                                          },
-                                          [_vm._v(_vm._s(genre.name))]
+                                  _vm.details.genres.length > 0
+                                    ? _c("tr", [
+                                        _c("td", [_vm._v("Genre(s):")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          _vm._l(_vm.details.genres, function(
+                                            genre
+                                          ) {
+                                            return _c(
+                                              "v-chip",
+                                              {
+                                                key: genre.mal_id,
+                                                attrs: {
+                                                  color: "blue",
+                                                  dark: "",
+                                                  small: ""
+                                                }
+                                              },
+                                              [_vm._v(_vm._s(genre.name))]
+                                            )
+                                          }),
+                                          1
                                         )
-                                      }),
-                                      1
-                                    )
-                                  ]),
+                                      ])
+                                    : _vm._e(),
                                   _vm._v(" "),
                                   _c("tr", [
                                     _c("td", [_vm._v("Score:")]),
@@ -6311,7 +6578,11 @@ var render = function() {
                                                   _c(
                                                     "v-btn",
                                                     {
-                                                      attrs: { icon: "" },
+                                                      attrs: {
+                                                        icon: "",
+                                                        color: "pink accent-2",
+                                                        flat: ""
+                                                      },
                                                       on: {
                                                         click: _vm.favorite
                                                       }
@@ -6509,7 +6780,7 @@ var render = function() {
                                       _c("v-img", {
                                         attrs: {
                                           src: result.image_url,
-                                          height: "200",
+                                          height: "250",
                                           position: "top center"
                                         },
                                         scopedSlots: _vm._u(
@@ -6669,7 +6940,10 @@ var render = function() {
         "v-toolbar",
         { attrs: { flat: "", color: "rgba(0,0,0,0)" } },
         [
-          _c("v-toolbar-side-icon", { staticClass: "hidden-md-and-up" }),
+          _c("v-toolbar-side-icon", {
+            staticClass: "hidden-md-and-up",
+            on: { click: _vm.openDrawer }
+          }),
           _vm._v(" "),
           _c(
             "div",
@@ -48296,6 +48570,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Toolbar_vue_vue_type_template_id_43b87f60___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/events.js":
+/*!********************************!*\
+  !*** ./resources/js/events.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+
+var Event = new vue__WEBPACK_IMPORTED_MODULE_0___default.a();
+/* harmony default export */ __webpack_exports__["default"] = (Event);
 
 /***/ }),
 

@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-toolbar flat color="rgba(0,0,0,0)">
-            <v-toolbar-side-icon class="hidden-md-and-up"></v-toolbar-side-icon>
+            <v-toolbar-side-icon class="hidden-md-and-up" @click="openDrawer"></v-toolbar-side-icon>
             <div class="hidden-sm-and-down">
                 <v-btn to="/" flat>Search</v-btn>
                 <v-btn to="/genres" flat>Genres</v-btn>
@@ -16,7 +16,14 @@
 </template>
 
 <script>
+    import Event from './../events'
+
     export default {
-        name: 'Toolbar'
+        name: 'Toolbar',
+        methods: {
+            openDrawer() {
+                Event.$emit('openDrawer', true)
+            }
+        }
     }
 </script>

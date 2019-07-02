@@ -34,7 +34,7 @@
                                         <td>Published:</td>
                                         <td><v-chip color="teal" dark small>{{ details.published.string }}</v-chip></td>
                                     </tr>
-                                    <tr>
+                                    <tr v-if="details.producers.length > 0">
                                         <td>Author(s):</td>
                                         <td>
                                             <v-chip color="deep-orange" v-for="author in details.authors" :key="author.mal_id" dark small>{{ author.name }}</v-chip>
@@ -48,7 +48,7 @@
                                         <td>Chapter(s):</td>
                                         <td><v-chip color="green" dark small>{{ details.chapters }}</v-chip></td>
                                     </tr>
-                                    <tr>
+                                    <tr v-if="details.genres.length > 0">
                                         <td>Genre(s):</td>
                                         <td>
                                             <v-chip color="blue" v-for="genre in details.genres" :key="genre.mal_id" dark small>{{ genre.name }}</v-chip>

@@ -84,7 +84,7 @@
                                         <v-card-actions>
                                             <span class="title">{{ index + 1 }}. {{ result.title | truncate(30) }}</span>
                                             <v-spacer></v-spacer>
-                                            <v-btn icon @click="favorite">
+                                            <v-btn icon @click="favorite" color="pink accent-2" flat>
                                                 <v-icon>favorite</v-icon>
                                             </v-btn>
                                         </v-card-actions>
@@ -111,7 +111,7 @@
                     <v-layout row wrap v-else>
                         <v-flex xs12 md3 v-for="(result, index) in results" :key="index" >
                             <v-card :to="'/' + selectField + '/' + result.mal_id">
-                                <v-img :src="result.image_url" height="200" position="top center">
+                                <v-img :src="result.image_url" height="250" position="top center">
                                     <template v-slot:placeholder>
                                         <ImagePlaceholder />
                                     </template>
@@ -170,9 +170,9 @@
         },
         methods: {
             search() {
-                this.loading = true
-
                 if (!_.isEmpty(this.searchField) && !_.isEmpty(this.selectField)) {
+                    this.loading = true
+
                     axios.get('https://api.jikan.moe/v3/search/' + this.selectField, {
                         params: {
                             q: this.searchField,

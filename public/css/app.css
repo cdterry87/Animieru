@@ -37,6 +37,10 @@ a {
   text-decoration: none !important;
 }
 
+.v-navigation-drawer a {
+  color: inherit;
+}
+
 .italic {
   font-style: italic !important;
 }

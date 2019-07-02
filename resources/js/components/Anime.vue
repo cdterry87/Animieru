@@ -40,25 +40,25 @@
                                             <v-chip color="red" dark small>{{ details.rating }}</v-chip>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr v-if="details.producers.length > 0">
                                         <td>Producer(s):</td>
                                         <td>
                                             <v-chip color="deep-orange" v-for="producer in details.producers" :key="producer.mal_id" dark small>{{ producer.name }}</v-chip>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr  v-if="details.licensors.length > 0">
                                         <td>Licenser(s):</td>
                                         <td>
                                             <v-chip color="deep-purple" v-for="licensor in details.licensors" :key="licensor.mal_id" dark small>{{ licensor.name }}</v-chip>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr  v-if="details.studios.length > 0">
                                         <td>Studio(s):</td>
                                         <td>
                                             <v-chip color="green" v-for="studio in details.studios" :key="studio.mal_id" dark small>{{ studio.name }}</v-chip>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr  v-if="details.genres.length > 0">
                                         <td>Genre(s):</td>
                                         <td>
                                             <v-chip color="blue" v-for="genre in details.genres" :key="genre.mal_id" dark small>{{ genre.name }}</v-chip>
