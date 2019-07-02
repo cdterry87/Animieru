@@ -70,7 +70,9 @@
                                         </v-img>
                                         <v-card-text>
                                             <div class="caption" v-html="role.character.name"></div>
-                                            <div class="caption" v-html="role.anime.name"></div>
+                                            <router-link :to="'/anime/' + role.anime.mal_id" class="mt-3">
+                                                <div class="caption" v-html="role.anime.name"></div>
+                                            </router-link>
                                         </v-card-text>
                                     </v-card>
                                 </v-flex>

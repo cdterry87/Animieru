@@ -25,6 +25,8 @@ const router = new VueRouter({
 
 //Primary components
 import App from './components/App'
+import Login from './auth/Login'
+import Register from './auth/Register'
 
 // Filters
 Vue.filter('truncate', function (string, length) {
@@ -36,6 +38,10 @@ Vue.filter('truncate', function (string, length) {
 // App declaration
 const app = new Vue({
     el: '#app',
-    components: { App },
+    components: {
+        App,
+        Login,
+        Register,
+    },
     router,
 });
