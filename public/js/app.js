@@ -2477,7 +2477,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      colors: ['red', 'cyan', 'blue', 'indigo', 'purple', 'deep-purple', 'teal', 'green', 'orange', 'deep-orange', 'pink'],
+      colors: ['red', 'red darken-1', 'red darken-3', 'red accent-2', 'red accent-3', 'pink', 'pink darken-1', 'pink darken-3', 'pink accent-2', 'pink accent-3', 'purple', 'purple darken-1', 'purple darken-3', 'purple accent-2', 'purple accent-3', 'deep-purple', 'deep-purple darken-1', 'deep-purple darken-3', 'deep-purple accent-2', 'deep-purple accent-3', 'indigo', 'indigo darken-1', 'indigo darken-3', 'indigo accent-2', 'indigo accent-3', 'blue', 'blue darken-1', 'blue darken-3', 'blue accent-2', 'blue accent-3', 'cyan', 'cyan darken-1', 'cyan darken-3', 'green', 'green darken-1', 'green darken-3', 'teal', 'teal darken-2', 'light-green', 'light-green darken-1', 'light-green darken-3', 'orange', 'orange darken-1', 'orange darken-3', 'orange accent-2', 'orange accent-3', 'deep-orange', 'deep-orange darken-1', 'deep-orange darken-3', 'deep-orange accent-2', 'deep-orange accent-3'],
       genres: [{
         id: 1,
         name: 'Action'
@@ -5073,7 +5073,7 @@ var render = function() {
                       attrs: {
                         to: "/genre/" + genre.name + "/" + genre.id + "/1",
                         dark: "",
-                        color: _vm.colors[Math.round(Math.random() * 12)]
+                        color: _vm.colors[Math.round(Math.random() * 50)]
                       }
                     },
                     [
@@ -6509,7 +6509,8 @@ var render = function() {
                                       _c("v-img", {
                                         attrs: {
                                           src: result.image_url,
-                                          height: "200"
+                                          height: "200",
+                                          position: "top center"
                                         },
                                         scopedSlots: _vm._u(
                                           [
