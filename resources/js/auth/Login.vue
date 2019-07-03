@@ -19,7 +19,7 @@
                                 <div class="mt-4 mb-3 text-xs-center">
                                     or with your Animieru account
                                 </div>
-                                <v-text-field prepend-icon="person" id="login" name="login" label="Login" type="text"></v-text-field>
+                                <v-text-field prepend-icon="mail" id="email" name="email" label="Email" type="text"></v-text-field>
                                 <v-text-field prepend-icon="lock" id="password"  name="password" label="Password" type="password"></v-text-field>
                                 <v-checkbox id="remember" name="remember" label="Remember Me"></v-checkbox>
                             </v-card-text>

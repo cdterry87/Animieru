@@ -26,9 +26,7 @@
                                 <v-btn color="deep-purple" dark href="/login">Login</v-btn>
                                 <v-spacer></v-spacer>
                             </v-card-actions>
-                            <v-card-actions>
-                                &nbsp;
-                            </v-card-actions>
+                            <v-card-actions>&nbsp;</v-card-actions>
                         </v-card>
                     </v-flex>
                 </v-layout>
