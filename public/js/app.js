@@ -2710,6 +2710,8 @@ __webpack_require__.r(__webpack_exports__);
         params: {
           genre: this.id,
           page: this.page,
+          order_by: 'score',
+          sort: 'descending',
           limit: 100
         }
       }).then(function (response) {

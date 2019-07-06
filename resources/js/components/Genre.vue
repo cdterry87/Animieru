@@ -80,6 +80,8 @@
                     params: {
                         genre: this.id,
                         page: this.page,
+                        order_by: 'score',
+                        sort: 'descending',
                         limit: 100
                     }
                 })
