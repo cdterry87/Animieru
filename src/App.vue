@@ -69,6 +69,11 @@ div.line {
     margin: 10px 0;
 }
 
+.image {
+    object-fit: cover;
+    /* object-position: top center; */
+}
+
 .clear {
     clear: both;
 }
