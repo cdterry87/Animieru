@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="media-right">
-                <a class="level-item"><span class="icon is-small"><i class="fas fa-heart"></i></span></a>
+                <!-- <a class="level-item"><span class="icon is-small"><i class="fas fa-heart"></i></span></a> -->
             </div>
         </article>
     </div>

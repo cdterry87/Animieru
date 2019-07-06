@@ -5,13 +5,13 @@
                 <a class="navbar-item" @click="home">
                     Animieru
                 </a>
-                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar">
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar" @click="nav">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </a>
             </div>
-            <div class="navbar-menu is-active">
+            <div class="navbar-menu" :class="isActive">
                 <div class="navbar-start">
                     <div class="navbar-item">
                         <a @click="$router.push('/')">
@@ -34,10 +34,23 @@
 <script>
 export default {
     name: 'ActionBar',
+    data() {
+        return {
+            active: false
+        }
+    },
     methods: {
         home() {
             this.$store.dispatch('clearSearchResults');
             this.$router.push('/')
+        },
+        nav() {
+            this.active = !this.active
+        }
+    },
+    computed: {
+        isActive: function() {
+            return (this.active ? 'is-active' : '')
         }
     }
 }
