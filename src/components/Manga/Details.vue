@@ -11,23 +11,23 @@
                 <span class="subtitle"> ({{ details.title_japanese }})</span>    
             </div>
             <table class="table is-fullwidth">
-                <tr>
+                <tr v-if="details.published_string">
                     <td>Published:</td>
                     <td>{{ details.published_string }} ({{ details.status }})</td>
                 </tr>
-                <tr>
+                <tr v-if="details.author">
                     <td>Author(s):</td>
                     <td><span class="tag is-link" v-for="author in details.author" :key="author.mal_id">{{ author.name }}</span></td>
                 </tr>
-                <tr>
+                <tr v-if="details.genre">
                     <td>Genre(s):</td>
                     <td><span class="tag is-warning" v-for="genre in details.genre" :key="genre.mal_id">{{ genre.title }}</span></td>
                 </tr>
-                <tr>
+                <tr v-if="details.volumes">
                     <td>Volumes:</td>
                     <td>{{ details.volumes }}</td>
                 </tr>
-                <tr>
+                <tr v-if="details.chapters">
                     <td>Chapters:</td>
                     <td>{{ details.chapters }}</td>
                 </tr>

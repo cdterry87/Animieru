@@ -60,7 +60,7 @@ export default {
         Characters,
     },
     created() {
-        this.getInfo();
+        setTimeout(this.getInfo, 2000)
     },
     watch: {
         '$route' () {
