@@ -82,7 +82,7 @@
                         page: this.page,
                         order_by: 'score',
                         sort: 'descending',
-                        limit: 100
+                        limit: 50
                     }
                 })
                 .then(response => {

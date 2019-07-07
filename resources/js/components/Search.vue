@@ -188,7 +188,9 @@
                         this.loading = false
                     })
                     .catch(error => {
-
+                        this.results = []
+                        this.loading = false
+                        this.searchPerformed = true
                     });
                 }
             },

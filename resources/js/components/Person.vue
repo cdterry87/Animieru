@@ -2,6 +2,20 @@
     <div>
         <Toolbar />
         <Loading v-if="loading" />
+        <v-container v-else-if="retrying" grid-list-md>
+            <v-layout row wrap>
+                <v-flex xs12 sm8 offset-sm2 md6 offset-md3>
+                    <v-card>
+                        <v-card-text class="text-xs-center align-center">
+                            <div class="mt-2">
+                                Sorry! The details for this page could not be loaded.  Please try again.
+                            </div>
+                            <v-btn class="mt-3" color="blue" dark @click="retry">Retry</v-btn>
+                        </v-card-text>
+                    </v-card>
+                </v-flex>
+            </v-layout>
+        </v-container>
         <v-container v-else grid-list-md>
             <v-layout row wrap>
                 <v-flex xs12 md3>
@@ -102,11 +116,15 @@
         data() {
             return {
                 loading: true,
+                retrying: false,
                 details: '',
             }
         },
         methods: {
             getDetails() {
+                this.loading = true
+                this.retrying = false
+
                 axios.get('https://api.jikan.moe/v3/person/' + this.id)
                 .then(response => {
                     this.details = response.data
@@ -114,8 +132,13 @@
                 })
                 .catch(error => {
                     // console.log(error);
+                    this.loading = false
+                    this.retrying = true
                 });
             },
+            retry() {
+                this.getDetails()
+            }
         },
         created() {
             this.getDetails()

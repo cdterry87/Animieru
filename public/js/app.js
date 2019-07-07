@@ -2224,6 +2224,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2239,6 +2253,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       loading: true,
+      retrying: false,
       loadingCharacters: true,
       loadingEpisodes: true,
       details: '',
@@ -2265,10 +2280,15 @@ __webpack_require__.r(__webpack_exports__);
     getDetails: function getDetails() {
       var _this = this;
 
+      this.loading = true;
+      this.retrying = false;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://api.jikan.moe/v3/anime/' + this.id).then(function (response) {
         _this.details = response.data;
         _this.loading = false;
-      })["catch"](function (error) {// console.log(error);
+      })["catch"](function (error) {
+        // console.log(error);
+        _this.loading = false;
+        _this.retrying = true;
       });
     },
     getCharacters: function getCharacters() {
@@ -2280,6 +2300,7 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         // console.log(error);
         _this2.loadingCharacters = false;
+        _this2.retrying = true;
       });
     },
     getEpisodes: function getEpisodes() {
@@ -2303,6 +2324,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     prevEpisodes: function prevEpisodes() {
       this.episodesPage--;
+      this.getEpisodes();
+    },
+    retry: function retry() {
+      this.getDetails();
+      this.getCharacters();
       this.getEpisodes();
     }
   },
@@ -2565,6 +2591,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2580,6 +2620,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       loading: true,
+      retrying: false,
       loadingPictures: true,
       details: '',
       pictures: ''
@@ -2589,10 +2630,15 @@ __webpack_require__.r(__webpack_exports__);
     getDetails: function getDetails() {
       var _this = this;
 
+      this.loading = true;
+      this.retrying = false;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://api.jikan.moe/v3/character/' + this.id).then(function (response) {
         _this.details = response.data;
         _this.loading = false;
-      })["catch"](function (error) {// console.log(error);
+      })["catch"](function (error) {
+        // console.log(error);
+        _this.loading = false;
+        _this.retrying = false;
       });
     },
     getPictures: function getPictures() {
@@ -2605,6 +2651,10 @@ __webpack_require__.r(__webpack_exports__);
         // console.log(error);
         _this2.loading = false;
       });
+    },
+    retry: function retry() {
+      this.getDetails();
+      this.getPictures();
     }
   },
   created: function created() {
@@ -2712,7 +2762,7 @@ __webpack_require__.r(__webpack_exports__);
           page: this.page,
           order_by: 'score',
           sort: 'descending',
-          limit: 100
+          limit: 50
         }
       }).then(function (response) {
         _this.results = response.data.results;
@@ -3090,6 +3140,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3105,6 +3169,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       loading: true,
+      retrying: false,
       loadingCharacters: true,
       details: '',
       characters: ''
@@ -3114,10 +3179,15 @@ __webpack_require__.r(__webpack_exports__);
     getDetails: function getDetails() {
       var _this = this;
 
+      this.loading = true;
+      this.retrying = false;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://api.jikan.moe/v3/manga/' + this.id).then(function (response) {
         _this.details = response.data;
         _this.loading = false;
-      })["catch"](function (error) {// console.log(error);
+      })["catch"](function (error) {
+        // console.log(error);
+        _this.loading = false;
+        _this.retrying = true;
       });
     },
     getCharacters: function getCharacters() {
@@ -3129,7 +3199,12 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         // console.log(error);
         _this2.loadingCharacters = false;
+        _this2.retrying = true;
       });
+    },
+    retry: function retry() {
+      this.getDetails();
+      this.getCharacters();
     }
   },
   created: function created() {
@@ -3241,6 +3316,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3256,6 +3345,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       loading: true,
+      retrying: false,
       details: ''
     };
   },
@@ -3263,11 +3353,19 @@ __webpack_require__.r(__webpack_exports__);
     getDetails: function getDetails() {
       var _this = this;
 
+      this.loading = true;
+      this.retrying = false;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://api.jikan.moe/v3/person/' + this.id).then(function (response) {
         _this.details = response.data;
         _this.loading = false;
-      })["catch"](function (error) {// console.log(error);
+      })["catch"](function (error) {
+        // console.log(error);
+        _this.loading = false;
+        _this.retrying = true;
       });
+    },
+    retry: function retry() {
+      this.getDetails();
     }
   },
   created: function created() {
@@ -3476,7 +3574,11 @@ __webpack_require__.r(__webpack_exports__);
           _this.searchPerformed = true;
           _this.results = response.data.results;
           _this.loading = false;
-        })["catch"](function (error) {});
+        })["catch"](function (error) {
+          _this.results = [];
+          _this.loading = false;
+          _this.searchPerformed = true;
+        });
       }
     },
     reset: function reset() {
@@ -4682,6 +4784,64 @@ var render = function() {
       _vm._v(" "),
       _vm.loading
         ? _c("Loading")
+        : _vm.retrying
+        ? _c(
+            "v-container",
+            { attrs: { "grid-list-md": "" } },
+            [
+              _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                [
+                  _c(
+                    "v-flex",
+                    {
+                      attrs: {
+                        xs12: "",
+                        sm8: "",
+                        "offset-sm2": "",
+                        md6: "",
+                        "offset-md3": ""
+                      }
+                    },
+                    [
+                      _c(
+                        "v-card",
+                        [
+                          _c(
+                            "v-card-text",
+                            { staticClass: "text-xs-center align-center" },
+                            [
+                              _c("div", { staticClass: "mt-2" }, [
+                                _vm._v(
+                                  "\n                            Sorry! The details for this page could not be loaded.  Please try again.\n                        "
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  staticClass: "mt-3",
+                                  attrs: { color: "blue", dark: "" },
+                                  on: { click: _vm.retry }
+                                },
+                                [_vm._v("Retry")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
         : _c(
             "v-container",
             { attrs: { "grid-list-md": "" } },
@@ -4867,7 +5027,7 @@ var render = function() {
                                   _vm._v(" "),
                                   _vm.details.licensors.length > 0
                                     ? _c("tr", [
-                                        _c("td", [_vm._v("Licenser(s):")]),
+                                        _c("td", [_vm._v("Licensor(s):")]),
                                         _vm._v(" "),
                                         _c(
                                           "td",
@@ -5508,6 +5668,64 @@ var render = function() {
       _vm._v(" "),
       _vm.loading
         ? _c("Loading")
+        : _vm.retrying
+        ? _c(
+            "v-container",
+            { attrs: { "grid-list-md": "" } },
+            [
+              _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                [
+                  _c(
+                    "v-flex",
+                    {
+                      attrs: {
+                        xs12: "",
+                        sm8: "",
+                        "offset-sm2": "",
+                        md6: "",
+                        "offset-md3": ""
+                      }
+                    },
+                    [
+                      _c(
+                        "v-card",
+                        [
+                          _c(
+                            "v-card-text",
+                            { staticClass: "text-xs-center align-center" },
+                            [
+                              _c("div", { staticClass: "mt-2" }, [
+                                _vm._v(
+                                  "\n                            Sorry! The details for this page could not be loaded.  Please try again.\n                        "
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  staticClass: "mt-3",
+                                  attrs: { color: "blue", dark: "" },
+                                  on: { click: _vm.retry }
+                                },
+                                [_vm._v("Retry")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
         : _c(
             "v-container",
             { attrs: { "grid-list-md": "" } },
@@ -6343,6 +6561,64 @@ var render = function() {
       _vm._v(" "),
       _vm.loading
         ? _c("Loading")
+        : _vm.retrying
+        ? _c(
+            "v-container",
+            { attrs: { "grid-list-md": "" } },
+            [
+              _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                [
+                  _c(
+                    "v-flex",
+                    {
+                      attrs: {
+                        xs12: "",
+                        sm8: "",
+                        "offset-sm2": "",
+                        md6: "",
+                        "offset-md3": ""
+                      }
+                    },
+                    [
+                      _c(
+                        "v-card",
+                        [
+                          _c(
+                            "v-card-text",
+                            { staticClass: "text-xs-center align-center" },
+                            [
+                              _c("div", { staticClass: "mt-2" }, [
+                                _vm._v(
+                                  "\n                            Sorry! The details for this page could not be loaded.  Please try again.\n                        "
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  staticClass: "mt-3",
+                                  attrs: { color: "blue", dark: "" },
+                                  on: { click: _vm.retry }
+                                },
+                                [_vm._v("Retry")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
         : _c(
             "v-container",
             { attrs: { "grid-list-md": "" } },
@@ -6476,7 +6752,7 @@ var render = function() {
                                       ])
                                     : _vm._e(),
                                   _vm._v(" "),
-                                  _vm.details.producers.length > 0
+                                  _vm.details.authors.length > 0
                                     ? _c("tr", [
                                         _c("td", [_vm._v("Author(s):")]),
                                         _vm._v(" "),
@@ -6503,49 +6779,61 @@ var render = function() {
                                       ])
                                     : _vm._e(),
                                   _vm._v(" "),
-                                  _c("tr", [
-                                    _c("td", [_vm._v("Volume(s):")]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
+                                  _vm.details.volumes
+                                    ? _c("tr", [
+                                        _c("td", [_vm._v("Volume(s):")]),
+                                        _vm._v(" "),
                                         _c(
-                                          "v-chip",
-                                          {
-                                            attrs: {
-                                              color: "red",
-                                              dark: "",
-                                              small: ""
-                                            }
-                                          },
-                                          [_vm._v(_vm._s(_vm.details.volumes))]
+                                          "td",
+                                          [
+                                            _c(
+                                              "v-chip",
+                                              {
+                                                attrs: {
+                                                  color: "red",
+                                                  dark: "",
+                                                  small: ""
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(_vm.details.volumes)
+                                                )
+                                              ]
+                                            )
+                                          ],
+                                          1
                                         )
-                                      ],
-                                      1
-                                    )
-                                  ]),
+                                      ])
+                                    : _vm._e(),
                                   _vm._v(" "),
-                                  _c("tr", [
-                                    _c("td", [_vm._v("Chapter(s):")]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
+                                  _vm.details.chapters
+                                    ? _c("tr", [
+                                        _c("td", [_vm._v("Chapter(s):")]),
+                                        _vm._v(" "),
                                         _c(
-                                          "v-chip",
-                                          {
-                                            attrs: {
-                                              color: "green",
-                                              dark: "",
-                                              small: ""
-                                            }
-                                          },
-                                          [_vm._v(_vm._s(_vm.details.chapters))]
+                                          "td",
+                                          [
+                                            _c(
+                                              "v-chip",
+                                              {
+                                                attrs: {
+                                                  color: "green",
+                                                  dark: "",
+                                                  small: ""
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(_vm.details.chapters)
+                                                )
+                                              ]
+                                            )
+                                          ],
+                                          1
                                         )
-                                      ],
-                                      1
-                                    )
-                                  ]),
+                                      ])
+                                    : _vm._e(),
                                   _vm._v(" "),
                                   _vm.details.genres.length > 0
                                     ? _c("tr", [
@@ -6792,6 +7080,64 @@ var render = function() {
       _vm._v(" "),
       _vm.loading
         ? _c("Loading")
+        : _vm.retrying
+        ? _c(
+            "v-container",
+            { attrs: { "grid-list-md": "" } },
+            [
+              _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                [
+                  _c(
+                    "v-flex",
+                    {
+                      attrs: {
+                        xs12: "",
+                        sm8: "",
+                        "offset-sm2": "",
+                        md6: "",
+                        "offset-md3": ""
+                      }
+                    },
+                    [
+                      _c(
+                        "v-card",
+                        [
+                          _c(
+                            "v-card-text",
+                            { staticClass: "text-xs-center align-center" },
+                            [
+                              _c("div", { staticClass: "mt-2" }, [
+                                _vm._v(
+                                  "\n                            Sorry! The details for this page could not be loaded.  Please try again.\n                        "
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  staticClass: "mt-3",
+                                  attrs: { color: "blue", dark: "" },
+                                  on: { click: _vm.retry }
+                                },
+                                [_vm._v("Retry")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
         : _c(
             "v-container",
             { attrs: { "grid-list-md": "" } },
