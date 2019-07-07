@@ -60,7 +60,7 @@ export default {
         Roles
     },
     created() {
-        setTimeout(this.getInfo, 2000)
+        this.getInfo();
     },
     watch: {
         '$route' () {
@@ -77,9 +77,14 @@ export default {
                     this.isLoading = false;
                 })
                 .catch(error => {
-                    // console.log(error);
-                    this.isLoading = false;
-                    this.retryMode = true;
+                    setTimeout(this.getInfo, 4000)
+
+                    this.errorCounter++;
+
+                    if (this.errorCounter > 5) {
+                        this.isLoading = false;
+                        this.retryMode = true;
+                    }
                 });
         }
     }
