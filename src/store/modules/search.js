@@ -51,6 +51,11 @@ const actions = {
             })
             .catch(error => {
                 console.log(error);
+                context.commit("UPDATE_SEARCH_RESULTS", {
+                    type: payload.selectField,
+                    criteria: payload.searchField,
+                    results: [],
+                });
             });
     },
     clearSearchResults(context) {
