@@ -1,7 +1,24 @@
 <template>
     <div id="view-character">
         <ActionBar />
-        <div class="container">
+        <div v-if="retryMode == true" class="has-text-centered">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-6 is-offset-3">
+                        <div class="box">
+                            <div class="has-text-centered">
+                                Sorry, the page could not be loaded.  Please try again.
+                            </div>
+                            <br>
+                            <button class="button is-primary" @click="getInfo()">
+                                Retry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div v-else class="container">
             <div class="columns is-multiline">
                 <div class="column is-12">
                     <Details :details="details" :isLoading="isLoading" />
@@ -34,7 +51,8 @@ export default {
     data() {
         return {
             details: '',
-            isLoading: true
+            isLoading: true,
+            retryMode: false
         }
     },
     components: {
@@ -54,6 +72,7 @@ export default {
     },
     methods: {
         getInfo() {
+            this.retryMode = false;
             this.isLoading = true;
             axios.get("https://api.jikan.moe/character/" + this.id + "/pictures")
             .then(response => {
@@ -62,6 +81,8 @@ export default {
             })
             .catch(error => {
                 // console.log(error);
+                this.isLoading = false;
+                this.retryMode = true;
             });
         }
     }
