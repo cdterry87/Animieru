@@ -2328,14 +2328,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     retry: function retry() {
       this.getDetails();
-      setTimeout(this.getCharacters, 4000);
-      setTimeout(this.getEpisodes, 4000);
+      setTimeout(this.getCharacters, 4000); // setTimeout(this.getEpisodes, 4000)
     }
   },
   created: function created() {
     this.getDetails();
-    setTimeout(this.getCharacters, 4000);
-    setTimeout(this.getEpisodes, 4000);
+    setTimeout(this.getCharacters, 4000); // setTimeout(this.getEpisodes, 4000)
   }
 });
 

@@ -257,13 +257,13 @@
             retry() {
                 this.getDetails()
                 setTimeout(this.getCharacters, 4000)
-                setTimeout(this.getEpisodes, 4000)
+                // setTimeout(this.getEpisodes, 4000)
             }
         },
         created() {
             this.getDetails()
             setTimeout(this.getCharacters, 4000)
-            setTimeout(this.getEpisodes, 4000)
+            // setTimeout(this.getEpisodes, 4000)
         }
     }
 </script>
