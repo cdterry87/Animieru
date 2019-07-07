@@ -2328,14 +2328,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     retry: function retry() {
       this.getDetails();
-      this.getCharacters();
-      this.getEpisodes();
+      setTimeout(this.getCharacters, 4000);
+      setTimeout(this.getEpisodes, 4000);
     }
   },
   created: function created() {
     this.getDetails();
-    this.getCharacters();
-    this.getEpisodes();
+    setTimeout(this.getCharacters, 4000);
+    setTimeout(this.getEpisodes, 4000);
   }
 });
 
@@ -2659,7 +2659,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.getDetails();
-    this.getPictures();
+    setTimeout(this.getPictures, 4000);
   }
 });
 
@@ -3204,12 +3204,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     retry: function retry() {
       this.getDetails();
-      this.getCharacters();
+      setTimeout(this.getCharacters, 4000);
     }
   },
   created: function created() {
     this.getDetails();
-    this.getCharacters();
+    setTimeout(this.getCharacters, 4000);
   }
 });
 

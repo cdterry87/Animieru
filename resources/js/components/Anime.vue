@@ -256,14 +256,14 @@
             },
             retry() {
                 this.getDetails()
-                this.getCharacters()
-                this.getEpisodes()
+                setTimeout(this.getCharacters, 4000)
+                setTimeout(this.getEpisodes, 4000)
             }
         },
         created() {
             this.getDetails()
-            this.getCharacters()
-            this.getEpisodes()
+            setTimeout(this.getCharacters, 4000)
+            setTimeout(this.getEpisodes, 4000)
         }
     }
 </script>

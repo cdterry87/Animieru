@@ -197,7 +197,7 @@
         },
         created() {
             this.getDetails()
-            this.getPictures()
+            setTimeout(this.getPictures, 4000)
         }
     }
 </script>

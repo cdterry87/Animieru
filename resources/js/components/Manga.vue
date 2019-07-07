@@ -184,12 +184,12 @@
             },
             retry() {
                 this.getDetails()
-                this.getCharacters()
+                setTimeout(this.getCharacters, 4000)
             }
         },
         created() {
             this.getDetails()
-            this.getCharacters()
+            setTimeout(this.getCharacters, 4000)
         }
     }
 </script>
