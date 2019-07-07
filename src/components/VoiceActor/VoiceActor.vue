@@ -81,7 +81,7 @@ export default {
 
                     this.errorCounter++;
 
-                    if (this.errorCounter > 5) {
+                    if (this.errorCounter > 9) {
                         this.isLoading = false;
                         this.retryMode = true;
                     }
