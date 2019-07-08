@@ -1,5 +1,6 @@
 @import '~vuetify/dist/vuetify.min.css';
 @import '~material-icons/iconfont/material-icons.css';
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
 
 a {
     text-decoration: none !important;
@@ -14,6 +15,10 @@ a {
     a {
         color: inherit;
     }
+}
+
+.genre-icon {
+    font-size: 2rem;
 }
 
 .italic {

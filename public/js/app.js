@@ -2831,6 +2831,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2844,131 +2847,173 @@ __webpack_require__.r(__webpack_exports__);
       colors: ['red', 'red darken-1', 'red darken-3', 'red accent-2', 'red accent-3', 'pink', 'pink darken-1', 'pink darken-3', 'pink accent-2', 'pink accent-3', 'purple', 'purple darken-1', 'purple darken-3', 'purple accent-2', 'purple accent-3', 'deep-purple', 'deep-purple darken-1', 'deep-purple darken-3', 'deep-purple accent-2', 'deep-purple accent-3', 'indigo', 'indigo darken-1', 'indigo darken-3', 'indigo accent-2', 'indigo accent-3', 'blue', 'blue darken-1', 'blue darken-3', 'blue accent-2', 'blue accent-3', 'cyan', 'cyan darken-1', 'cyan darken-3', 'green', 'green darken-1', 'green darken-3', 'teal', 'teal darken-2', 'light-green', 'light-green darken-1', 'light-green darken-3', 'orange', 'orange darken-1', 'orange darken-3', 'orange accent-2', 'orange accent-3', 'deep-orange', 'deep-orange darken-1', 'deep-orange darken-3', 'deep-orange accent-2', 'deep-orange accent-3'],
       genres: [{
         id: 1,
-        name: 'Action'
+        name: 'Action',
+        icon: 'fas fa-fist-raised'
       }, {
         id: 2,
-        name: 'Adventure'
+        name: 'Adventure',
+        icon: 'fas fa-dragon'
       }, {
         id: 3,
-        name: 'Cars'
+        name: 'Cars',
+        icon: 'fas fa-car'
       }, {
         id: 4,
-        name: 'Comedy'
+        name: 'Comedy',
+        icon: 'fas fa-grin-squint-tears'
       }, {
         id: 5,
-        name: 'Dementia'
+        name: 'Dementia',
+        icon: 'fas fa-brain'
       }, {
         id: 6,
-        name: 'Demons'
+        name: 'Demons',
+        icon: 'fas fa-skull'
       }, {
         id: 7,
-        name: 'Mystery'
+        name: 'Mystery',
+        icon: 'fas fa-user-secret'
       }, {
         id: 8,
-        name: 'Drama'
+        name: 'Drama',
+        icon: 'fas fa-theater-masks'
       }, {
         id: 9,
-        name: 'Ecchi'
+        name: 'Ecchi',
+        icon: 'fas fa-burn'
       }, {
         id: 10,
-        name: 'Fantasy'
+        name: 'Fantasy',
+        icon: 'fas fa-hat-wizard'
       }, {
         id: 11,
-        name: 'Game'
-      }, // { id: 12, name: 'Hentai'},
+        name: 'Game',
+        icon: 'fas fa-gamepad'
+      }, // { id: 12, name: 'Hentai', icon: '' },
       {
         id: 13,
-        name: 'Historical'
+        name: 'Historical',
+        icon: 'fas fa-torii-gate'
       }, {
         id: 14,
-        name: 'Horror'
+        name: 'Horror',
+        icon: 'fas fa-spider'
       }, {
         id: 15,
-        name: 'Kids'
+        name: 'Kids',
+        icon: 'fas fa-baby-carriage'
       }, {
         id: 16,
-        name: 'Magic'
+        name: 'Magic',
+        icon: 'fas fa-magic'
       }, {
         id: 17,
-        name: 'Martial Arts'
+        name: 'Martial Arts',
+        icon: 'fas fa-fist-raised'
       }, {
         id: 18,
-        name: 'Mecha'
+        name: 'Mecha',
+        icon: 'fas fa-robot'
       }, {
         id: 19,
-        name: 'Music'
+        name: 'Music',
+        icon: 'fas fa-music'
       }, {
         id: 20,
-        name: 'Parody'
+        name: 'Parody',
+        icon: 'fas fa-laugh-wink'
       }, {
         id: 21,
-        name: 'Samurai'
+        name: 'Samurai',
+        icon: 'fas fa-fist-raised'
       }, {
         id: 22,
-        name: 'Romance'
+        name: 'Romance',
+        icon: 'fas fa-heart'
       }, {
         id: 23,
-        name: 'School'
+        name: 'School',
+        icon: 'fas fa-graduation-cap'
       }, {
         id: 24,
-        name: 'Sci Fi'
+        name: 'Sci Fi',
+        icon: 'fas fa-meteor'
       }, {
         id: 25,
-        name: 'Shoujo'
+        name: 'Shoujo',
+        icon: 'fas fa-venus'
       }, {
         id: 26,
-        name: 'Shoujo Ai'
+        name: 'Shoujo Ai',
+        icon: 'fas fa-venus-double'
       }, {
         id: 27,
-        name: 'Shounen'
+        name: 'Shounen',
+        icon: 'fas fa-mars'
       }, {
         id: 28,
-        name: 'Shounen Ai'
+        name: 'Shounen Ai',
+        icon: 'fas fa-mars-double'
       }, {
         id: 29,
-        name: 'Space'
+        name: 'Space',
+        icon: 'fas fa-user-astronaut'
       }, {
         id: 30,
-        name: 'Sports'
+        name: 'Sports',
+        icon: 'fas fa-football-ball'
       }, {
         id: 31,
-        name: 'Super Power'
+        name: 'Super Power',
+        icon: 'fas fa-haykal'
       }, {
         id: 32,
-        name: 'Vampire'
+        name: 'Vampire',
+        icon: 'fas fa-tint'
       }, {
         id: 33,
-        name: 'Yaoi'
+        name: 'Yaoi',
+        icon: 'fas fa-mars-double'
       }, {
         id: 34,
-        name: 'Yuri'
+        name: 'Yuri',
+        icon: 'fas fa-venus-double'
       }, {
         id: 35,
-        name: 'Harem'
+        name: 'Harem',
+        icon: 'fas fa-users'
       }, {
         id: 36,
-        name: 'Slice of Life'
+        name: 'Slice of Life',
+        icon: 'fas fa-pizza-slice'
       }, {
         id: 37,
-        name: 'Supernatural'
+        name: 'Supernatural',
+        icon: 'fas fa-ghost'
       }, {
         id: 38,
-        name: 'Military'
+        name: 'Military',
+        icon: 'fas fa-fighter-jet'
       }, {
         id: 39,
-        name: 'Police'
+        name: 'Police',
+        icon: 'fas fa-taxi'
       }, {
         id: 40,
-        name: 'Psychological'
+        name: 'Psychological',
+        icon: 'fas fa-brain'
       }, {
         id: 41,
-        name: 'Thriller'
+        name: 'Thriller',
+        icon: 'fas fa-spider'
       }, {
         id: 42,
-        name: 'Seinen'
+        name: 'Seinen',
+        icon: 'fas fa-mars'
       }, {
         id: 43,
-        name: 'Josei'
+        name: 'Josei',
+        icon: 'fas fa-venus'
       }]
     };
   }
@@ -5498,7 +5543,7 @@ var render = function() {
             _c("a", { attrs: { href: "http://chaseterry.com" } }, [
               _vm._v("Chase Terry")
             ]),
-            _vm._v(" © 2018 using the "),
+            _vm._v(" © 2019 using the "),
             _c(
               "a",
               { attrs: { href: "https://jikan.moe", target: "_blank" } },
@@ -6473,11 +6518,18 @@ var render = function() {
                     },
                     [
                       _c("v-card-text", { staticClass: "title" }, [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(genre.name) +
-                            "\n                    "
-                        )
+                        _c("i", {
+                          staticClass: "genre-icon",
+                          class: genre.icon
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "text-xs-center mt-2" }, [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(genre.name) +
+                              "\n                        "
+                          )
+                        ])
                       ])
                     ],
                     1
