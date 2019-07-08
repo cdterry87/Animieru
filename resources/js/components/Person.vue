@@ -46,7 +46,7 @@
                             </table>
                         </v-card-text>
                     </v-card>
-                    <v-card class="mt-3">
+                    <v-card class="mt-3" v-if="details.anime_staff_positions && details.anime_staff_positions.length > 0">
                         <v-card-text>
                             <div class="title">Staff Positions</div>
                             <div class="subheading italic">({{ details.anime_staff_positions.length }} Positions Found)</div>
@@ -116,6 +116,7 @@
         data() {
             return {
                 loading: true,
+                errorCounterDetails: 0,
                 retrying: false,
                 details: '',
             }
@@ -131,9 +132,14 @@
                     this.loading = false
                 })
                 .catch(error => {
-                    // console.log(error);
-                    this.loading = false
-                    this.retrying = true
+                    setTimeout(this.getDetails, 4000)
+
+                    this.errorCounterDetails++
+
+                    if (this.errorCounterDetails > 8) {
+                        this.loading = false
+                        this.retrying = true
+                    }
                 });
             },
             retry() {

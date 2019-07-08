@@ -157,6 +157,8 @@
         data() {
             return {
                 loading: true,
+                errorCounterDetails: 0,
+                errorCounterPictures: 0,
                 retrying: false,
                 loadingPictures: true,
                 details: '',
@@ -174,9 +176,14 @@
                     this.loading = false
                 })
                 .catch(error => {
-                    // console.log(error);
-                    this.loading = false
-                    this.retrying = false
+                    setTimeout(this.getDetails, 4000)
+
+                    this.errorCounterDetails++
+
+                    if (this.errorCounterDetails > 8) {
+                        this.loading = false
+                        this.retrying = true
+                    }
                 });
             },
             getPictures() {
@@ -186,8 +193,13 @@
                     this.loadingPictures = false
                 })
                 .catch(error => {
-                    // console.log(error);
-                    this.loading = false
+                    setTimeout(this.getPictures, 4000)
+
+                    this.errorCounterPictures++
+
+                    if (this.errorCounterPictures > 8) {
+                        this.loadingPictures = false
+                    }
                 });
             },
             retry() {

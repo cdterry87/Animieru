@@ -60,7 +60,7 @@
                 </v-layout>
             </v-container>
         </v-jumbotron>
-        <v-container v-if="searchPerformed" class="mt-2" grid-list-md>
+        <v-container v-if="searchPerformed" class="mt-4" grid-list-md>
             <v-layout row wrap>
                 <v-flex text-xs-center class="title mb-3" xs12>
                     Search Results for "<span class="italic">{{ searchField }}</span>"

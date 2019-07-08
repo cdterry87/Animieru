@@ -186,6 +186,9 @@
                 retrying: false,
                 loadingCharacters: true,
                 loadingEpisodes: true,
+                errorCounterDetails: 0,
+                errorCounterCharacters: 0,
+                errorCounterEpisodes: 0,
                 details: '',
                 characters: '',
                 episodes: '',
@@ -212,9 +215,14 @@
                     this.loading = false
                 })
                 .catch(error => {
-                    // console.log(error);
-                    this.loading = false
-                    this.retrying = true
+                    setTimeout(this.getDetails, 4000)
+
+                    this.errorCounterDetails++
+
+                    if (this.errorCounterDetails > 8) {
+                        this.loading = false
+                        this.retrying = true
+                    }
                 });
             },
             getCharacters() {
@@ -224,9 +232,14 @@
                     this.loadingCharacters = false
                 })
                 .catch(error => {
-                    // console.log(error);
-                    this.loadingCharacters = false
-                    this.retrying = true
+                    setTimeout(this.getCharacters, 4000)
+
+                    this.errorCounterCharacters++
+
+                    if (this.errorCounterCharacters > 8) {
+                        this.loadingCharacters = false
+                        this.retrying = true
+                    }
                 });
             },
             getEpisodes() {
@@ -242,8 +255,13 @@
                     this.loadingEpisodes = false
                 })
                 .catch(error => {
-                    // console.log(error);
-                    this.loadingEpisodes = false
+                    setTimeout(this.getEpisodes, 6000)
+
+                    this.errorCounterEpisodes++
+
+                    if (this.errorCounterEpisodes > 8) {
+                        this.loadingEpisodes = false
+                    }
                 });
             },
             nextEpisodes() {
@@ -257,13 +275,13 @@
             retry() {
                 this.getDetails()
                 setTimeout(this.getCharacters, 4000)
-                // setTimeout(this.getEpisodes, 4000)
+                setTimeout(this.getEpisodes, 6000)
             }
         },
         created() {
             this.getDetails()
             setTimeout(this.getCharacters, 4000)
-            // setTimeout(this.getEpisodes, 4000)
+            setTimeout(this.getEpisodes, 6000)
         }
     }
 </script>

@@ -148,6 +148,8 @@
         data() {
             return {
                 loading: true,
+                errorCounterDetails: 0,
+                errorCounterCharacters: 0,
                 retrying: false,
                 loadingCharacters: true,
                 details: '',
@@ -165,9 +167,14 @@
                     this.loading = false
                 })
                 .catch(error => {
-                    // console.log(error);
-                    this.loading = false
-                    this.retrying = true
+                    setTimeout(this.getDetails, 4000)
+
+                    this.errorCounterDetails++
+
+                    if (this.errorCounterDetails > 8) {
+                        this.loading = false
+                        this.retrying = true
+                    }
                 });
             },
             getCharacters() {
@@ -177,9 +184,14 @@
                     this.loadingCharacters = false
                 })
                 .catch(error => {
-                    // console.log(error);
-                    this.loadingCharacters = false
-                    this.retrying = true
+                    setTimeout(this.getCharacters, 4000)
+
+                    this.errorCounterCharacters++
+
+                    if (this.errorCounterCharacters > 8) {
+                        this.loadingCharacters = false
+                        this.retrying = true
+                    }
                 });
             },
             retry() {

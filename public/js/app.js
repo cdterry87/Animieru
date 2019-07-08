@@ -2256,6 +2256,9 @@ __webpack_require__.r(__webpack_exports__);
       retrying: false,
       loadingCharacters: true,
       loadingEpisodes: true,
+      errorCounterDetails: 0,
+      errorCounterCharacters: 0,
+      errorCounterEpisodes: 0,
       details: '',
       characters: '',
       episodes: '',
@@ -2286,9 +2289,13 @@ __webpack_require__.r(__webpack_exports__);
         _this.details = response.data;
         _this.loading = false;
       })["catch"](function (error) {
-        // console.log(error);
-        _this.loading = false;
-        _this.retrying = true;
+        setTimeout(_this.getDetails, 4000);
+        _this.errorCounterDetails++;
+
+        if (_this.errorCounterDetails > 8) {
+          _this.loading = false;
+          _this.retrying = true;
+        }
       });
     },
     getCharacters: function getCharacters() {
@@ -2298,9 +2305,13 @@ __webpack_require__.r(__webpack_exports__);
         _this2.characters = response.data.characters;
         _this2.loadingCharacters = false;
       })["catch"](function (error) {
-        // console.log(error);
-        _this2.loadingCharacters = false;
-        _this2.retrying = true;
+        setTimeout(_this2.getCharacters, 4000);
+        _this2.errorCounterCharacters++;
+
+        if (_this2.errorCounterCharacters > 8) {
+          _this2.loadingCharacters = false;
+          _this2.retrying = true;
+        }
       });
     },
     getEpisodes: function getEpisodes() {
@@ -2314,8 +2325,12 @@ __webpack_require__.r(__webpack_exports__);
         _this3.episodesLastPage = response.data.episodes_last_page;
         _this3.loadingEpisodes = false;
       })["catch"](function (error) {
-        // console.log(error);
-        _this3.loadingEpisodes = false;
+        setTimeout(_this3.getEpisodes, 6000);
+        _this3.errorCounterEpisodes++;
+
+        if (_this3.errorCounterEpisodes > 8) {
+          _this3.loadingEpisodes = false;
+        }
       });
     },
     nextEpisodes: function nextEpisodes() {
@@ -2328,12 +2343,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     retry: function retry() {
       this.getDetails();
-      setTimeout(this.getCharacters, 4000); // setTimeout(this.getEpisodes, 4000)
+      setTimeout(this.getCharacters, 4000);
+      setTimeout(this.getEpisodes, 6000);
     }
   },
   created: function created() {
     this.getDetails();
-    setTimeout(this.getCharacters, 4000); // setTimeout(this.getEpisodes, 4000)
+    setTimeout(this.getCharacters, 4000);
+    setTimeout(this.getEpisodes, 6000);
   }
 });
 
@@ -2618,6 +2635,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       loading: true,
+      errorCounterDetails: 0,
+      errorCounterPictures: 0,
       retrying: false,
       loadingPictures: true,
       details: '',
@@ -2634,9 +2653,13 @@ __webpack_require__.r(__webpack_exports__);
         _this.details = response.data;
         _this.loading = false;
       })["catch"](function (error) {
-        // console.log(error);
-        _this.loading = false;
-        _this.retrying = false;
+        setTimeout(_this.getDetails, 4000);
+        _this.errorCounterDetails++;
+
+        if (_this.errorCounterDetails > 8) {
+          _this.loading = false;
+          _this.retrying = true;
+        }
       });
     },
     getPictures: function getPictures() {
@@ -2646,8 +2669,12 @@ __webpack_require__.r(__webpack_exports__);
         _this2.pictures = response.data.pictures;
         _this2.loadingPictures = false;
       })["catch"](function (error) {
-        // console.log(error);
-        _this2.loading = false;
+        setTimeout(_this2.getPictures, 4000);
+        _this2.errorCounterPictures++;
+
+        if (_this2.errorCounterPictures > 8) {
+          _this2.loadingPictures = false;
+        }
       });
     },
     retry: function retry() {
@@ -3167,6 +3194,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       loading: true,
+      errorCounterDetails: 0,
+      errorCounterCharacters: 0,
       retrying: false,
       loadingCharacters: true,
       details: '',
@@ -3183,9 +3212,13 @@ __webpack_require__.r(__webpack_exports__);
         _this.details = response.data;
         _this.loading = false;
       })["catch"](function (error) {
-        // console.log(error);
-        _this.loading = false;
-        _this.retrying = true;
+        setTimeout(_this.getDetails, 4000);
+        _this.errorCounterDetails++;
+
+        if (_this.errorCounterDetails > 8) {
+          _this.loading = false;
+          _this.retrying = true;
+        }
       });
     },
     getCharacters: function getCharacters() {
@@ -3195,9 +3228,13 @@ __webpack_require__.r(__webpack_exports__);
         _this2.characters = response.data.characters;
         _this2.loadingCharacters = false;
       })["catch"](function (error) {
-        // console.log(error);
-        _this2.loadingCharacters = false;
-        _this2.retrying = true;
+        setTimeout(_this2.getCharacters, 4000);
+        _this2.errorCounterCharacters++;
+
+        if (_this2.errorCounterCharacters > 8) {
+          _this2.loadingCharacters = false;
+          _this2.retrying = true;
+        }
       });
     },
     retry: function retry() {
@@ -3343,6 +3380,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       loading: true,
+      errorCounterDetails: 0,
       retrying: false,
       details: ''
     };
@@ -3357,9 +3395,13 @@ __webpack_require__.r(__webpack_exports__);
         _this.details = response.data;
         _this.loading = false;
       })["catch"](function (error) {
-        // console.log(error);
-        _this.loading = false;
-        _this.retrying = true;
+        setTimeout(_this.getDetails, 4000);
+        _this.errorCounterDetails++;
+
+        if (_this.errorCounterDetails > 8) {
+          _this.loading = false;
+          _this.retrying = true;
+        }
       });
     },
     retry: function retry() {
@@ -7234,86 +7276,96 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _c(
-                        "v-card",
-                        { staticClass: "mt-3" },
-                        [
-                          _c("v-card-text", [
-                            _c("div", { staticClass: "title" }, [
-                              _vm._v("Staff Positions")
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "subheading italic" }, [
-                              _vm._v(
-                                "(" +
-                                  _vm._s(
-                                    _vm.details.anime_staff_positions.length
-                                  ) +
-                                  " Positions Found)"
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("table", { staticClass: "mt-3" }, [
-                              _c("thead", [
-                                _c("tr", [
-                                  _c("td", { staticClass: "bold" }, [
-                                    _vm._v("Position")
+                      _vm.details.anime_staff_positions &&
+                      _vm.details.anime_staff_positions.length > 0
+                        ? _c(
+                            "v-card",
+                            { staticClass: "mt-3" },
+                            [
+                              _c("v-card-text", [
+                                _c("div", { staticClass: "title" }, [
+                                  _vm._v("Staff Positions")
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "subheading italic" },
+                                  [
+                                    _vm._v(
+                                      "(" +
+                                        _vm._s(
+                                          _vm.details.anime_staff_positions
+                                            .length
+                                        ) +
+                                        " Positions Found)"
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("table", { staticClass: "mt-3" }, [
+                                  _c("thead", [
+                                    _c("tr", [
+                                      _c("td", { staticClass: "bold" }, [
+                                        _vm._v("Position")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", { staticClass: "bold" }, [
+                                        _vm._v("Anime")
+                                      ])
+                                    ])
                                   ]),
                                   _vm._v(" "),
-                                  _c("td", { staticClass: "bold" }, [
-                                    _vm._v("Anime")
-                                  ])
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "tbody",
-                                _vm._l(
-                                  _vm.details.anime_staff_positions,
-                                  function(position) {
-                                    return _c(
-                                      "tr",
-                                      {
-                                        key: position.mal_id,
-                                        staticClass: "caption"
-                                      },
-                                      [
-                                        _c("td", [
-                                          _vm._v(_vm._s(position.position))
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "td",
+                                  _c(
+                                    "tbody",
+                                    _vm._l(
+                                      _vm.details.anime_staff_positions,
+                                      function(position) {
+                                        return _c(
+                                          "tr",
+                                          {
+                                            key: position.mal_id,
+                                            staticClass: "caption"
+                                          },
                                           [
+                                            _c("td", [
+                                              _vm._v(_vm._s(position.position))
+                                            ]),
+                                            _vm._v(" "),
                                             _c(
-                                              "router-link",
-                                              {
-                                                attrs: {
-                                                  to:
-                                                    "/anime/" +
-                                                    position.anime.mal_id
-                                                }
-                                              },
+                                              "td",
                                               [
-                                                _vm._v(
-                                                  _vm._s(position.anime.name)
+                                                _c(
+                                                  "router-link",
+                                                  {
+                                                    attrs: {
+                                                      to:
+                                                        "/anime/" +
+                                                        position.anime.mal_id
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        position.anime.name
+                                                      )
+                                                    )
+                                                  ]
                                                 )
-                                              ]
+                                              ],
+                                              1
                                             )
-                                          ],
-                                          1
+                                          ]
                                         )
-                                      ]
-                                    )
-                                  }
-                                ),
-                                0
-                              )
-                            ])
-                          ])
-                        ],
-                        1
-                      )
+                                      }
+                                    ),
+                                    0
+                                  )
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        : _vm._e()
                     ],
                     1
                   ),
@@ -7699,7 +7751,7 @@ var render = function() {
       _vm.searchPerformed
         ? _c(
             "v-container",
-            { staticClass: "mt-2", attrs: { "grid-list-md": "" } },
+            { staticClass: "mt-4", attrs: { "grid-list-md": "" } },
             [
               _c(
                 "v-layout",
