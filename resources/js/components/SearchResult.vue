@@ -1,9 +1,9 @@
 <template>
     <div>
         <v-flex xs12 md8 offset-md2>
-            <v-layout row wrap>
+            <v-layout row wrap v-if="selectField == 'anime' || selectField == 'manga'">
                 <v-flex xs12 v-for="(result, index) in results" :key="index" >
-                    <v-card :to="'/anime/' + result.mal_id" class="mb-2">
+                    <v-card :to="'/' + selectField + '/' + result.mal_id" class="mb-2">
                         <v-layout row>
                             <v-flex xs5 sm2>
                                 <v-img :src="result.image_url" height="150" contain>
@@ -24,9 +24,14 @@
                                     {{ result.synopsis }}
                                 </v-card-actions>
                                 <v-card-actions class="grey--text caption">
-                                    <v-layout row>
+                                    <v-layout row v-if="selectField == 'anime'">
                                         <v-flex xs4 v-if="result.episodes > 1">Episodes: {{ result.episodes }}</v-flex>
                                         <v-flex xs4 v-if="result.rated != ''">Rated: {{ result.rated }}</v-flex>
+                                        <v-flex xs4 v-if="result.score > 0">Score: {{ result.score }}</v-flex>
+                                    </v-layout>
+                                    <v-layout v-else>
+                                        <v-flex xs4 v-if="result.chapters > 0">Chapters: {{ result.chapters }}</v-flex>
+                                        <v-flex xs4 v-if="result.volumes > 0">Volumes: {{ result.volumes }}</v-flex>
                                         <v-flex xs4 v-if="result.score > 0">Score: {{ result.score }}</v-flex>
                                     </v-layout>
                                 </v-card-actions>
@@ -35,23 +40,50 @@
                     </v-card>
                 </v-flex>
             </v-layout>
+            <v-layout row wrap v-else>
+                <v-flex xs12 md3 v-for="(result, index) in results" :key="index" >
+                    <v-card :to="'/' + selectField + '/' + result.mal_id">
+                        <v-img :src="result.image_url" height="250" position="top center">
+                            <template v-slot:placeholder>
+                                <ImagePlaceholder />
+                            </template>
+                        </v-img>
+                        <v-card-title primary-title>
+                            <div>
+                                <h3 class="subheading">{{ result.name }}</h3>
+                                <div v-if="selectField == 'character'">
+                                    <div class="grey--text" v-if="typeof(result.anime[0]) != 'undefined'">
+                                        {{ result.anime[0].name | truncate(18) }}
+                                    </div>
+                                    <div v-else>
+                                        <span v-if="typeof(result.manga[0]) != 'undefined'" class="grey--text">
+                                            {{ result.manga[0].name | truncate(18) }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </v-card-title>
+                    </v-card>
+                </v-flex>
+            </v-layout>
         </v-flex>
         <div class="text-xs-center" v-if="!showMoreActive">
             <v-btn @click="showMore" :loading="showMoreLoading" dark color="blue">Show More</v-btn>
         </div>
-        <GenreResult v-if="showMoreActive" :id="id" :results="showMoreResults" :nextPage="showMoreNextPage" />
+        <SearchResult v-if="showMoreActive" :searchField="searchField" :selectField="selectField" :results="showMoreResults" :nextPage="showMoreNextPage" />
     </div>
 </template>
 
 <script>
     import axios from 'axios'
-    import GenreResult from './GenreResult'
+    import SearchResult from './SearchResult'
     import ImagePlaceholder from './ImagePlaceholder'
 
     export default {
-        name: 'GenreResult',
-        props: ['id', 'results', 'nextPage'],
+        name: 'SearchResult',
+        props: ['searchField', 'selectField', 'results', 'nextPage'],
         components: {
+            SearchResult,
             ImagePlaceholder
         },
         data() {
@@ -67,12 +99,12 @@
                 this.showMoreResults = ''
                 this.showMoreLoading = true
 
-                axios.get('https://api.jikan.moe/v3/search/anime', {
+                axios.get('https://api.jikan.moe/v3/search/' + this.selectField, {
                     params: {
-                        genre: this.id,
+                        q: this.searchField,
                         page: this.nextPage,
-                        order_by: 'score',
-                        sort: 'descending',
+                        // genre: 12,
+                        // genre_exclude: 0,
                         limit: 50
                     }
                 })
@@ -84,7 +116,11 @@
                 .catch(error => {
                     this.showMoreLoading = false
                 });
+            },
+            favorite(e) {
+                e.preventDefault()
             }
         }
+
     }
 </script>

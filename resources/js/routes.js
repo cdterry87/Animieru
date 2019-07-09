@@ -19,7 +19,7 @@ export default [
         component: Genres,
     },
     {
-        path: '/genre/:name/:id/:page',
+        path: '/genre/:name/:id',
         name: 'genre',
         component: Genre,
         props: true

@@ -3,7 +3,7 @@
         <v-app class="inspire">
             <router-view></router-view>
 
-            <v-container text-xs-center>
+            <v-container text-xs-center class="mt-4">
                 Developed by <a href="http://chaseterry.com">Chase Terry</a> &copy; 2019 using the <a href="https://jikan.moe" target="_blank">Jikan API</a>
             </v-container>
 

@@ -2866,7 +2866,7 @@ __webpack_require__.r(__webpack_exports__);
       showMoreLoading: false,
       showMoreActive: false,
       showMoreResults: '',
-      showMoreNextPage: this.nextPage
+      showMoreNextPage: parseInt(this.nextPage) + 1
     };
   },
   methods: {
@@ -2885,9 +2885,8 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this.showMoreActive = true;
-        _this.showMoreResults = response.data.results;
         _this.showMoreLoading = false;
-        _this.showMoreNextPage = _this.showMoreNextPage++;
+        _this.showMoreResults = response.data.results;
       })["catch"](function (error) {
         _this.showMoreLoading = false;
       });
@@ -3568,73 +3567,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Toolbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Toolbar */ "./resources/js/components/Toolbar.vue");
 /* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Loading */ "./resources/js/components/Loading.vue");
-/* harmony import */ var _ImagePlaceholder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ImagePlaceholder */ "./resources/js/components/ImagePlaceholder.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var _SearchResult__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SearchResult */ "./resources/js/components/SearchResult.vue");
 //
 //
 //
@@ -3725,7 +3658,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     Toolbar: _Toolbar__WEBPACK_IMPORTED_MODULE_1__["default"],
     Loading: _Loading__WEBPACK_IMPORTED_MODULE_2__["default"],
-    ImagePlaceholder: _ImagePlaceholder__WEBPACK_IMPORTED_MODULE_3__["default"]
+    SearchResult: _SearchResult__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {
@@ -3746,9 +3679,10 @@ __webpack_require__.r(__webpack_exports__);
         axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://api.jikan.moe/v3/search/' + this.selectField, {
           params: {
             q: this.searchField,
-            genre: 12,
-            genre_exclude: 0,
-            limit: 100
+            page: 1,
+            // genre: 12,
+            // genre_exclude: 0,
+            limit: 50
           }
         }).then(function (response) {
           _this.searchPerformed = true;
@@ -3769,6 +3703,140 @@ __webpack_require__.r(__webpack_exports__);
     },
     changeSearchType: function changeSearchType() {
       this.results = '', this.searchPerformed = false;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SearchResult.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SearchResult.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _SearchResult__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SearchResult */ "./resources/js/components/SearchResult.vue");
+/* harmony import */ var _ImagePlaceholder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ImagePlaceholder */ "./resources/js/components/ImagePlaceholder.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'SearchResult',
+  props: ['searchField', 'selectField', 'results', 'nextPage'],
+  components: {
+    SearchResult: _SearchResult__WEBPACK_IMPORTED_MODULE_1__["default"],
+    ImagePlaceholder: _ImagePlaceholder__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  data: function data() {
+    return {
+      showMoreLoading: false,
+      showMoreActive: false,
+      showMoreResults: '',
+      showMoreNextPage: parseInt(this.nextPage) + 1
+    };
+  },
+  methods: {
+    showMore: function showMore() {
+      var _this = this;
+
+      this.showMoreResults = '';
+      this.showMoreLoading = true;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://api.jikan.moe/v3/search/' + this.selectField, {
+        params: {
+          q: this.searchField,
+          page: this.nextPage,
+          // genre: 12,
+          // genre_exclude: 0,
+          limit: 50
+        }
+      }).then(function (response) {
+        _this.showMoreActive = true;
+        _this.showMoreLoading = false;
+        _this.showMoreResults = response.data.results;
+      })["catch"](function (error) {
+        _this.showMoreLoading = false;
+      });
     },
     favorite: function favorite(e) {
       e.preventDefault();
@@ -5640,18 +5708,22 @@ var render = function() {
         [
           _c("router-view"),
           _vm._v(" "),
-          _c("v-container", { attrs: { "text-xs-center": "" } }, [
-            _vm._v("\n            Developed by "),
-            _c("a", { attrs: { href: "http://chaseterry.com" } }, [
-              _vm._v("Chase Terry")
-            ]),
-            _vm._v(" © 2019 using the "),
-            _c(
-              "a",
-              { attrs: { href: "https://jikan.moe", target: "_blank" } },
-              [_vm._v("Jikan API")]
-            )
-          ]),
+          _c(
+            "v-container",
+            { staticClass: "mt-4", attrs: { "text-xs-center": "" } },
+            [
+              _vm._v("\n            Developed by "),
+              _c("a", { attrs: { href: "http://chaseterry.com" } }, [
+                _vm._v("Chase Terry")
+              ]),
+              _vm._v(" © 2019 using the "),
+              _c(
+                "a",
+                { attrs: { href: "https://jikan.moe", target: "_blank" } },
+                [_vm._v("Jikan API")]
+              )
+            ]
+          ),
           _vm._v(" "),
           _c(
             "v-navigation-drawer",
@@ -6469,11 +6541,9 @@ var render = function() {
                                 [
                                   _c("span", { staticClass: "title" }, [
                                     _vm._v(
-                                      _vm._s(index + 1) +
-                                        ". " +
-                                        _vm._s(
-                                          _vm._f("truncate")(result.title, 30)
-                                        )
+                                      _vm._s(
+                                        _vm._f("truncate")(result.title, 30)
+                                      )
                                     )
                                   ]),
                                   _vm._v(" "),
@@ -6586,6 +6656,7 @@ var render = function() {
       _vm.showMoreActive
         ? _c("GenreResult", {
             attrs: {
+              id: _vm.id,
               results: _vm.showMoreResults,
               nextPage: _vm.showMoreNextPage
             }
@@ -6639,7 +6710,7 @@ var render = function() {
                     {
                       staticClass: "text-xs-center",
                       attrs: {
-                        to: "/genre/" + genre.name + "/" + genre.id + "/1",
+                        to: "/genre/" + genre.name + "/" + genre.id,
                         dark: "",
                         color: _vm.colors[Math.round(Math.random() * 50)]
                       }
@@ -7957,399 +8028,14 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", md8: "", "offset-md2": "" } },
-                    [
-                      _vm.selectField == "anime" || _vm.selectField == "manga"
-                        ? _c(
-                            "v-layout",
-                            { attrs: { row: "", wrap: "" } },
-                            _vm._l(_vm.results, function(result, index) {
-                              return _c(
-                                "v-flex",
-                                { key: index, attrs: { xs12: "" } },
-                                [
-                                  _c(
-                                    "v-card",
-                                    {
-                                      staticClass: "mb-2",
-                                      attrs: {
-                                        to:
-                                          "/" +
-                                          _vm.selectField +
-                                          "/" +
-                                          result.mal_id
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "v-layout",
-                                        { attrs: { row: "" } },
-                                        [
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs5: "", sm2: "" } },
-                                            [
-                                              _c("v-img", {
-                                                attrs: {
-                                                  src: result.image_url,
-                                                  height: "150",
-                                                  contain: ""
-                                                },
-                                                scopedSlots: _vm._u(
-                                                  [
-                                                    {
-                                                      key: "placeholder",
-                                                      fn: function() {
-                                                        return [
-                                                          _c("ImagePlaceholder")
-                                                        ]
-                                                      },
-                                                      proxy: true
-                                                    }
-                                                  ],
-                                                  null,
-                                                  true
-                                                )
-                                              })
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs7: "", sm10: "" } },
-                                            [
-                                              _c(
-                                                "v-card-actions",
-                                                [
-                                                  _c(
-                                                    "span",
-                                                    { staticClass: "title" },
-                                                    [
-                                                      _vm._v(
-                                                        _vm._s(index + 1) +
-                                                          ". " +
-                                                          _vm._s(
-                                                            _vm._f("truncate")(
-                                                              result.title,
-                                                              30
-                                                            )
-                                                          )
-                                                      )
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c("v-spacer"),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "v-btn",
-                                                    {
-                                                      attrs: {
-                                                        icon: "",
-                                                        color: "pink accent-2",
-                                                        flat: ""
-                                                      },
-                                                      on: {
-                                                        click: _vm.favorite
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("v-icon", [
-                                                        _vm._v("favorite")
-                                                      ])
-                                                    ],
-                                                    1
-                                                  )
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c("v-card-actions", [
-                                                _vm._v(
-                                                  "\n                                        " +
-                                                    _vm._s(result.synopsis) +
-                                                    "\n                                    "
-                                                )
-                                              ]),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-card-actions",
-                                                {
-                                                  staticClass:
-                                                    "grey--text caption"
-                                                },
-                                                [
-                                                  _vm.selectField == "anime"
-                                                    ? _c(
-                                                        "v-layout",
-                                                        { attrs: { row: "" } },
-                                                        [
-                                                          result.episodes > 1
-                                                            ? _c(
-                                                                "v-flex",
-                                                                {
-                                                                  attrs: {
-                                                                    xs4: ""
-                                                                  }
-                                                                },
-                                                                [
-                                                                  _vm._v(
-                                                                    "Episodes: " +
-                                                                      _vm._s(
-                                                                        result.episodes
-                                                                      )
-                                                                  )
-                                                                ]
-                                                              )
-                                                            : _vm._e(),
-                                                          _vm._v(" "),
-                                                          result.rated != ""
-                                                            ? _c(
-                                                                "v-flex",
-                                                                {
-                                                                  attrs: {
-                                                                    xs4: ""
-                                                                  }
-                                                                },
-                                                                [
-                                                                  _vm._v(
-                                                                    "Rated: " +
-                                                                      _vm._s(
-                                                                        result.rated
-                                                                      )
-                                                                  )
-                                                                ]
-                                                              )
-                                                            : _vm._e(),
-                                                          _vm._v(" "),
-                                                          result.score > 0
-                                                            ? _c(
-                                                                "v-flex",
-                                                                {
-                                                                  attrs: {
-                                                                    xs4: ""
-                                                                  }
-                                                                },
-                                                                [
-                                                                  _vm._v(
-                                                                    "Score: " +
-                                                                      _vm._s(
-                                                                        result.score
-                                                                      )
-                                                                  )
-                                                                ]
-                                                              )
-                                                            : _vm._e()
-                                                        ],
-                                                        1
-                                                      )
-                                                    : _c(
-                                                        "v-layout",
-                                                        [
-                                                          result.chapters > 0
-                                                            ? _c(
-                                                                "v-flex",
-                                                                {
-                                                                  attrs: {
-                                                                    xs4: ""
-                                                                  }
-                                                                },
-                                                                [
-                                                                  _vm._v(
-                                                                    "Chapters: " +
-                                                                      _vm._s(
-                                                                        result.chapters
-                                                                      )
-                                                                  )
-                                                                ]
-                                                              )
-                                                            : _vm._e(),
-                                                          _vm._v(" "),
-                                                          result.volumes > 0
-                                                            ? _c(
-                                                                "v-flex",
-                                                                {
-                                                                  attrs: {
-                                                                    xs4: ""
-                                                                  }
-                                                                },
-                                                                [
-                                                                  _vm._v(
-                                                                    "Volumes: " +
-                                                                      _vm._s(
-                                                                        result.volumes
-                                                                      )
-                                                                  )
-                                                                ]
-                                                              )
-                                                            : _vm._e(),
-                                                          _vm._v(" "),
-                                                          result.score > 0
-                                                            ? _c(
-                                                                "v-flex",
-                                                                {
-                                                                  attrs: {
-                                                                    xs4: ""
-                                                                  }
-                                                                },
-                                                                [
-                                                                  _vm._v(
-                                                                    "Score: " +
-                                                                      _vm._s(
-                                                                        result.score
-                                                                      )
-                                                                  )
-                                                                ]
-                                                              )
-                                                            : _vm._e()
-                                                        ],
-                                                        1
-                                                      )
-                                                ],
-                                                1
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            }),
-                            1
-                          )
-                        : _c(
-                            "v-layout",
-                            { attrs: { row: "", wrap: "" } },
-                            _vm._l(_vm.results, function(result, index) {
-                              return _c(
-                                "v-flex",
-                                { key: index, attrs: { xs12: "", md3: "" } },
-                                [
-                                  _c(
-                                    "v-card",
-                                    {
-                                      attrs: {
-                                        to:
-                                          "/" +
-                                          _vm.selectField +
-                                          "/" +
-                                          result.mal_id
-                                      }
-                                    },
-                                    [
-                                      _c("v-img", {
-                                        attrs: {
-                                          src: result.image_url,
-                                          height: "250",
-                                          position: "top center"
-                                        },
-                                        scopedSlots: _vm._u(
-                                          [
-                                            {
-                                              key: "placeholder",
-                                              fn: function() {
-                                                return [_c("ImagePlaceholder")]
-                                              },
-                                              proxy: true
-                                            }
-                                          ],
-                                          null,
-                                          true
-                                        )
-                                      }),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-card-title",
-                                        { attrs: { "primary-title": "" } },
-                                        [
-                                          _c("div", [
-                                            _c(
-                                              "h3",
-                                              { staticClass: "subheading" },
-                                              [_vm._v(_vm._s(result.name))]
-                                            ),
-                                            _vm._v(" "),
-                                            _vm.selectField == "character"
-                                              ? _c("div", [
-                                                  typeof result.anime[0] !=
-                                                  "undefined"
-                                                    ? _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "grey--text"
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                            " +
-                                                              _vm._s(
-                                                                _vm._f(
-                                                                  "truncate"
-                                                                )(
-                                                                  result
-                                                                    .anime[0]
-                                                                    .name,
-                                                                  18
-                                                                )
-                                                              ) +
-                                                              "\n                                        "
-                                                          )
-                                                        ]
-                                                      )
-                                                    : _c("div", [
-                                                        typeof result
-                                                          .manga[0] !=
-                                                        "undefined"
-                                                          ? _c(
-                                                              "span",
-                                                              {
-                                                                staticClass:
-                                                                  "grey--text"
-                                                              },
-                                                              [
-                                                                _vm._v(
-                                                                  "\n                                                " +
-                                                                    _vm._s(
-                                                                      _vm._f(
-                                                                        "truncate"
-                                                                      )(
-                                                                        result
-                                                                          .manga[0]
-                                                                          .name,
-                                                                        18
-                                                                      )
-                                                                    ) +
-                                                                    "\n                                            "
-                                                                )
-                                                              ]
-                                                            )
-                                                          : _vm._e()
-                                                      ])
-                                                ])
-                                              : _vm._e()
-                                          ])
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            }),
-                            1
-                          )
-                    ],
-                    1
-                  )
+                  _c("SearchResult", {
+                    attrs: {
+                      searchField: _vm.searchField,
+                      selectField: _vm.selectField,
+                      results: _vm.results,
+                      nextPage: 2
+                    }
+                  })
                 ],
                 1
               )
@@ -8361,7 +8047,7 @@ var render = function() {
         : _c(
             "v-container",
             {
-              staticClass: "mt-2",
+              staticClass: "mt-4",
               attrs: { "grid-list-md": "", "text-xs-center": "" }
             },
             [
@@ -8375,6 +8061,384 @@ var render = function() {
             ],
             1
           )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SearchResult.vue?vue&type=template&id=6cc59560&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SearchResult.vue?vue&type=template&id=6cc59560& ***!
+  \***************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "v-flex",
+        { attrs: { xs12: "", md8: "", "offset-md2": "" } },
+        [
+          _vm.selectField == "anime" || _vm.selectField == "manga"
+            ? _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                _vm._l(_vm.results, function(result, index) {
+                  return _c(
+                    "v-flex",
+                    { key: index, attrs: { xs12: "" } },
+                    [
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "mb-2",
+                          attrs: {
+                            to: "/" + _vm.selectField + "/" + result.mal_id
+                          }
+                        },
+                        [
+                          _c(
+                            "v-layout",
+                            { attrs: { row: "" } },
+                            [
+                              _c(
+                                "v-flex",
+                                { attrs: { xs5: "", sm2: "" } },
+                                [
+                                  _c("v-img", {
+                                    attrs: {
+                                      src: result.image_url,
+                                      height: "150",
+                                      contain: ""
+                                    },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "placeholder",
+                                          fn: function() {
+                                            return [_c("ImagePlaceholder")]
+                                          },
+                                          proxy: true
+                                        }
+                                      ],
+                                      null,
+                                      true
+                                    )
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs7: "", sm10: "" } },
+                                [
+                                  _c(
+                                    "v-card-actions",
+                                    [
+                                      _c("span", { staticClass: "title" }, [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm._f("truncate")(result.title, 30)
+                                          )
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("v-spacer"),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            icon: "",
+                                            color: "pink accent-2",
+                                            flat: ""
+                                          },
+                                          on: { click: _vm.favorite }
+                                        },
+                                        [_c("v-icon", [_vm._v("favorite")])],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c("v-card-actions", [
+                                    _vm._v(
+                                      "\n                                " +
+                                        _vm._s(result.synopsis) +
+                                        "\n                            "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-card-actions",
+                                    { staticClass: "grey--text caption" },
+                                    [
+                                      _vm.selectField == "anime"
+                                        ? _c(
+                                            "v-layout",
+                                            { attrs: { row: "" } },
+                                            [
+                                              result.episodes > 1
+                                                ? _c(
+                                                    "v-flex",
+                                                    { attrs: { xs4: "" } },
+                                                    [
+                                                      _vm._v(
+                                                        "Episodes: " +
+                                                          _vm._s(
+                                                            result.episodes
+                                                          )
+                                                      )
+                                                    ]
+                                                  )
+                                                : _vm._e(),
+                                              _vm._v(" "),
+                                              result.rated != ""
+                                                ? _c(
+                                                    "v-flex",
+                                                    { attrs: { xs4: "" } },
+                                                    [
+                                                      _vm._v(
+                                                        "Rated: " +
+                                                          _vm._s(result.rated)
+                                                      )
+                                                    ]
+                                                  )
+                                                : _vm._e(),
+                                              _vm._v(" "),
+                                              result.score > 0
+                                                ? _c(
+                                                    "v-flex",
+                                                    { attrs: { xs4: "" } },
+                                                    [
+                                                      _vm._v(
+                                                        "Score: " +
+                                                          _vm._s(result.score)
+                                                      )
+                                                    ]
+                                                  )
+                                                : _vm._e()
+                                            ],
+                                            1
+                                          )
+                                        : _c(
+                                            "v-layout",
+                                            [
+                                              result.chapters > 0
+                                                ? _c(
+                                                    "v-flex",
+                                                    { attrs: { xs4: "" } },
+                                                    [
+                                                      _vm._v(
+                                                        "Chapters: " +
+                                                          _vm._s(
+                                                            result.chapters
+                                                          )
+                                                      )
+                                                    ]
+                                                  )
+                                                : _vm._e(),
+                                              _vm._v(" "),
+                                              result.volumes > 0
+                                                ? _c(
+                                                    "v-flex",
+                                                    { attrs: { xs4: "" } },
+                                                    [
+                                                      _vm._v(
+                                                        "Volumes: " +
+                                                          _vm._s(result.volumes)
+                                                      )
+                                                    ]
+                                                  )
+                                                : _vm._e(),
+                                              _vm._v(" "),
+                                              result.score > 0
+                                                ? _c(
+                                                    "v-flex",
+                                                    { attrs: { xs4: "" } },
+                                                    [
+                                                      _vm._v(
+                                                        "Score: " +
+                                                          _vm._s(result.score)
+                                                      )
+                                                    ]
+                                                  )
+                                                : _vm._e()
+                                            ],
+                                            1
+                                          )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                }),
+                1
+              )
+            : _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                _vm._l(_vm.results, function(result, index) {
+                  return _c(
+                    "v-flex",
+                    { key: index, attrs: { xs12: "", md3: "" } },
+                    [
+                      _c(
+                        "v-card",
+                        {
+                          attrs: {
+                            to: "/" + _vm.selectField + "/" + result.mal_id
+                          }
+                        },
+                        [
+                          _c("v-img", {
+                            attrs: {
+                              src: result.image_url,
+                              height: "250",
+                              position: "top center"
+                            },
+                            scopedSlots: _vm._u(
+                              [
+                                {
+                                  key: "placeholder",
+                                  fn: function() {
+                                    return [_c("ImagePlaceholder")]
+                                  },
+                                  proxy: true
+                                }
+                              ],
+                              null,
+                              true
+                            )
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-title",
+                            { attrs: { "primary-title": "" } },
+                            [
+                              _c("div", [
+                                _c("h3", { staticClass: "subheading" }, [
+                                  _vm._v(_vm._s(result.name))
+                                ]),
+                                _vm._v(" "),
+                                _vm.selectField == "character"
+                                  ? _c("div", [
+                                      typeof result.anime[0] != "undefined"
+                                        ? _c(
+                                            "div",
+                                            { staticClass: "grey--text" },
+                                            [
+                                              _vm._v(
+                                                "\n                                    " +
+                                                  _vm._s(
+                                                    _vm._f("truncate")(
+                                                      result.anime[0].name,
+                                                      18
+                                                    )
+                                                  ) +
+                                                  "\n                                "
+                                              )
+                                            ]
+                                          )
+                                        : _c("div", [
+                                            typeof result.manga[0] !=
+                                            "undefined"
+                                              ? _c(
+                                                  "span",
+                                                  { staticClass: "grey--text" },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                        " +
+                                                        _vm._s(
+                                                          _vm._f("truncate")(
+                                                            result.manga[0]
+                                                              .name,
+                                                            18
+                                                          )
+                                                        ) +
+                                                        "\n                                    "
+                                                    )
+                                                  ]
+                                                )
+                                              : _vm._e()
+                                          ])
+                                    ])
+                                  : _vm._e()
+                              ])
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                }),
+                1
+              )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      !_vm.showMoreActive
+        ? _c(
+            "div",
+            { staticClass: "text-xs-center" },
+            [
+              _c(
+                "v-btn",
+                {
+                  attrs: {
+                    loading: _vm.showMoreLoading,
+                    dark: "",
+                    color: "blue"
+                  },
+                  on: { click: _vm.showMore }
+                },
+                [_vm._v("Show More")]
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.showMoreActive
+        ? _c("SearchResult", {
+            attrs: {
+              searchField: _vm.searchField,
+              selectField: _vm.selectField,
+              results: _vm.showMoreResults,
+              nextPage: _vm.showMoreNextPage
+            }
+          })
+        : _vm._e()
     ],
     1
   )
@@ -50424,6 +50488,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/SearchResult.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/SearchResult.vue ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SearchResult_vue_vue_type_template_id_6cc59560___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SearchResult.vue?vue&type=template&id=6cc59560& */ "./resources/js/components/SearchResult.vue?vue&type=template&id=6cc59560&");
+/* harmony import */ var _SearchResult_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SearchResult.vue?vue&type=script&lang=js& */ "./resources/js/components/SearchResult.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _SearchResult_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SearchResult_vue_vue_type_template_id_6cc59560___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _SearchResult_vue_vue_type_template_id_6cc59560___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/SearchResult.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/SearchResult.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/SearchResult.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchResult_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./SearchResult.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SearchResult.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchResult_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/SearchResult.vue?vue&type=template&id=6cc59560&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/SearchResult.vue?vue&type=template&id=6cc59560& ***!
+  \*********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchResult_vue_vue_type_template_id_6cc59560___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./SearchResult.vue?vue&type=template&id=6cc59560& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SearchResult.vue?vue&type=template&id=6cc59560&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchResult_vue_vue_type_template_id_6cc59560___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchResult_vue_vue_type_template_id_6cc59560___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Toolbar.vue":
 /*!*********************************************!*\
   !*** ./resources/js/components/Toolbar.vue ***!
@@ -50544,7 +50677,7 @@ __webpack_require__.r(__webpack_exports__);
   name: 'genres',
   component: _components_Genres__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
-  path: '/genre/:name/:id/:page',
+  path: '/genre/:name/:id',
   name: 'genre',
   component: _components_Genre__WEBPACK_IMPORTED_MODULE_6__["default"],
   props: true
