@@ -39,11 +39,21 @@
                     <v-divider></v-divider>
                     <v-list-tile to="/genres">
                         <v-list-tile-action>
-                            <v-icon>dashboard</v-icon>
+                            <v-icon>view_module</v-icon>
                         </v-list-tile-action>
 
                         <v-list-tile-content>
                             <v-list-tile-title>Genres</v-list-tile-title>
+                        </v-list-tile-content>
+                    </v-list-tile>
+                    <v-divider></v-divider>
+                    <v-list-tile to="/discover">
+                        <v-list-tile-action>
+                            <v-icon>visibility</v-icon>
+                        </v-list-tile-action>
+
+                        <v-list-tile-content>
+                            <v-list-tile-title>Discover</v-list-tile-title>
                         </v-list-tile-content>
                     </v-list-tile>
                     <v-divider></v-divider>

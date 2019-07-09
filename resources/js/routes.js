@@ -5,6 +5,7 @@ import Character from './components/Character'
 import Person from './components/Person'
 import Genres from './components/Genres'
 import Genre from './components/Genre'
+import Discover from './components/Discover'
 
 export default [
     {
@@ -24,23 +25,28 @@ export default [
         props: true
     },
     {
-        path: "/anime/:id",
+        path: '/anime/:id',
         component: Anime,
         props: true
     },
     {
-        path: "/manga/:id",
+        path: '/manga/:id',
         component: Manga,
         props: true
     },
     {
-        path: "/character/:id",
+        path: '/character/:id',
         component: Character,
         props: true
     },
     {
-        path: "/person/:id",
+        path: '/person/:id',
         component: Person,
         props: true
+    },
+    {
+        path: '/discover',
+        name: 'Discover',
+        component: Discover,
     }
 ]
