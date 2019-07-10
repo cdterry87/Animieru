@@ -19,9 +19,11 @@
                     </v-card>
                 </v-flex>
             </v-layout>
-            <div class="headline mb-2 mt-4">
-                <v-icon>whatshot</v-icon>
-                What's HOT This Season!
+            <div v-if="currentSeason == 'spring' || currentSeason == 'summer'" class="headline mb-2 mt-4">
+                <v-icon>whatshot</v-icon> What's HOT This Season!
+            </div>
+            <div v-if="currentSeason == 'fall' || currentSeason == 'winter'" class="headline mb-2 mt-4">
+                <v-icon>ac_unit</v-icon> What's COOL This Season!
             </div>
             <Loading v-if="loadingSeason" />
             <v-layout v-else row wrap>

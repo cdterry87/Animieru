@@ -2773,6 +2773,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -6588,15 +6590,29 @@ var render = function() {
                 1
               ),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "headline mb-2 mt-4" },
-            [
-              _c("v-icon", [_vm._v("whatshot")]),
-              _vm._v("\n            What's HOT This Season!\n        ")
-            ],
-            1
-          ),
+          _vm.currentSeason == "spring" || _vm.currentSeason == "summer"
+            ? _c(
+                "div",
+                { staticClass: "headline mb-2 mt-4" },
+                [
+                  _c("v-icon", [_vm._v("whatshot")]),
+                  _vm._v(" What's HOT This Season!\n        ")
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.currentSeason == "fall" || _vm.currentSeason == "winter"
+            ? _c(
+                "div",
+                { staticClass: "headline mb-2 mt-4" },
+                [
+                  _c("v-icon", [_vm._v("ac_unit")]),
+                  _vm._v(" What's COOL This Season!\n        ")
+                ],
+                1
+              )
+            : _vm._e(),
           _vm._v(" "),
           _vm.loadingSeason
             ? _c("Loading")
@@ -8398,7 +8414,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-container",
+    "div",
+    { staticClass: "full-width" },
     [
       _c(
         "v-flex",
@@ -8717,7 +8734,9 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      !_vm.showMoreActive
+      !_vm.showMoreActive &&
+      _vm.selectField != "character" &&
+      _vm.selectField != "person"
         ? _c(
             "div",
             { staticClass: "text-xs-center" },
