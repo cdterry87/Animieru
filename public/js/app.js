@@ -2237,7 +2237,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -2256,6 +2255,7 @@ __webpack_require__.r(__webpack_exports__);
       retrying: false,
       loadingCharacters: true,
       loadingEpisodes: true,
+      loadingShowMoreEpisodes: false,
       errorCounterDetails: 0,
       errorCounterCharacters: 0,
       errorCounterEpisodes: 0,
@@ -2263,7 +2263,7 @@ __webpack_require__.r(__webpack_exports__);
       characters: '',
       episodes: '',
       episodesPage: 1,
-      episodesLastPage: '',
+      episodesLastPage: 1,
       pagination: {
         rowsPerPage: -1
       },
@@ -2333,18 +2333,31 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    nextEpisodes: function nextEpisodes() {
+    showMoreEpisodes: function showMoreEpisodes() {
+      var _this4 = this;
+
       this.episodesPage++;
-      this.getEpisodes();
-    },
-    prevEpisodes: function prevEpisodes() {
-      this.episodesPage--;
-      this.getEpisodes();
+      this.loadingShowMoreEpisodes = true;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://api.jikan.moe/v3/anime/' + this.id + '/episodes/' + this.episodesPage).then(function (response) {
+        Array.prototype.push.apply(_this4.episodes, response.data.episodes);
+        _this4.loadingShowMoreEpisodes = false;
+      })["catch"](function (error) {
+        loadingShowMoreEpisodes = false;
+      });
     },
     retry: function retry() {
       this.getDetails();
       setTimeout(this.getCharacters, 4000);
       setTimeout(this.getEpisodes, 6000);
+    }
+  },
+  computed: {
+    moreEpisodes: function moreEpisodes() {
+      if (this.episodesPage == this.episodesLastPage) {
+        return false;
+      }
+
+      return true;
     }
   },
   created: function created() {
@@ -5601,64 +5614,66 @@ var render = function() {
                                       "div",
                                       { staticClass: "mt-3" },
                                       [
-                                        _c("v-data-table", {
-                                          attrs: {
-                                            headers: _vm.headers,
-                                            items: _vm.episodes,
-                                            pagination: _vm.pagination,
-                                            "no-data-text":
-                                              "There are no episodes available.",
-                                            "disable-initial-sort": "",
-                                            "hide-actions": ""
-                                          },
-                                          on: {
-                                            "update:pagination": function(
-                                              $event
+                                        _c(
+                                          "v-list",
+                                          { attrs: { "two-line": "" } },
+                                          [
+                                            _vm._l(_vm.episodes, function(
+                                              episode
                                             ) {
-                                              _vm.pagination = $event
-                                            }
-                                          },
-                                          scopedSlots: _vm._u(
-                                            [
-                                              {
-                                                key: "items",
-                                                fn: function(props) {
-                                                  return [
-                                                    _c("td", [
+                                              return [
+                                                _c(
+                                                  "v-list-tile",
+                                                  {
+                                                    key: episode.episode_id,
+                                                    attrs: { avatar: "" }
+                                                  },
+                                                  [
+                                                    _c("v-list-tile-avatar", [
                                                       _vm._v(
-                                                        _vm._s(
-                                                          props.item.episode_id
-                                                        )
+                                                        "\n                                            " +
+                                                          _vm._s(
+                                                            episode.episode_id
+                                                          ) +
+                                                          "\n                                        "
                                                       )
                                                     ]),
                                                     _vm._v(" "),
-                                                    _c("td", [
-                                                      _vm._v(
-                                                        _vm._s(props.item.title)
-                                                      )
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c("td", [
-                                                      props.item.title_japanese
-                                                        ? _c("span", [
-                                                            _vm._v(
-                                                              _vm._s(
-                                                                props.item
-                                                                  .title_japanese
+                                                    _c(
+                                                      "v-list-tile-content",
+                                                      [
+                                                        _c(
+                                                          "v-list-tile-title",
+                                                          {
+                                                            domProps: {
+                                                              innerHTML: _vm._s(
+                                                                episode.title
                                                               )
-                                                            )
-                                                          ])
-                                                        : _vm._e()
-                                                    ])
-                                                  ]
-                                                }
-                                              }
-                                            ],
-                                            null,
-                                            false,
-                                            2023491012
-                                          )
-                                        })
+                                                            }
+                                                          }
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "v-list-tile-sub-title",
+                                                          {
+                                                            domProps: {
+                                                              innerHTML: _vm._s(
+                                                                episode.title_japanese
+                                                              )
+                                                            }
+                                                          }
+                                                        )
+                                                      ],
+                                                      1
+                                                    )
+                                                  ],
+                                                  1
+                                                )
+                                              ]
+                                            })
+                                          ],
+                                          2
+                                        )
                                       ],
                                       1
                                     )
@@ -5666,31 +5681,33 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "v-card-actions",
-                                { staticClass: "text-xs-center align-center" },
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.moreEpisodes,
+                                      expression: "moreEpisodes"
+                                    }
+                                  ]
+                                },
                                 [
-                                  _vm.episodesPage > 1
-                                    ? _c(
-                                        "v-btn",
-                                        {
-                                          attrs: { color: "blue", dark: "" },
-                                          on: { click: _vm.prevEpisodes }
-                                        },
-                                        [_vm._v("Previous")]
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
                                   _c("v-spacer"),
                                   _vm._v(" "),
-                                  _vm.episodesPage < _vm.episodesLastPage
-                                    ? _c(
-                                        "v-btn",
-                                        {
-                                          attrs: { color: "blue", dark: "" },
-                                          on: { click: _vm.nextEpisodes }
-                                        },
-                                        [_vm._v("Next")]
-                                      )
-                                    : _vm._e()
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      attrs: {
+                                        color: "blue",
+                                        dark: "",
+                                        loading: _vm.loadingShowMoreEpisodes
+                                      },
+                                      on: { click: _vm.showMoreEpisodes }
+                                    },
+                                    [_vm._v("Show More")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("v-spacer")
                                 ],
                                 1
                               )

@@ -112,26 +112,25 @@
                                 <span class="title">Episodes</span>
                             </div>
                             <div class="mt-3">
-                                <v-data-table
-                                    :headers="headers"
-                                    :items="episodes"
-                                    :pagination.sync="pagination"
-                                    no-data-text="There are no episodes available."
-                                    disable-initial-sort
-                                    hide-actions
-                                >
-                                    <template v-slot:items="props">
-                                        <td>{{ props.item.episode_id }}</td>
-                                        <td>{{ props.item.title }}</td>
-                                        <td><span v-if="props.item.title_japanese">{{ props.item.title_japanese }}</span></td>
+                                <v-list two-line>
+                                    <template v-for="episode in episodes">
+                                        <v-list-tile :key="episode.episode_id" avatar>
+                                            <v-list-tile-avatar>
+                                                {{ episode.episode_id}}
+                                            </v-list-tile-avatar>
+                                            <v-list-tile-content>
+                                                <v-list-tile-title v-html="episode.title"></v-list-tile-title>
+                                                <v-list-tile-sub-title v-html="episode.title_japanese"></v-list-tile-sub-title>
+                                            </v-list-tile-content>
+                                        </v-list-tile>
                                     </template>
-                                </v-data-table>
+                                </v-list>
                             </div>
                         </v-card-text>
-                        <v-card-actions class="text-xs-center align-center">
-                            <v-btn color="blue" dark v-if="episodesPage > 1" @click="prevEpisodes">Previous</v-btn>
+                        <v-card-actions v-show="moreEpisodes">
                             <v-spacer></v-spacer>
-                            <v-btn color="blue" dark v-if="episodesPage < episodesLastPage" @click="nextEpisodes">Next</v-btn>
+                            <v-btn color="blue" dark :loading="loadingShowMoreEpisodes" @click="showMoreEpisodes">Show More</v-btn>
+                            <v-spacer></v-spacer>
                         </v-card-actions>
                     </v-card>
                 </v-flex>
@@ -186,6 +185,7 @@
                 retrying: false,
                 loadingCharacters: true,
                 loadingEpisodes: true,
+                loadingShowMoreEpisodes: false,
                 errorCounterDetails: 0,
                 errorCounterCharacters: 0,
                 errorCounterEpisodes: 0,
@@ -193,7 +193,7 @@
                 characters: '',
                 episodes: '',
                 episodesPage: 1,
-                episodesLastPage: '',
+                episodesLastPage: 1,
                 pagination: {
                     rowsPerPage: -1
                 },
@@ -264,18 +264,33 @@
                     }
                 });
             },
-            nextEpisodes() {
+            showMoreEpisodes() {
                 this.episodesPage++
-                this.getEpisodes()
-            },
-            prevEpisodes() {
-                this.episodesPage--
-                this.getEpisodes()
+
+                this.loadingShowMoreEpisodes = true
+
+                axios.get('https://api.jikan.moe/v3/anime/' + this.id + '/episodes/' + this.episodesPage)
+                .then(response => {
+                    Array.prototype.push.apply(this.episodes,response.data.episodes);
+
+                    this.loadingShowMoreEpisodes = false
+                })
+                .catch(error => {
+                    loadingShowMoreEpisodes = false
+                });
             },
             retry() {
                 this.getDetails()
                 setTimeout(this.getCharacters, 4000)
                 setTimeout(this.getEpisodes, 6000)
+            }
+        },
+        computed: {
+            moreEpisodes: function() {
+                if (this.episodesPage == this.episodesLastPage) {
+                    return false
+                }
+                return true
             }
         },
         created() {
