@@ -2709,14 +2709,149 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Toolbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Toolbar */ "./resources/js/components/Toolbar.vue");
+/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Loading */ "./resources/js/components/Loading.vue");
+/* harmony import */ var _ImagePlaceholder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ImagePlaceholder */ "./resources/js/components/ImagePlaceholder.vue");
 //
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Discover'
+  name: 'Discover',
+  components: {
+    Toolbar: _Toolbar__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Loading: _Loading__WEBPACK_IMPORTED_MODULE_2__["default"],
+    ImagePlaceholder: _ImagePlaceholder__WEBPACK_IMPORTED_MODULE_3__["default"]
+  },
+  data: function data() {
+    return {
+      loadingSeason: true,
+      loadingToday: true,
+      loadingTop: true,
+      season: '',
+      today: '',
+      top: '',
+      days: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
+      date: new Date()
+    };
+  },
+  created: function created() {
+    this.getSeason();
+    this.getToday();
+    this.getTop();
+  },
+  computed: {
+    currentSeason: function currentSeason() {
+      var month = this.date.getMonth();
+      if (month >= 3 && month <= 5) return 'spring';
+      if (month >= 6 && month <= 8) return 'summer';
+      if (month >= 9 && month <= 11) return 'fall';
+      return 'winter';
+    },
+    currentDay: function currentDay() {
+      var dow = this.date.getDay();
+      return this.days[dow];
+    },
+    currentYear: function currentYear() {
+      return this.date.getFullYear();
+    }
+  },
+  methods: {
+    getSeason: function getSeason() {
+      var _this = this;
+
+      this.loadingSeason = true;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://api.jikan.moe/v3/season/' + this.currentYear + '/' + this.currentSeason).then(function (response) {
+        _this.season = response.data.anime;
+        _this.loadingSeason = false;
+      })["catch"](function (error) {
+        _this.loadingSeason = false;
+      });
+    },
+    getToday: function getToday() {
+      var _this2 = this;
+
+      this.loadingToday = true;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://api.jikan.moe/v3/schedule/' + this.currentDay).then(function (response) {
+        _this2.today = response.data[_this2.currentDay];
+        _this2.loadingToday = false;
+      })["catch"](function (error) {
+        _this2.loadingToday = false;
+      });
+    },
+    getTop: function getTop() {
+      var _this3 = this;
+
+      this.loadingTop = true;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://api.jikan.moe/v3/top/anime/1/upcoming').then(function (response) {
+        _this3.top = response.data.top;
+        _this3.loadingTop = false;
+      })["catch"](function (error) {
+        _this3.loadingTop = false;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -2884,9 +3019,12 @@ __webpack_require__.r(__webpack_exports__);
           limit: 50
         }
       }).then(function (response) {
-        _this.showMoreActive = true;
         _this.showMoreLoading = false;
-        _this.showMoreResults = response.data.results;
+
+        if (response.data.results.length > 0) {
+          _this.showMoreActive = true;
+          _this.showMoreResults = response.data.results;
+        }
       })["catch"](function (error) {
         _this.showMoreLoading = false;
       });
@@ -3831,9 +3969,12 @@ __webpack_require__.r(__webpack_exports__);
           limit: 50
         }
       }).then(function (response) {
-        _this.showMoreActive = true;
         _this.showMoreLoading = false;
-        _this.showMoreResults = response.data.results;
+
+        if (response.data.results.length > 0) {
+          _this.showMoreActive = true;
+          _this.showMoreResults = response.data.results;
+        }
       })["catch"](function (error) {
         _this.showMoreLoading = false;
       });
@@ -5502,13 +5643,7 @@ var render = function() {
                                                               _vm._s(
                                                                 props.item
                                                                   .title_japanese
-                                                              ) +
-                                                                " (" +
-                                                                _vm._s(
-                                                                  props.item
-                                                                    .title_romanji
-                                                                ) +
-                                                                ")"
+                                                              )
                                                             )
                                                           ])
                                                         : _vm._e()
@@ -5519,7 +5654,7 @@ var render = function() {
                                             ],
                                             null,
                                             false,
-                                            3850073307
+                                            2023491012
                                           )
                                         })
                                       ],
@@ -6390,7 +6525,182 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    [
+      _c("Toolbar"),
+      _vm._v(" "),
+      _c(
+        "v-container",
+        { attrs: { "grid-list-md": "" } },
+        [
+          _c(
+            "div",
+            { staticClass: "headline mb-2 mt-2" },
+            [
+              _c("v-icon", [_vm._v("calendar_today")]),
+              _vm._v("\n            What's Playing Today?\n        ")
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _vm.loadingToday
+            ? _c("Loading")
+            : _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                _vm._l(_vm.today.slice(0, 6), function(t, index) {
+                  return _c(
+                    "v-flex",
+                    { key: index, attrs: { xs6: "", md2: "" } },
+                    [
+                      _c(
+                        "v-card",
+                        { attrs: { to: "/anime/" + t.mal_id } },
+                        [
+                          _c("v-img", {
+                            attrs: { src: t.image_url, height: "200px" },
+                            scopedSlots: _vm._u(
+                              [
+                                {
+                                  key: "placeholder",
+                                  fn: function() {
+                                    return [_c("ImagePlaceholder")]
+                                  },
+                                  proxy: true
+                                }
+                              ],
+                              null,
+                              true
+                            )
+                          }),
+                          _vm._v(" "),
+                          _c("v-card-actions", [
+                            _vm._v(_vm._s(_vm._f("truncate")(t.title, 20)))
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                }),
+                1
+              ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "headline mb-2 mt-4" },
+            [
+              _c("v-icon", [_vm._v("whatshot")]),
+              _vm._v("\n            What's HOT This Season!\n        ")
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _vm.loadingSeason
+            ? _c("Loading")
+            : _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                _vm._l(_vm.season.slice(0, 12), function(s, index) {
+                  return _c(
+                    "v-flex",
+                    { key: index, attrs: { xs6: "", md2: "" } },
+                    [
+                      _c(
+                        "v-card",
+                        { attrs: { to: "/anime/" + s.mal_id } },
+                        [
+                          _c("v-img", {
+                            attrs: { src: s.image_url, height: "200px" },
+                            scopedSlots: _vm._u(
+                              [
+                                {
+                                  key: "placeholder",
+                                  fn: function() {
+                                    return [_c("ImagePlaceholder")]
+                                  },
+                                  proxy: true
+                                }
+                              ],
+                              null,
+                              true
+                            )
+                          }),
+                          _vm._v(" "),
+                          _c("v-card-actions", [
+                            _vm._v(_vm._s(_vm._f("truncate")(s.title, 20)))
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                }),
+                1
+              ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "headline mb-2 mt-4" },
+            [
+              _c("v-icon", [_vm._v("access_alarm")]),
+              _vm._v("\n            Coming Soon!\n        ")
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _vm.loadingTop
+            ? _c("Loading")
+            : _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                _vm._l(_vm.top.slice(0, 12), function(t, index) {
+                  return _c(
+                    "v-flex",
+                    { key: index, attrs: { xs6: "", md2: "" } },
+                    [
+                      _c(
+                        "v-card",
+                        { attrs: { to: "/anime/" + t.mal_id } },
+                        [
+                          _c("v-img", {
+                            attrs: { src: t.image_url, height: "200px" },
+                            scopedSlots: _vm._u(
+                              [
+                                {
+                                  key: "placeholder",
+                                  fn: function() {
+                                    return [_c("ImagePlaceholder")]
+                                  },
+                                  proxy: true
+                                }
+                              ],
+                              null,
+                              true
+                            )
+                          }),
+                          _vm._v(" "),
+                          _c("v-card-actions", [
+                            _vm._v(_vm._s(_vm._f("truncate")(t.title, 20)))
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                }),
+                1
+              )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -8088,7 +8398,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "v-container",
     [
       _c(
         "v-flex",

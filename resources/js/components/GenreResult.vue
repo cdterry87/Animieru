@@ -77,9 +77,11 @@
                     }
                 })
                 .then(response => {
-                    this.showMoreActive = true
                     this.showMoreLoading = false
-                    this.showMoreResults = response.data.results
+                    if (response.data.results.length > 0) {
+                        this.showMoreActive = true
+                        this.showMoreResults = response.data.results
+                    }
                 })
                 .catch(error => {
                     this.showMoreLoading = false
