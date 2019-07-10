@@ -71,7 +71,7 @@
             <v-btn @click="showMore" :loading="showMoreLoading" dark color="blue">Show More</v-btn>
         </div>
         <SearchResult v-if="showMoreActive" :searchField="searchField" :selectField="selectField" :results="showMoreResults" :nextPage="showMoreNextPage" />
-    </div>
+    </v-container>
 </template>
 
 <script>
@@ -113,8 +113,6 @@
                     if (response.data.results.length > 0) {
                         this.showMoreActive = true
                         this.showMoreResults = response.data.results
-
-
                     }
                 })
                 .catch(error => {
