@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <v-container>
         <v-flex xs12 md8 offset-md2>
             <v-layout row wrap v-if="selectField == 'anime' || selectField == 'manga'">
                 <v-flex xs12 v-for="(result, index) in results" :key="index" >
@@ -71,7 +71,7 @@
             <v-btn @click="showMore" :loading="showMoreLoading" dark color="blue">Show More</v-btn>
         </div>
         <SearchResult v-if="showMoreActive" :searchField="searchField" :selectField="selectField" :results="showMoreResults" :nextPage="showMoreNextPage" />
-    </div>
+    </v-container>
 </template>
 
 <script>
@@ -109,9 +109,11 @@
                     }
                 })
                 .then(response => {
-                    this.showMoreActive = true
                     this.showMoreLoading = false
-                    this.showMoreResults = response.data.results
+                    if (response.data.results.length > 0) {
+                        this.showMoreActive = true
+                        this.showMoreResults = response.data.results
+                    }
                 })
                 .catch(error => {
                     this.showMoreLoading = false

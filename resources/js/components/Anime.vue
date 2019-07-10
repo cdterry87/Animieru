@@ -123,7 +123,7 @@
                                     <template v-slot:items="props">
                                         <td>{{ props.item.episode_id }}</td>
                                         <td>{{ props.item.title }}</td>
-                                        <td><span v-if="props.item.title_japanese">{{ props.item.title_japanese }} ({{ props.item.title_romanji }})</span></td>
+                                        <td><span v-if="props.item.title_japanese">{{ props.item.title_japanese }}</span></td>
                                     </template>
                                 </v-data-table>
                             </div>
