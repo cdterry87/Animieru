@@ -271,7 +271,7 @@
 
                 axios.get('https://api.jikan.moe/v3/anime/' + this.id + '/episodes/' + this.episodesPage)
                 .then(response => {
-                    Array.prototype.push.apply(this.episodes,response.data.episodes);
+                    Array.prototype.push.apply(this.episodes, response.data.episodes);
 
                     this.loadingShowMoreEpisodes = false
                 })
