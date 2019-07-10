@@ -71,7 +71,7 @@
             <v-btn @click="showMore" :loading="showMoreLoading" dark color="blue">Show More</v-btn>
         </div>
         <SearchResult v-if="showMoreActive" :searchField="searchField" :selectField="selectField" :results="showMoreResults" :nextPage="showMoreNextPage" />
-    </v-container>
+    </div>
 </template>
 
 <script>
