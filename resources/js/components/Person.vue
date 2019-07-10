@@ -40,8 +40,7 @@
                                     <td colspan="2"><a :href="details.website_url" target="_blank">{{ details.website_url }}</a></td>
                                 </tr>
                                 <tr v-if="details.about != null">
-                                    <td colspan="2" v-html="details.about">
-                                    </td>
+                                    <td colspan="2" v-html="more_details"></td>
                                 </tr>
                             </table>
                         </v-card-text>
@@ -61,7 +60,7 @@
                                 <tbody>
                                     <tr v-for="position in details.anime_staff_positions" :key="position.mal_id" class="caption">
                                         <td>{{ position.position }}</td>
-                                        <td><router-link :to="'/anime/' + position.anime.mal_id">{{ position.anime.name }}</router-link></td>
+                                        <td><router-link :to="'/anime/' + position.anime.mal_id">{{ position.anime.name | truncate(12) }}</router-link></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -85,7 +84,9 @@
                                         <v-card-text>
                                             <div class="caption" v-html="role.character.name"></div>
                                             <router-link :to="'/anime/' + role.anime.mal_id" class="mt-3">
-                                                <div class="caption" v-html="role.anime.name"></div>
+                                                <div class="caption">
+                                                    {{ role.anime.name | truncate(25)}}
+                                                </div>
                                             </router-link>
                                         </v-card-text>
                                     </v-card>
@@ -119,6 +120,7 @@
                 errorCounterDetails: 0,
                 retrying: false,
                 details: '',
+                more_details: '',
             }
         },
         methods: {
@@ -129,6 +131,7 @@
                 axios.get('https://api.jikan.moe/v3/person/' + this.id)
                 .then(response => {
                     this.details = response.data
+                    this.more_details = response.data.about.replace(/\\n/g, "<br/>")
                     this.loading = false
                 })
                 .catch(error => {

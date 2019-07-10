@@ -119,8 +119,8 @@
                                                 {{ episode.episode_id}}
                                             </v-list-tile-avatar>
                                             <v-list-tile-content>
-                                                <v-list-tile-title v-html="episode.title"></v-list-tile-title>
-                                                <v-list-tile-sub-title v-html="episode.title_japanese"></v-list-tile-sub-title>
+                                                <v-list-tile-title class="body-1" v-html="episode.title" :title="episode.title"></v-list-tile-title>
+                                                <v-list-tile-sub-title v-html="episode.title_japanese" :title="episode.title_japanese"></v-list-tile-sub-title>
                                             </v-list-tile-content>
                                         </v-list-tile>
                                     </template>

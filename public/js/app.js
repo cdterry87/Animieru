@@ -3615,6 +3615,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -3632,7 +3633,8 @@ __webpack_require__.r(__webpack_exports__);
       loading: true,
       errorCounterDetails: 0,
       retrying: false,
-      details: ''
+      details: '',
+      more_details: ''
     };
   },
   methods: {
@@ -3643,6 +3645,7 @@ __webpack_require__.r(__webpack_exports__);
       this.retrying = false;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://api.jikan.moe/v3/person/' + this.id).then(function (response) {
         _this.details = response.data;
+        _this.more_details = response.data.about.replace(/\\n/g, "<br/>");
         _this.loading = false;
       })["catch"](function (error) {
         setTimeout(_this.getDetails, 4000);
@@ -5568,6 +5571,12 @@ var render = function() {
                                                         _c(
                                                           "v-list-tile-title",
                                                           {
+                                                            staticClass:
+                                                              "body-1",
+                                                            attrs: {
+                                                              title:
+                                                                episode.title
+                                                            },
                                                             domProps: {
                                                               innerHTML: _vm._s(
                                                                 episode.title
@@ -5579,6 +5588,10 @@ var render = function() {
                                                         _c(
                                                           "v-list-tile-sub-title",
                                                           {
+                                                            attrs: {
+                                                              title:
+                                                                episode.title_japanese
+                                                            },
                                                             domProps: {
                                                               innerHTML: _vm._s(
                                                                 episode.title_japanese
@@ -7783,7 +7796,7 @@ var render = function() {
                                     _c("td", {
                                       attrs: { colspan: "2" },
                                       domProps: {
-                                        innerHTML: _vm._s(_vm.details.about)
+                                        innerHTML: _vm._s(_vm.more_details)
                                       }
                                     })
                                   ])
@@ -7864,7 +7877,10 @@ var render = function() {
                                                   [
                                                     _vm._v(
                                                       _vm._s(
-                                                        position.anime.name
+                                                        _vm._f("truncate")(
+                                                          position.anime.name,
+                                                          12
+                                                        )
                                                       )
                                                     )
                                                   ]
@@ -7992,15 +8008,28 @@ var render = function() {
                                                         }
                                                       },
                                                       [
-                                                        _c("div", {
-                                                          staticClass:
-                                                            "caption",
-                                                          domProps: {
-                                                            innerHTML: _vm._s(
-                                                              role.anime.name
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "caption"
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                                                " +
+                                                                _vm._s(
+                                                                  _vm._f(
+                                                                    "truncate"
+                                                                  )(
+                                                                    role.anime
+                                                                      .name,
+                                                                    25
+                                                                  )
+                                                                ) +
+                                                                "\n                                            "
                                                             )
-                                                          }
-                                                        })
+                                                          ]
+                                                        )
                                                       ]
                                                     )
                                                   ],
