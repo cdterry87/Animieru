@@ -111,7 +111,7 @@
                         </v-flex>
                     </v-layout>
                     <v-layout row wrap v-else>
-                        <v-flex xs12 md3 v-for="(result, index) in results" :key="index" >
+                        <v-flex xs6 sm4 md3 v-for="(result, index) in results" :key="index" >
                             <v-card :to="'/' + selectField + '/' + result.mal_id">
                                 <v-img :src="result.image_url" height="250" position="top center">
                                     <template v-slot:placeholder>
