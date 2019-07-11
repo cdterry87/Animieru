@@ -8149,7 +8149,12 @@ var render = function() {
                               _c(
                                 "v-flex",
                                 {
-                                  attrs: { xs12: "", md6: "", "offset-md3": "" }
+                                  attrs: {
+                                    xs12: "",
+                                    sm4: "",
+                                    md6: "",
+                                    "offset-md3": ""
+                                  }
                                 },
                                 [
                                   _c(
