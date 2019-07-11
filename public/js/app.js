@@ -8153,6 +8153,7 @@ var render = function() {
                                     xs12: "",
                                     sm8: "",
                                     md6: "",
+                                    "offset-sm3": "",
                                     "offset-md3": ""
                                   }
                                 },

@@ -10,7 +10,7 @@
 
                         <v-container>
                             <v-layout align-center row wrap>
-                                <v-flex xs12 sm8 md6 offset-md3>
+                                <v-flex xs12 sm8 md6 offset-sm3 offset-md3>
                                     <v-card light>
                                         <v-form method="POST" id="searchForm" @submit.prevent="search()">
                                             <v-card-text>
