@@ -8151,7 +8151,7 @@ var render = function() {
                                 {
                                   attrs: {
                                     xs12: "",
-                                    sm4: "",
+                                    sm8: "",
                                     md6: "",
                                     "offset-md3": ""
                                   }
