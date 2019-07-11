@@ -6,6 +6,7 @@ import Person from './components/Person'
 import Genres from './components/Genres'
 import Genre from './components/Genre'
 import Discover from './components/Discover'
+import NotFound from './components/NotFound'
 
 export default [
     {
@@ -48,5 +49,9 @@ export default [
         path: '/discover',
         name: 'Discover',
         component: Discover,
+    },
+    {
+        path: "*",
+        component: NotFound
     }
 ]
