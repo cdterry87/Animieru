@@ -112,7 +112,7 @@
                                 <span class="title">Episodes</span>
                             </div>
                             <div class="mt-3">
-                                <v-list two-line>
+                                <v-list two-line dense>
                                     <template v-for="episode in episodes">
                                         <v-list-tile :key="episode.episode_id" avatar>
                                             <v-list-tile-avatar>

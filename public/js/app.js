@@ -2937,6 +2937,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -3832,6 +3834,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -3938,6 +3942,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../events */ "./resources/js/events.js");
+//
+//
 //
 //
 //
@@ -5542,7 +5548,9 @@ var render = function() {
                                       [
                                         _c(
                                           "v-list",
-                                          { attrs: { "two-line": "" } },
+                                          {
+                                            attrs: { "two-line": "", dense: "" }
+                                          },
                                           [
                                             _vm._l(_vm.episodes, function(
                                               episode
@@ -6779,46 +6787,22 @@ var render = function() {
                                         "v-flex",
                                         { attrs: { xs7: "", sm10: "" } },
                                         [
-                                          _c(
-                                            "v-card-actions",
-                                            [
-                                              _c(
-                                                "span",
-                                                { staticClass: "title" },
-                                                [
-                                                  _vm._v(
-                                                    _vm._s(
-                                                      _vm._f("truncate")(
-                                                        result.title,
-                                                        30
-                                                      )
+                                          _c("v-card-actions", [
+                                            _c(
+                                              "span",
+                                              { staticClass: "title" },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm._f("truncate")(
+                                                      result.title,
+                                                      30
                                                     )
                                                   )
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c("v-spacer"),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-btn",
-                                                {
-                                                  attrs: {
-                                                    icon: "",
-                                                    color: "pink accent-2",
-                                                    flat: ""
-                                                  },
-                                                  on: { click: _vm.favorite }
-                                                },
-                                                [
-                                                  _c("v-icon", [
-                                                    _vm._v("favorite")
-                                                  ])
-                                                ],
-                                                1
-                                              )
-                                            ],
-                                            1
-                                          ),
+                                                )
+                                              ]
+                                            )
+                                          ]),
                                           _vm._v(" "),
                                           _c("v-card-actions", [
                                             _vm._v(
@@ -8388,48 +8372,22 @@ var render = function() {
                                             "v-flex",
                                             { attrs: { xs7: "", sm10: "" } },
                                             [
-                                              _c(
-                                                "v-card-actions",
-                                                [
-                                                  _c(
-                                                    "span",
-                                                    { staticClass: "title" },
-                                                    [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          _vm._f("truncate")(
-                                                            result.title,
-                                                            30
-                                                          )
+                                              _c("v-card-actions", [
+                                                _c(
+                                                  "span",
+                                                  { staticClass: "title" },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm._f("truncate")(
+                                                          result.title,
+                                                          30
                                                         )
                                                       )
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c("v-spacer"),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "v-btn",
-                                                    {
-                                                      attrs: {
-                                                        icon: "",
-                                                        color: "pink accent-2",
-                                                        flat: ""
-                                                      },
-                                                      on: {
-                                                        click: _vm.favorite
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("v-icon", [
-                                                        _vm._v("favorite")
-                                                      ])
-                                                    ],
-                                                    1
-                                                  )
-                                                ],
-                                                1
-                                              ),
+                                                    )
+                                                  ]
+                                                )
+                                              ]),
                                               _vm._v(" "),
                                               _c("v-card-actions", [
                                                 _vm._v(
@@ -8837,23 +8795,6 @@ var render = function() {
                 ],
                 1
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("v-spacer"),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "hidden-sm-and-down" },
-            [
-              _c("v-btn", { attrs: { href: "/login", flat: "" } }, [
-                _vm._v("Login")
-              ]),
-              _vm._v(" "),
-              _c("v-btn", { attrs: { href: "/register", flat: "" } }, [
-                _vm._v("Register")
-              ])
             ],
             1
           )

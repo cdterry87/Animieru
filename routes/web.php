@@ -12,13 +12,13 @@
 */
 
 // Auth routes for login/registration
-Auth::routes();
+// Auth::routes();
 
 // Logout route
-Route::get('/api/logout', function () {
-    Auth::logout();
-    return Redirect::to('login');
-});
+// Route::get('/api/logout', function () {
+//     Auth::logout();
+//     return Redirect::to('login');
+// });
 
 // Catch-all route
 Route::get('/{any}', 'HomeController@index')->where('any', '.*');

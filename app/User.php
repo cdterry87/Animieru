@@ -36,4 +36,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * A user has many favorites.
+     */
+    public function favorites()
+    {
+        return $this->hasMany('App\Favorite');
+    }
 }

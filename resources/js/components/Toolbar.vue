@@ -13,11 +13,13 @@
                     <v-icon class="mr-2">visibility</v-icon> Discover
                 </v-btn>
             </div>
+            <!--
             <v-spacer></v-spacer>
             <div class="hidden-sm-and-down">
                 <v-btn href="/login" flat>Login</v-btn>
                 <v-btn href="/register" flat>Register</v-btn>
             </div>
+             -->
         </v-toolbar>
     </div>
 </template>

@@ -22,10 +22,12 @@
                                     <v-flex xs7 sm10>
                                         <v-card-actions>
                                             <span class="title">{{ result.title | truncate(30) }}</span>
+                                            <!--
                                             <v-spacer></v-spacer>
                                             <v-btn icon @click="favorite" color="pink accent-2" flat>
                                                 <v-icon>favorite</v-icon>
                                             </v-btn>
+                                            -->
                                         </v-card-actions>
                                         <v-card-actions>
                                             {{ result.synopsis }}
