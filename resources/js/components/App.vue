@@ -57,6 +57,7 @@
                         </v-list-tile-content>
                     </v-list-tile>
                     <v-divider></v-divider>
+                    <!--
                     <a href="/login">
                         <v-list-tile>
                             <v-list-tile-action>
@@ -81,6 +82,7 @@
                         </v-list-tile>
                     </a>
                     <v-divider></v-divider>
+                    -->
                 </v-list>
             </v-navigation-drawer>
         </v-app>
