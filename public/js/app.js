@@ -8590,10 +8590,7 @@ var render = function() {
                             _vm._l(_vm.results, function(result, index) {
                               return _c(
                                 "v-flex",
-                                {
-                                  key: index,
-                                  attrs: { xs6: "", sm4: "", md3: "" }
-                                },
+                                { key: index, attrs: { xs6: "", sm4: "" } },
                                 [
                                   _c(
                                     "v-card",
