@@ -8984,17 +8984,12 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-btn",
-            { attrs: { icon: "" } },
+            { staticClass: "hidden-md-and-up", attrs: { icon: "" } },
             [
               _vm.$router.currentRoute.name != "search"
-                ? _c(
-                    "v-icon",
-                    {
-                      staticClass: "hidden-md-and-up",
-                      on: { click: _vm.back }
-                    },
-                    [_vm._v("arrow_back")]
-                  )
+                ? _c("v-icon", { on: { click: _vm.back } }, [
+                    _vm._v("arrow_back")
+                  ])
                 : _vm._e()
             ],
             1
