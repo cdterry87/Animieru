@@ -4025,6 +4025,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Toolbar',
@@ -8980,13 +8982,23 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.$router.currentRoute.name != "search"
-            ? _c(
-                "v-icon",
-                { staticClass: "hidden-md-and-up", on: { click: _vm.back } },
-                [_vm._v("arrow_back")]
-              )
-            : _vm._e()
+          _c(
+            "v-btn",
+            { attrs: { icon: "" } },
+            [
+              _vm.$router.currentRoute.name != "search"
+                ? _c(
+                    "v-icon",
+                    {
+                      staticClass: "hidden-md-and-up",
+                      on: { click: _vm.back }
+                    },
+                    [_vm._v("arrow_back")]
+                  )
+                : _vm._e()
+            ],
+            1
+          )
         ],
         1
       )

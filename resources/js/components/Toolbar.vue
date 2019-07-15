@@ -19,7 +19,9 @@
                     <v-icon class="mr-2">arrow_back</v-icon> Return
                 </v-btn>
             </div>
-            <v-icon class="hidden-md-and-up" v-if="$router.currentRoute.name != 'search'" @click="back">arrow_back</v-icon>
+            <v-btn icon>
+                <v-icon class="hidden-md-and-up" v-if="$router.currentRoute.name != 'search'" @click="back">arrow_back</v-icon>
+            </v-btn>
 
             <!--
             <v-spacer></v-spacer>
