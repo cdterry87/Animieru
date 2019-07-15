@@ -111,7 +111,7 @@
                             </div>
                             <v-layout row wrap>
                                 <v-flex v-for="character in characters" :key="character.mal_id" xs6 sm4 lg3 xl2>
-                                    <v-card>
+                                    <v-card :to="'/character/' + character.mal_id">
                                         <v-img :src="character.image_url" max-height="300" position="top center">
                                             <template v-slot:placeholder>
                                                <ImagePlaceholder />

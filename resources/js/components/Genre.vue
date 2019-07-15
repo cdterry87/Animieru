@@ -57,6 +57,7 @@
     import axios from 'axios'
     import Toolbar from './Toolbar'
     import Loading from './Loading'
+    import ImagePlaceholder from './ImagePlaceholder'
 
     export default {
         name: 'Genre',
@@ -64,6 +65,7 @@
         components: {
             Toolbar,
             Loading,
+            ImagePlaceholder
         },
         data() {
             return {

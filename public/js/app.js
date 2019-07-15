@@ -2468,8 +2468,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'App',
@@ -2886,6 +2884,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Toolbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Toolbar */ "./resources/js/components/Toolbar.vue");
 /* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Loading */ "./resources/js/components/Loading.vue");
+/* harmony import */ var _ImagePlaceholder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ImagePlaceholder */ "./resources/js/components/ImagePlaceholder.vue");
 //
 //
 //
@@ -2941,6 +2940,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
@@ -2949,7 +2949,8 @@ __webpack_require__.r(__webpack_exports__);
   props: ['name', 'id', 'page'],
   components: {
     Toolbar: _Toolbar__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Loading: _Loading__WEBPACK_IMPORTED_MODULE_2__["default"]
+    Loading: _Loading__WEBPACK_IMPORTED_MODULE_2__["default"],
+    ImagePlaceholder: _ImagePlaceholder__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {
@@ -3872,6 +3873,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4004,12 +4017,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Toolbar',
   methods: {
     openDrawer: function openDrawer() {
       _events__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('openDrawer', true);
+    },
+    back: function back() {
+      console.log('currentRoute', this.$router.currentRoute.name);
+      this.$router.go(-1);
     }
   }
 });
@@ -7526,6 +7551,13 @@ var render = function() {
                                         [
                                           _c(
                                             "v-card",
+                                            {
+                                              attrs: {
+                                                to:
+                                                  "/character/" +
+                                                  character.mal_id
+                                              }
+                                            },
                                             [
                                               _c("v-img", {
                                                 attrs: {
@@ -8181,6 +8213,13 @@ var render = function() {
                                                   "append-icon": "search",
                                                   "hide-details": ""
                                                 },
+                                                on: {
+                                                  "click:append": function(
+                                                    $event
+                                                  ) {
+                                                    return _vm.search()
+                                                  }
+                                                },
                                                 model: {
                                                   value: _vm.searchField,
                                                   callback: function($$v) {
@@ -8191,63 +8230,146 @@ var render = function() {
                                               }),
                                               _vm._v(" "),
                                               _c(
-                                                "v-radio-group",
+                                                "v-container",
                                                 {
+                                                  staticClass: "mt-3",
                                                   attrs: {
-                                                    row: "",
-                                                    mandatory: true,
-                                                    "hide-details": ""
-                                                  },
-                                                  on: {
-                                                    change: _vm.changeSearchType
-                                                  },
-                                                  model: {
-                                                    value: _vm.selectField,
-                                                    callback: function($$v) {
-                                                      _vm.selectField = $$v
-                                                    },
-                                                    expression: "selectField"
+                                                    "text-xs-left": "",
+                                                    "grid-list-md": ""
                                                   }
                                                 },
                                                 [
-                                                  _c("v-radio", {
-                                                    attrs: {
-                                                      label: "Anime",
-                                                      color: "blue",
-                                                      value: "anime"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("v-radio", {
-                                                    attrs: {
-                                                      label: "Manga",
-                                                      color: "blue",
-                                                      value: "manga"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("v-radio", {
-                                                    attrs: {
-                                                      label: "Character",
-                                                      color: "blue",
-                                                      value: "character"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("v-radio", {
-                                                    attrs: {
-                                                      label: "Person",
-                                                      color: "blue",
-                                                      value: "person"
-                                                    }
-                                                  })
+                                                  _c(
+                                                    "v-radio-group",
+                                                    {
+                                                      attrs: {
+                                                        row: "",
+                                                        mandatory: true,
+                                                        "hide-details": ""
+                                                      },
+                                                      on: {
+                                                        change:
+                                                          _vm.changeSearchType
+                                                      },
+                                                      model: {
+                                                        value: _vm.selectField,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.selectField = $$v
+                                                        },
+                                                        expression:
+                                                          "selectField"
+                                                      }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "v-layout",
+                                                        {
+                                                          attrs: {
+                                                            row: "",
+                                                            wrap: ""
+                                                          }
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "v-flex",
+                                                            {
+                                                              attrs: {
+                                                                xs6: "",
+                                                                md3: ""
+                                                              }
+                                                            },
+                                                            [
+                                                              _c("v-radio", {
+                                                                attrs: {
+                                                                  label:
+                                                                    "Anime",
+                                                                  color: "blue",
+                                                                  value: "anime"
+                                                                }
+                                                              })
+                                                            ],
+                                                            1
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "v-flex",
+                                                            {
+                                                              attrs: {
+                                                                xs6: "",
+                                                                md3: ""
+                                                              }
+                                                            },
+                                                            [
+                                                              _c("v-radio", {
+                                                                attrs: {
+                                                                  label:
+                                                                    "Manga",
+                                                                  color: "blue",
+                                                                  value: "manga"
+                                                                }
+                                                              })
+                                                            ],
+                                                            1
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "v-flex",
+                                                            {
+                                                              attrs: {
+                                                                xs6: "",
+                                                                md3: ""
+                                                              }
+                                                            },
+                                                            [
+                                                              _c("v-radio", {
+                                                                attrs: {
+                                                                  label:
+                                                                    "Character",
+                                                                  color: "blue",
+                                                                  value:
+                                                                    "character"
+                                                                }
+                                                              })
+                                                            ],
+                                                            1
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "v-flex",
+                                                            {
+                                                              attrs: {
+                                                                xs6: "",
+                                                                md3: ""
+                                                              }
+                                                            },
+                                                            [
+                                                              _c("v-radio", {
+                                                                attrs: {
+                                                                  label:
+                                                                    "Person",
+                                                                  color: "blue",
+                                                                  value:
+                                                                    "person"
+                                                                }
+                                                              })
+                                                            ],
+                                                            1
+                                                          )
+                                                        ],
+                                                        1
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
                                                 ],
                                                 1
                                               ),
                                               _vm._v(" "),
                                               _c(
                                                 "div",
-                                                { staticClass: "mt-3" },
+                                                { staticClass: "mt-2" },
                                                 [
                                                   _c(
                                                     "v-btn",
@@ -8833,7 +8955,38 @@ var render = function() {
               )
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _c("v-spacer"),
+          _vm._v(" "),
+          _vm.$router.currentRoute.name != "search"
+            ? _c(
+                "div",
+                { staticClass: "hidden-sm-and-down" },
+                [
+                  _c(
+                    "v-btn",
+                    { attrs: { flat: "" }, on: { click: _vm.back } },
+                    [
+                      _c("v-icon", { staticClass: "mr-2" }, [
+                        _vm._v("arrow_back")
+                      ]),
+                      _vm._v(" Return\n            ")
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.$router.currentRoute.name != "search"
+            ? _c(
+                "v-icon",
+                { staticClass: "hidden-md-and-up", on: { click: _vm.back } },
+                [_vm._v("arrow_back")]
+              )
+            : _vm._e()
         ],
         1
       )

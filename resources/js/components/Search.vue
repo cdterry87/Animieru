@@ -7,7 +7,6 @@
                     <v-flex text-xs-center xs12>
                         <h1 class="display-1">Animieru</h1>
                         <h2 class="subheading">Search for your favorite Anime, Manga, Characters, and Voice Actors!</h2>
-
                         <v-container>
                             <v-layout align-center row wrap>
                                 <v-flex xs12 sm8 offset-sm2>
@@ -19,30 +18,43 @@
                                                     append-icon="search"
                                                     v-model="searchField"
                                                     hide-details
+                                                    @click:append="search()"
                                                 ></v-text-field>
-                                                <v-radio-group v-model="selectField" row :mandatory="true" hide-details @change="changeSearchType">
-                                                    <v-radio
-                                                        label="Anime"
-                                                        color="blue"
-                                                        value="anime"
-                                                    ></v-radio>
-                                                    <v-radio
-                                                        label="Manga"
-                                                        color="blue"
-                                                        value="manga"
-                                                    ></v-radio>
-                                                    <v-radio
-                                                        label="Character"
-                                                        color="blue"
-                                                        value="character"
-                                                    ></v-radio>
-                                                    <v-radio
-                                                        label="Person"
-                                                        color="blue"
-                                                        value="person"
-                                                    ></v-radio>
-                                                </v-radio-group>
-                                                <div class="mt-3">
+                                                <v-container class="mt-3" text-xs-left grid-list-md>
+                                                    <v-radio-group v-model="selectField" row :mandatory="true" hide-details @change="changeSearchType">
+                                                        <v-layout row wrap>
+                                                            <v-flex xs6 md3>
+                                                                 <v-radio
+                                                                    label="Anime"
+                                                                    color="blue"
+                                                                    value="anime"
+                                                                ></v-radio>
+                                                            </v-flex>
+                                                            <v-flex xs6 md3>
+                                                                <v-radio
+                                                                    label="Manga"
+                                                                    color="blue"
+                                                                    value="manga"
+                                                                ></v-radio>
+                                                            </v-flex>
+                                                            <v-flex xs6 md3>
+                                                                <v-radio
+                                                                    label="Character"
+                                                                    color="blue"
+                                                                    value="character"
+                                                                ></v-radio>
+                                                            </v-flex>
+                                                            <v-flex xs6 md3>
+                                                                <v-radio
+                                                                    label="Person"
+                                                                    color="blue"
+                                                                    value="person"
+                                                                ></v-radio>
+                                                            </v-flex>
+                                                        </v-layout>
+                                                    </v-radio-group>
+                                                </v-container>
+                                                <div class="mt-2">
                                                     <v-btn type="submit" color="blue" dark>
                                                         Search
                                                     </v-btn>

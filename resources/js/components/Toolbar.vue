@@ -13,6 +13,14 @@
                     <v-icon class="mr-2">visibility</v-icon> Discover
                 </v-btn>
             </div>
+            <v-spacer></v-spacer>
+            <div class="hidden-sm-and-down" v-if="$router.currentRoute.name != 'search'">
+                <v-btn @click="back" flat>
+                    <v-icon class="mr-2">arrow_back</v-icon> Return
+                </v-btn>
+            </div>
+            <v-icon class="hidden-md-and-up" v-if="$router.currentRoute.name != 'search'" @click="back">arrow_back</v-icon>
+
             <!--
             <v-spacer></v-spacer>
             <div class="hidden-sm-and-down">
@@ -32,6 +40,10 @@
         methods: {
             openDrawer() {
                 Event.$emit('openDrawer', true)
+            },
+            back() {
+                console.log('currentRoute', this.$router.currentRoute.name)
+                this.$router.go(-1)
             }
         }
     }
