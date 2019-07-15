@@ -49811,14 +49811,15 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   mode: 'history',
   scrollBehavior: function scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition;
-    } else {
-      return {
-        x: 0,
-        y: 0
-      };
-    }
+    return {
+      x: 0,
+      y: 0 // if (savedPosition) {
+      //     return savedPosition
+      // } else {
+      //     return { x: 0, y: 0 }
+      // }
+
+    };
   },
   routes: _routes__WEBPACK_IMPORTED_MODULE_3__["default"]
 }); //Primary components
