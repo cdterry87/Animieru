@@ -1,0 +1,42 @@
+a {
+    text-decoration: none !important;
+}
+
+.container {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.v-navigation-drawer {
+    a {
+        color: inherit;
+    }
+}
+
+.genre-icon {
+    font-size: 3rem;
+}
+
+.italic {
+    font-style: italic !important;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.full-width {
+    width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+
+table td {
+    vertical-align: top !important;
+    border-bottom: solid 1px #dbdbdb;
+    padding: .5em .75em;
+}
