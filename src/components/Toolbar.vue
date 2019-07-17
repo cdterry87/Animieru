@@ -22,14 +22,6 @@
             <v-btn icon class="hidden-md-and-up">
                 <v-icon v-if="$router.currentRoute.name != 'search'" @click="back">arrow_back</v-icon>
             </v-btn>
-
-            <!--
-            <v-spacer></v-spacer>
-            <div class="hidden-sm-and-down">
-                <v-btn href="/login" flat>Login</v-btn>
-                <v-btn href="/register" flat>Register</v-btn>
-            </div>
-             -->
         </v-toolbar>
     </div>
 </template>
@@ -44,7 +36,6 @@
                 Event.$emit('openDrawer', true)
             },
             back() {
-                console.log('currentRoute', this.$router.currentRoute.name)
                 this.$router.go(-1)
             }
         }
