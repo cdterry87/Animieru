@@ -13,13 +13,21 @@
                                     <v-card light>
                                         <v-form method="POST" id="searchForm" @submit.prevent="search()">
                                             <v-card-text>
-                                                <v-text-field
+                                                <v-autocomplete
                                                     label="Search for your favorite..."
-                                                    append-icon="search"
-                                                    v-model="searchField"
+                                                    prepend-icon="search"
+                                                    @click:prepend="search()"
+                                                    v-model="model"
+                                                    :search-input.sync="searchField"
                                                     hide-details
-                                                    @click:append="search()"
-                                                ></v-text-field>
+                                                    :items="autolist"
+                                                    hide-no-data
+                                                    item-text="title"
+                                                    item-value="title"
+                                                    @keyup="typing"
+                                                    cache-items
+                                                ></v-autocomplete>
+
                                                 <v-container class="mt-3" text-xs-left grid-list-md>
                                                     <v-radio-group v-model="selectField" row :mandatory="true" hide-details @change="changeSearchType">
                                                         <v-layout row wrap>
@@ -180,12 +188,42 @@
                 selectField: 'anime',
                 results: '',
                 gradient: 'to top, #209CEE, #2a66cc',
-
+                autolist: [],
+                model: null,
+                searchTimer: 0,
+                searchInterval: 3000
             }
         },
         methods: {
+            typing(e) {
+                clearTimeout(this.searchTimer)
+
+                if (e.key === 'ArrowUp' || e.key === 'ArrowDown' || e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                    e.preventDefault()
+                    return
+                }
+
+                if (!_.isEmpty(this.searchField) && !_.isEmpty(this.selectField) && this.searchField.length > 2 && this.searchField.length < 15) {
+                    this.searchTimer = setTimeout(this.autocomplete, this.searchInterval)
+                }
+            },
+            autocomplete() {
+                axios.get('https://api.jikan.moe/v3/search/' + this.selectField, {
+                    params: {
+                        q: this.searchField,
+                        page: 1,
+                        genre: 12,
+                        genre_exclude: 0,
+                        limit: 50
+                    }
+                })
+                .then(response => {
+                    this.autolist = response.data.results
+                    console.log('autolist', this.autolist)
+                })
+            },
             search() {
-                if (!_.isEmpty(this.searchField) && !_.isEmpty(this.selectField)) {
+                if (!_.isEmpty(this.searchField) && !_.isEmpty(this.selectField) && this.searchField.length > 2) {
                     this.loading = true
 
                     axios.get('https://api.jikan.moe/v3/search/' + this.selectField, {
