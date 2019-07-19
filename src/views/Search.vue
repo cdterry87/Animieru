@@ -191,7 +191,7 @@
                 autolist: [],
                 model: null,
                 searchTimer: 0,
-                searchInterval: 3000
+                searchInterval: 2000
             }
         },
         methods: {
