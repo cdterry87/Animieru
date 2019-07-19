@@ -1,4 +1,10 @@
-# animieru5
+# Animieru
+## Search for all things Anime!
+
+Animieru is a site to search and discover anime, manga, characters, and voice actors.
+
+https://animieru.com
+
 
 ## Project setup
 ```
@@ -14,16 +20,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
