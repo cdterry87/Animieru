@@ -220,7 +220,6 @@
                 })
                 .then(response => {
                     this.autolist = response.data.results
-                    console.log('autolist', this.autolist)
                 })
             },
             search() {
