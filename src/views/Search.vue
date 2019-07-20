@@ -17,7 +17,7 @@
                                                     label="Search for your favorite..."
                                                     prepend-icon="search"
                                                     @click:prepend="search()"
-                                                    v-model="model"
+                                                    v-model="searchModel"
                                                     :search-input.sync="searchField"
                                                     hide-details
                                                     :items="autolist"
@@ -83,7 +83,7 @@
         <v-container v-if="searchPerformed" class="mt-4" grid-list-md>
             <v-layout row wrap>
                 <v-flex text-xs-center class="title mb-3" xs12>
-                    Search Results for "<span class="italic">{{ searchField }}</span>"
+                    Search Results for <span class="italic">"{{ searchCriteria }}"</span>
                     <div class="caption mt-2">
                         <strong>({{ results.length }} Results)</strong>
                     </div>
@@ -189,7 +189,8 @@
                 results: '',
                 gradient: 'to top, #209CEE, #2a66cc',
                 autolist: [],
-                model: null,
+                searchCriteria: '',
+                searchModel: null,
                 searchTimer: 0,
                 searchInterval: 2000
             }
@@ -223,6 +224,9 @@
                 })
             },
             search() {
+                this.results = ''
+                this.searchCriteria = this.searchField
+
                 if (!_.isEmpty(this.searchField) && !_.isEmpty(this.selectField) && this.searchField.length > 2) {
                     this.loading = true
 
